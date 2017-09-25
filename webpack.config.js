@@ -3,6 +3,14 @@ const webpack = require('webpack');
 
 const WDS_PORT = 8000;
 
+const plugins = [];
+
+if (process.env.NODE_ENV === 'development') {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin()
+  )
+}
+
 module.exports = {
   entry: [
     './client',
@@ -12,9 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public/dist'),
     publicPath: 'dist',
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins,
   module: {
     loaders: [
       {
@@ -22,11 +28,6 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: [ path.resolve(__dirname, './client') ],
-      },
-      {
-        test: /(\.css|\.scss|\.sass)$/,
-        include: [ path.resolve(__dirname, './client/css') ],
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ]
   },
