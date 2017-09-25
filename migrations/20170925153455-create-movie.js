@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       watchtime: {
-        type: Sequelize.DATETIME
+        type: Sequelize.DATE
       },
       UserId: {
         type: Sequelize.INTEGER,

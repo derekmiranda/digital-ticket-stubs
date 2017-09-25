@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       },
     },
     venue: DataTypes.STRING,
-    watchtime: DataTypes.DATETIME,
+    watchtime: DataTypes.DATE,
   }, {
     classMethods: {
       associate: function(models) {
