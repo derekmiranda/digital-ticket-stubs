@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var MovieViewing = sequelize.define('MovieViewing', {
     title: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
