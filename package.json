@@ -11,6 +11,7 @@
     "pg-hstore": "^2.3.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "redux": "^3.7.2",
     "sequelize": "^4.10.3",
     "styled-components": "^2.1.2"
   },
@@ -20,9 +21,10 @@
     "build": "NODE_ENV=production webpack",
     "watch": "NODE_ENV=production webpack --watch",
     "wds": "NODE_ENV=development webpack-dev-server --progress",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test ava"
   },
   "devDependencies": {
+    "ava": "^0.22.0",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
