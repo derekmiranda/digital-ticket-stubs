@@ -1,5 +1,6 @@
 # User-specific
 config/
+.env
 
 # Logs
 logs
