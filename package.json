@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "git@github.com:derekmiranda/digital-ticket-stubs.git",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
