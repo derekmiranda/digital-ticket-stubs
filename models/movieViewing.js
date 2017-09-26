@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Movie = sequelize.define('Movie', {
+  var MovieViewing = sequelize.define('MovieViewing', {
     title: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Movie.belongsTo(models.User, {
+        MovieViewing.belongsTo(models.User, {
 					onDelete: "CASCADE",
 					foreignKey: {
 						allowNull: false
@@ -22,5 +22,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Movie;
+  return MovieViewing;
 };
