@@ -26,28 +26,26 @@ function makeQueryStr(data) {
     .join('&');
 }
 
+module.exports = {
 
+  searchForMovie: async (movie) => {
+    const query = {
+      api_key: apiKey,
+      query: movie,
+      include_adult: false,
+    }
+    const queryStr = makeQueryStr(query);
+    const movieSearchUrl = `${apiUrl}/search/movie?${queryStr}`;
 
-const exportObj = {};
-
-exportObj.searchForMovie = async (movie) => {
-  const query = {
-    api_key: apiKey,
-    query: movie,
-    include_adult: false,
+    let result;
+    try {
+      const rawJson = await makeApiRequest(movieSearchUrl);
+      result = cleanUpMovies(rawJson);
+    } catch (err) {
+      result = err;
+    } finally {
+      return result;
+    }
   }
-  const queryStr = makeQueryStr(query);
-  const movieSearchUrl = `${apiUrl}/search/movie?${queryStr}`;
-
-  let result;
-  try {
-    const rawJson = await makeApiRequest(movieSearchUrl);
-    result = cleanUpMovies(rawJson);
-  } catch (err) {
-    result = err;
-  } finally {
-    return result;
-  }
+  
 }
-
-module.exports = exportObj;
