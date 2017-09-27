@@ -1,6 +1,8 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
 
+const cleanUpMovies = require('./cleanUpMovies');
+
 const apiUrl = 'https://api.themoviedb.org/3';
 const apiKey = process.env.TMDB_API_V3_KEY;
 
@@ -24,6 +26,8 @@ function makeQueryStr(data) {
     .join('&');
 }
 
+
+
 const exportObj = {};
 
 exportObj.searchForMovie = async (movie) => {
@@ -37,7 +41,8 @@ exportObj.searchForMovie = async (movie) => {
 
   let result;
   try {
-    result = await makeApiRequest(movieSearchUrl);
+    const rawJson = await makeApiRequest(movieSearchUrl);
+    result = cleanUpMovies(rawJson);
   } catch (err) {
     result = err;
   } finally {
