@@ -9,4 +9,5 @@ export const dbSetup = (test) => {
     // clear database for next test
     await db.sequelize.sync({ force: true });
   })
+  
 }
