@@ -1,17 +1,17 @@
 {
   "presets": ["env", "react"],
-  "plugins": ["transform-object-rest-spread"],
+  "plugins": [
+    "transform-object-rest-spread",
+    ["module-resolver", {
+      "root": "./client",
+      "alias": {
+        "^(.+)": "./\\1"
+      }
+    }]
+  ],
   "env": {
     "test": {
-      "plugins": [
-        "transform-runtime",
-        ["module-resolver", {
-          "root": "./client",
-          "alias": {
-            "^(.+)": "./\\1"
-          }
-        }]
-      ]
+      "plugins": ["transform-runtime"]
     }
   }
 }
