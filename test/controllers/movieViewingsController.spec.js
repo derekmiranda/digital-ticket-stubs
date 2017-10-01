@@ -30,14 +30,14 @@ test.serial('can update multiple movieViewings', async t => {
 
 test.serial('can get all movieViewings', async t => {
   await initMovieViewings(db.MovieViewing);
-  const foundMovieViewings = await db.MovieViewing.findAll();
+  const foundMovieViewings = await movieViewingsController.getMovieViewings();
   const movieViewingTitles = foundMovieViewings.map(movieViewing => movieViewing.title);
   t.deepEqual(movieViewingTitles, ['Star Wars', 'Annie Hall', 'Reservoir Dogs']);
 });
 
 test.serial('can add movieViewing', async t => {
   await initMovieViewings(db.MovieViewing);
-  await db.MovieViewing.create({ id: 4, title: 'The Room' });
+  await movieViewingsController.addMovieViewing({ id: 4, title: 'The Room' });
   const foundMovieViewings = await db.MovieViewing.findAll();
   const movieViewingTitles = foundMovieViewings.map(movieViewing => movieViewing.title);
   t.deepEqual(movieViewingTitles, ['Star Wars', 'Annie Hall', 'Reservoir Dogs', 'The Room']);
@@ -45,7 +45,7 @@ test.serial('can add movieViewing', async t => {
 
 test.serial('can remove movieViewing', async t => {
   await initMovieViewings(db.MovieViewing);
-  await db.MovieViewing.destroy({ where: { title: 'Annie Hall' }});
+  await movieViewingsController.removeMovieViewing(2);
   const foundMovieViewings = await db.MovieViewing.findAll();
   const movieViewingTitles = foundMovieViewings.map(movieViewing => movieViewing.title);
   t.deepEqual(movieViewingTitles, ['Star Wars', 'Reservoir Dogs']);

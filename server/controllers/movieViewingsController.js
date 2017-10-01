@@ -12,7 +12,9 @@ movieViewingsController.addMovieViewing = (movieViewing) => {
 }
 
 movieViewingsController.updateMovieViewings = (movieViewings) => {
-  const updatePromises = movieViewings.map(movieViewing => movieViewingsController.updateMovieViewing(movieViewing));
+  const updatePromises = movieViewings.map(
+    movieViewing => movieViewingsController.updateMovieViewing(movieViewing)
+  );
   return Promise.all(updatePromises);
 }
 
