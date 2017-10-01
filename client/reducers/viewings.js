@@ -7,6 +7,11 @@ import {
 
 export const viewing = (state = {}, action = {}) => {
   switch (action.type) {
+    case EDIT_VIEWING:
+      return {
+        ...state,
+        [action.key]: action.val,
+      }
     default:
       return state;
   }
@@ -19,10 +24,7 @@ const viewings = (state = [], action = {}) => {
     case REMOVE_VIEWING:
       return state.filter(v => v.id !== action.id);
     case EDIT_VIEWING:
-      return state.map(v => v.id === action.id ? {
-        ...v,
-        [action.key]: action.val,
-      } : v);
+      return state.map(v => v.id === action.id ? viewing(v, action) : v);
     case FETCHED_VIEWINGS:
       return action.viewings.concat(state);
     default:
