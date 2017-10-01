@@ -3,9 +3,11 @@
   "plugins": [
     "transform-object-rest-spread",
     ["module-resolver", {
-      "root": "./client",
       "alias": {
-        "^(.+)": "./\\1"
+        "models": "./models",
+        "utils": "./utils",
+        "server": "./server",
+        "^@(.+)": "./\\1"
       }
     }]
   ],
