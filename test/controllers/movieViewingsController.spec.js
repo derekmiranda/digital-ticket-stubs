@@ -1,8 +1,8 @@
 import test from 'ava';
 
-import movieViewingController from '../../server/controllers/movieViewingController';
-import db from '../../models';
-import { dbSetup } from '../../utils/tests';
+import movieViewingsController from 'server/controllers/movieViewingsController';
+import db from 'models';
+import { dbSetup } from 'utils/tests';
 
 dbSetup(test);
 
@@ -21,7 +21,7 @@ test.serial('can update multiple movieViewings', async t => {
     { id: 1, title: 'Star War' },
     { id: 3, title: 'Reservoir Cats' },
   ]
-  const updateResults = await movieViewingController.updateMovieViewings(updates);
+  const updateResults = await movieViewingsController.updateMovieViewings(updates);
   t.deepEqual(updateResults, [[1], [1]]);
   const foundMovieViewings = await db.MovieViewing.findAll();
   const movieViewingTitles = foundMovieViewings.map(movieViewing => movieViewing.title);
