@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import viewings from './viewings';
 import newViewing from './newViewing';
-import focusViewing from './focusViewing';
+import modalOpen from './modalOpen';
 
 const rootReducer = combineReducers({
   viewings,
   newViewing,
-  focusViewing,
+  modalOpen,
 })
 
 export default rootReducer;
