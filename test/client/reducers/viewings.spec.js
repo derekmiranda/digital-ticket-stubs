@@ -12,7 +12,7 @@ test('Viewings defaults to array', t => {
   t.deepEqual(viewings(), []);
 })
 
-test('Viewing defaults to array', t => {
+test('Viewing defaults to object', t => {
   t.deepEqual(viewing(), {});
 })
 
