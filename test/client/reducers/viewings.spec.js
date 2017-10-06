@@ -8,6 +8,11 @@ import {
   fetchedViewings,
 } from 'actions/creators';
 
+const sampleViewings = [
+  { id: 1, title: "A Hard Day's Night" },
+  { id: 3, title: "Yellow Submarine" },
+]
+
 test('Viewings defaults to array', t => {
   t.deepEqual(viewings(), []);
 })
@@ -17,36 +22,38 @@ test('Viewing defaults to object', t => {
 })
 
 test('Can add new viewing to viewings', t => {
-  const actual = viewings(undefined, addViewing({ id: 1 }));
-  t.deepEqual(actual, [{ id: 1 }]);
+  const sample = sampleViewings[0];
+  const actual = viewings(undefined, addViewing(sample));
+  t.deepEqual(actual, [sample]);
 })
 
 test('Can remove viewing', t => {
   t.deepEqual(
-    viewings([{ id: 1 }, { id: 3 }], removeViewing(1)),
-    [{ id: 3 }]
+    viewings(sampleViewings, removeViewing(1)),
+    sampleViewings.slice(1)
   )
 })
 
 test('Can edit viewing', t => {
   t.deepEqual(
-    viewings([{ id: 1 }, { id: 3 }], editViewing({
+    viewings(sampleViewings, editViewing({
       id: 3,
       key: 'title',
-      val: 'It',
+      val: 'Help!',
     })),
     [
-      { id: 1 },
+      sampleViewings[0],
       {
         id: 3,
-        title: 'It',
-      }]
+        title: 'Help!',
+      }
+    ]
   )
 })
 
 test('Will add fetched viewings', t => {
   t.deepEqual(
-    viewings(undefined, fetchedViewings([{ id: 1 }, { id: 3 }])),
-    [{ id: 1 }, { id: 3 }]
+    viewings(undefined, fetchedViewings(sampleViewings)),
+    sampleViewings
   )
 })
