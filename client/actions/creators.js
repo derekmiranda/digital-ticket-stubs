@@ -6,6 +6,7 @@ export const createRequestAction = (reqAction) => ({
   type: `REQUEST_${reqAction.type}`,
 })
 
+// viewing
 export const editViewing = ({ id, key, val }) => ({
   type: types.EDIT_VIEWING,
   id,
@@ -28,6 +29,7 @@ export const fetchedViewings = (viewings) => ({
   viewings,
 })
 
+// new viewing
 export const editNewViewing = (key, val) => ({
   type: types.EDIT_NEW_VIEWING,
   key,
@@ -39,7 +41,14 @@ export const saveNewViewing = (newViewing) => ({
   newViewing,
 })
 
+// modal
 export const focusViewing = (id) => ({
   type: types.FOCUS_VIEWING,
   id,
+})
+
+// search results
+export const fetchedSearchResults = (results) => ({
+  type: types.FETCHED_SEARCH_RESULTS,
+  results,
 })
