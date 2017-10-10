@@ -40,7 +40,7 @@ module.exports = {
     let result;
     try {
       const rawJson = await makeApiRequest(movieSearchUrl);
-      result = rawJson.success ? cleanUpMovies(rawJson) : rawJson;
+      result = rawJson.results ? cleanUpMovies(rawJson) : rawJson;
     } catch (err) {
       result = err;
     } finally {
