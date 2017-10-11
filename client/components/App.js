@@ -1,13 +1,10 @@
 import React from 'react';
 
 import createViewingsContainer from 'containers/createViewingsContainer';
+import GridFormat from './GridFormat';
 
-const SomeViewingsContainer = createViewingsContainer(
-  () => <p>Hey.</p>
-)
+const GridContainer = createViewingsContainer(GridFormat);
 
-const App = () => (
-  <SomeViewingsContainer />
-)
+const App = () => <GridContainer />;
 
 export default App;
