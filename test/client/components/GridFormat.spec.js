@@ -1,9 +1,11 @@
 import test from 'ava';
 import { shallow, configure } from 'enzyme';
 import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-15';
 
+import createViewingsContainer from 'containers/createViewingsContainer';
 import GridFormat from 'components/GridFormat';
 import ViewingTicket from 'containers/ViewingTicket';
 
@@ -22,14 +24,21 @@ function initViewingsCtx() {
 		viewings: ctx.samples,
 	})
 
-	ctx.wrapper = shallow(<GridFormat store={ctx.store} />)
+	const GridContainer = createViewingsContainer(GridFormat);
+
+	ctx.wrapper = shallow(
+		<Provider store={ctx.store}>
+			<GridContainer />
+		</Provider>
+	)
 
 	return ctx;
 }
 
-test('Renders ViewingTickets for every viewing', t => {
-	const { store, samples } = initViewingsCtx();
-	t.pass(); 
+test('Renders ViewingTicket for every viewing', t => {
+	const { samples, wrapper } = initViewingsCtx();
+	const numViewingTix = wrapper.find(ViewingTicket).length;
+	t.is(numViewingTix, samples.length);
 })
 
 test.todo('Renders 4 tickets each row');
