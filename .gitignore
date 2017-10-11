@@ -2,6 +2,9 @@
 config/config.json
 .env
 
+# Builds
+public/dist
+
 # Logs
 logs
 *.log
