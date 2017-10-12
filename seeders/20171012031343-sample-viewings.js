@@ -20,7 +20,6 @@ const records = recordsWithDateCols([
   },
   {
     UserId: 1,
-    title: 'Toe Story 2',
     title: 'Toe Story 3',
     venue: 'AMC 16',
   },
