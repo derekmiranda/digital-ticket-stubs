@@ -12,16 +12,19 @@ const records = recordsWithDateCols([
     UserId: 1,
     title: 'Toe Story',
     venue: 'AMC 16',
+    watchtime: 'Thu Oct 05 2017 00:00:00 (PDT)',
   },
   {
     UserId: 1,
     title: 'Toe Story 2',
     venue: 'AMC 16',
+    watchtime: 'Thu Oct 05 2017 00:00:00 (PDT)',
   },
   {
     UserId: 1,
     title: 'Toe Story 3',
     venue: 'AMC 16',
+    watchtime: 'Thu Oct 05 2017 00:00:00 (PDT)',
   },
 ])
 
