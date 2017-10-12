@@ -7,7 +7,7 @@ import Adapter from 'enzyme-adapter-react-15';
 
 import createViewingsContainer from 'containers/createViewingsContainer';
 import GridFormat from 'components/GridFormat';
-import ViewingTicket from 'containers/ViewingTicket';
+import Ticket from 'components/Ticket';
 
 // 10/10/17 - Enzyme started complaining about missing React adapter
 configure({ adapter: new Adapter() });
@@ -26,18 +26,15 @@ function initViewingsCtx() {
 
 	const GridContainer = createViewingsContainer(GridFormat);
 
-	ctx.wrapper = shallow(
-		<Provider store={ctx.store}>
-			<GridContainer />
-		</Provider>
-	)
+	ctx.wrapper = shallow(<GridContainer />, { context: { store: ctx.store }})
 
 	return ctx;
 }
 
-test('Renders ViewingTicket for every viewing', t => {
+test('Renders Ticket for every viewing', t => {
 	const { samples, wrapper } = initViewingsCtx();
-	const numViewingTix = wrapper.find(ViewingTicket).length;
+	const dumbComponentWrapper = wrapper.dive();
+	const numViewingTix = dumbComponentWrapper.find(Ticket).length;
 	t.is(numViewingTix, samples.length);
 })
 
