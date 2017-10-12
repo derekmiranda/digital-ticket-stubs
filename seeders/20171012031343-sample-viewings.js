@@ -1,26 +1,39 @@
 'use strict';
 
+const recordsWithDateCols = records => (
+  records.map(record => Object.assign(record, {
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }))
+)
+
+const records = recordsWithDateCols([
+  {
+    UserId: 1,
+    title: 'Toe Story',
+    venue: 'AMC 16',
+  },
+  {
+    UserId: 2,
+    title: 'Toe Story 2',
+    venue: 'AMC 16',
+  },
+  {
+    UserId: 3,
+    title: 'Toe Story 2',
+    title: 'Toe Story 3',
+    venue: 'AMC 16',
+  },
+])
+
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+    return queryInterface.bulkInsert('MovieViewings', records);
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
+    return queryInterface.bulkDelete('MovieViewings', {
+      [Sequelize.Op.like]: 'Toe%',
+    })
   }
 };
