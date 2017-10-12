@@ -33,7 +33,9 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('MovieViewings', {
-      [Sequelize.Op.like]: 'Toe%',
+      UserId: {
+        [Sequelize.Op.between]: [1, 3],
+      }
     })
   }
 };
