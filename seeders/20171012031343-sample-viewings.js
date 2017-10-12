@@ -14,12 +14,12 @@ const records = recordsWithDateCols([
     venue: 'AMC 16',
   },
   {
-    UserId: 2,
+    UserId: 1,
     title: 'Toe Story 2',
     venue: 'AMC 16',
   },
   {
-    UserId: 3,
+    UserId: 1,
     title: 'Toe Story 2',
     title: 'Toe Story 3',
     venue: 'AMC 16',
