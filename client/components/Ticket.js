@@ -18,13 +18,15 @@ Ticket.propTypes = {
 }
 
 function viewingToInputs(viewing) {
-	const inputs = Object.keys(viewing).map((field, i) => {
+	const fields = ['title', 'venue', 'watchtime'];
+	const inputs = fields.map((field, i) => {
 		const val = viewing[field];
 		const readableField = getReadableFieldName(field);
 		return (
 			<input type="text"
 				placeholder={readableField}
 				value={val}
+				name={field}
 				key={i}
 			/>
 		)

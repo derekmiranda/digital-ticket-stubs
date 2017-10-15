@@ -26,9 +26,10 @@ testRendering(test, <Ticket />);
 
 const inputTestMacro = (t, field) => {
   const { sample, wrapper } = initCtx();
-  console.log(wrapper.html());
   const inputWrapper = wrapper.findWhere(
-    node => node.type() === 'input' && node.prop('value') === sample[field]
+    node => node.type() === 'input'
+            && node.prop('value') === sample[field]
+            && node.prop('name') === field
   )
   t.is(inputWrapper.length, 1);
 }
