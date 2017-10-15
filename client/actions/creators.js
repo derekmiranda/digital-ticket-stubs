@@ -30,10 +30,16 @@ export const fetchedViewings = (viewings) => ({
 })
 
 // new viewing
-export const editNewViewing = (key, val) => ({
+export const editNewViewing = ({ id, key, val }) => ({
   type: types.EDIT_NEW_VIEWING,
+  id,
   key,
   val,
+})
+
+export const addNewViewing = (newViewing) => ({
+  type: types.ADD_NEW_VIEWING,
+  newViewing,
 })
 
 export const saveNewViewing = (newViewing) => ({

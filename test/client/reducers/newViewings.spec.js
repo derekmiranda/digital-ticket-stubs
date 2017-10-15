@@ -19,10 +19,9 @@ test('Can edit new viewing', t => {
 })
 
 test('Can add new viewing', t => {
-  const expected = newViewings([{ id: 1 }], editNewViewing({
+  const expected = newViewings([], addNewViewing({
     id: 1,
-    key: 'title',
-    val: 'Cowboy',
+    title: 'Cowboy',
   }))
 
   t.deepEqual(expected, [{ id: 1, title: 'Cowboy' }]);

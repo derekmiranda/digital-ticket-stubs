@@ -7,6 +7,7 @@ export const FETCHED_VIEWINGS = 'FETCHED_VIEWINGS';
 // new viewing
 export const EDIT_NEW_VIEWING = 'EDIT_NEW_VIEWING';
 export const SAVE_NEW_VIEWING = 'SAVE_NEW_VIEWING';
+export const ADD_NEW_VIEWING = 'ADD_NEW_VIEWING';
 
 // modal
 export const FOCUS_VIEWING = 'FOCUS_VIEWING';
