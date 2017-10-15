@@ -6,7 +6,7 @@ import { viewingSchema } from 'schemas';
 
 const GridFormat = ({ viewings }) => {
 	const tickets = viewings.map(
-		viewing => <Ticket viewing={viewing}/>
+		(viewing, i) => <Ticket viewing={viewing} key={i} />
 	)
 
 	return (
