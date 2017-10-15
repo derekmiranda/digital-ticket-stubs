@@ -7,20 +7,22 @@ import React from 'react';
 import createViewingsContainer from 'containers/createViewingsContainer';
 import GridFormat from 'components/GridFormat';
 import Ticket from 'components/Ticket';
+import NewTicket from 'components/NewTicket';
 import { initEnzyme } from 'utils/tests';
 
 initEnzyme();
 
-function initViewingsCtx() {
+function initViewingsCtx({ sampleNewViewings = [] } = {}) {
 	const ctx = {};
 
-	ctx.samples = [
+	ctx.sampleViewings = [
 		{ id: 1, title: "A Hard Day's Night" },
 		{ id: 3, title: "Yellow Submarine" },
 	]
 
 	ctx.store = configureStore()({
-		viewings: ctx.samples,
+		viewings: ctx.sampleViewings,
+		newViewings: sampleNewViewings,
 	})
 
 	const GridContainer = createViewingsContainer(GridFormat);
@@ -31,20 +33,35 @@ function initViewingsCtx() {
 }
 
 test('Renders Ticket for every viewing', t => {
-	const { samples, dumbComponentWrapper } = initViewingsCtx();
+	const { sampleViewings, dumbComponentWrapper } = initViewingsCtx();
 	const numViewingTix = dumbComponentWrapper.find(Ticket).length;
-	t.is(numViewingTix, samples.length);
+	t.is(numViewingTix, sampleViewings.length);
+})
+
+test('Renders NewTicket for every new viewing', t => {
+	const sampleNewViewings = [{}];
+	const { sampleViewings, dumbComponentWrapper } = initViewingsCtx({ sampleNewViewings });
+	const numViewingTix = dumbComponentWrapper.find(NewTicket).length;
+	t.is(numViewingTix, sampleNewViewings.length);
 })
 
 test('Displays button to add new viewing', t => {
 	const { dumbComponentWrapper } = initViewingsCtx();
-	// console.log(wrapper.html())
-	const btnWrap = dumbComponentWrapper.findWhere(
-		node => node.prop('id') === 'add-viewing'
-						&& node.type() === 'button'
-						&& node.text() === '+ Add Viewing'
-	)
-	t.is(btnWrap.length, 1);
+	t.is(dumbComponentWrapper.containsMatchingElement(
+		<button id='add-viewing'>+ Add Viewing</button>
+	), true);
 })
 
-test.todo('Renders 4 tickets each row');
+test('Clicking on Add Viewing button brings up new viewing editor', t => {
+	const { dumbComponentWrapper, sampleViewings } = initViewingsCtx();
+	const addButton = dumbComponentWrapper.findWhere(
+		node => node.prop('id') === 'add-viewing' && node.type() === 'button'
+	)
+	addButton.simulate('click');
+	t.is(
+		dumbComponentWrapper.find(Ticket).length,
+		sampleViewings.length + 1
+	)
+})
+
+test.todo('Renders 4 tickets each row')
