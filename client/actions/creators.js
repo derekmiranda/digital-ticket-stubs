@@ -1,6 +1,6 @@
 import * as types from './types';
 
-export const createSimpleAction = (type) => ({ type });
+export const createSimpleActionCreator = type => _ => ({ type });
 export const createRequestAction = (reqAction) => ({
   ...reqAction,
   type: `REQUEST_${reqAction.type}`,
@@ -37,10 +37,7 @@ export const editNewViewing = ({ id, key, val }) => ({
   val,
 })
 
-export const addNewViewing = (newViewing) => ({
-  type: types.ADD_NEW_VIEWING,
-  newViewing,
-})
+export const addNewViewing = createSimpleActionCreator(types.ADD_NEW_VIEWING);
 
 export const saveNewViewing = (newViewing) => ({
   type: types.SAVE_NEW_VIEWING,

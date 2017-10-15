@@ -5,7 +5,7 @@ import Ticket from 'components/Ticket';
 import NewTicket from 'components/NewTicket';
 import { viewingSchema } from 'schemas';
 
-const GridFormat = ({ viewings, newViewings }) => {
+const GridFormat = ({ viewings, newViewings, addNewViewing }) => {
 	const viewingsToTickets = (TicketType) => (viewing, i) => (
 		<TicketType viewing={viewing} key={i} />
 	)
@@ -15,7 +15,7 @@ const GridFormat = ({ viewings, newViewings }) => {
 	return (
 		<div>
 			{tickets}
-			<button id='add-viewing'>+ Add Viewing</button>
+			<button id='add-viewing' onClick={addNewViewing}>+ Add Viewing</button>
 			{newTickets}
 		</div>
 	)
@@ -24,6 +24,7 @@ const GridFormat = ({ viewings, newViewings }) => {
 GridFormat.propTypes = {
 	viewings: PropTypes.arrayOf(viewingSchema),
 	newViewings: PropTypes.arrayOf(viewingSchema),
+	addNewViewing: PropTypes.func,
 }
 
 export default GridFormat;
