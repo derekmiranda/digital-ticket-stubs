@@ -2,7 +2,7 @@ import test from 'ava';
 
 import movieViewingsController from 'server/controllers/movieViewingsController';
 import db from 'models';
-import { dbSetup } from 'utils/tests';
+import { dbSetup } from 'utils/tests/db';
 
 dbSetup(test);
 

@@ -1,4 +1,4 @@
-import db from '../models';
+import db from 'models';
 
 export const dbSetup = (test) => {
   test.beforeEach('Initialize db', async t => {
@@ -8,6 +8,5 @@ export const dbSetup = (test) => {
   test.afterEach(async t => {
     // clear database for next test
     await db.sequelize.sync({ force: true });
-  })
-  
+  }) 
 }

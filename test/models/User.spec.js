@@ -1,7 +1,7 @@
 import test from 'ava';
 
 import db from 'models';
-import { dbSetup } from 'utils/tests';
+import { dbSetup } from 'utils/tests/db';
 
 dbSetup(test);
 
