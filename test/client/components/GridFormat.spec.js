@@ -1,16 +1,15 @@
 import test from 'ava';
-import { shallow, configure } from 'enzyme';
+import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-15';
 
 import createViewingsContainer from 'containers/createViewingsContainer';
 import GridFormat from 'components/GridFormat';
 import Ticket from 'components/Ticket';
+import { initEnzyme } from 'utils/tests';
 
-// 10/10/17 - Enzyme started complaining about missing React adapter
-configure({ adapter: new Adapter() });
+initEnzyme();
 
 function initViewingsCtx() {
 	const ctx = {};
