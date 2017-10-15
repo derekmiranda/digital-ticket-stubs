@@ -12,6 +12,7 @@ const GridFormat = ({ viewings }) => {
 	return (
 		<div>
 			{tickets}
+			<button id='add-viewing'>+ Add Viewing</button>
 		</div>
 	)
 }

@@ -24,17 +24,27 @@ function initViewingsCtx() {
 	})
 
 	const GridContainer = createViewingsContainer(GridFormat);
-
-	ctx.wrapper = shallow(<GridContainer />, { context: { store: ctx.store }})
+	ctx.wrapper = shallow(<GridContainer />, { context: { store: ctx.store }});
+	ctx.dumbComponentWrapper = ctx.wrapper.dive();
 
 	return ctx;
 }
 
 test('Renders Ticket for every viewing', t => {
-	const { samples, wrapper } = initViewingsCtx();
-	const dumbComponentWrapper = wrapper.dive();
+	const { samples, dumbComponentWrapper } = initViewingsCtx();
 	const numViewingTix = dumbComponentWrapper.find(Ticket).length;
 	t.is(numViewingTix, samples.length);
+})
+
+test('Displays button to add new viewing', t => {
+	const { dumbComponentWrapper } = initViewingsCtx();
+	// console.log(wrapper.html())
+	const btnWrap = dumbComponentWrapper.findWhere(
+		node => node.prop('id') === 'add-viewing'
+						&& node.type() === 'button'
+						&& node.text() === '+ Add Viewing'
+	)
+	t.is(btnWrap.length, 1);
 })
 
 test.todo('Renders 4 tickets each row');
