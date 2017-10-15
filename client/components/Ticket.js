@@ -25,6 +25,7 @@ function viewingToInputs(viewing) {
 			<input type="text"
 				placeholder={readableField}
 				value={val}
+				key={i}
 			/>
 		)
 	})
