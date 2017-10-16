@@ -7,9 +7,7 @@ const newViewings = (state = viewings(), action = {}) => {
     case EDIT_NEW_VIEWING:
       return viewings(state, editViewing(action));
     case ADD_NEW_VIEWING:
-      return viewings(state, addViewing({
-        viewing: {},
-      }))
+      return viewings(state, addViewing({}));
     default:
       return state;
   }

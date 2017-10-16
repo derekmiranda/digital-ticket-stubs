@@ -1,6 +1,6 @@
 import * as types from './types';
 
-export const createSimpleActionCreator = type => _ => ({ type });
+export const createSimpleActionCreator = type => () => ({ type });
 export const createRequestAction = (reqAction) => ({
   ...reqAction,
   type: `REQUEST_${reqAction.type}`,
