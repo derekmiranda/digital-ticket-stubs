@@ -79,5 +79,3 @@ test('Clicking on Add Viewing button brings up new viewing editor for every clic
 	addButton.simulate('click');
 	t.is(wrapper.find(NewTicket).length, 2);
 })
-
-test.todo('Renders 4 tickets each row')
