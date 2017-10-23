@@ -26,8 +26,8 @@ const GridFormat = ({
 	return (
 		<div>
 			{tickets}
-			<button id='add-viewing' onClick={addNewViewing}>+ Add Viewing</button>
 			{newTickets}
+			<button id='add-viewing' onClick={addNewViewing}>+ Add Viewing</button>
 		</div>
 	)
 }
