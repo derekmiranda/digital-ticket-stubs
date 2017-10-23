@@ -5,10 +5,13 @@ import Ticket from 'components/Ticket';
 import NewTicket from 'components/NewTicket';
 import { viewingSchema } from 'schemas';
 
-const GridFormat = ({ viewings, newViewings, addNewViewing }) => {
-	const viewingsToTickets = (TicketType) => (viewing, i) => (
-		<TicketType viewing={viewing} key={i} />
-	)
+const GridFormat = ({ viewings, newViewings, addNewViewing, editViewing }) => {
+	const viewingsToTickets = (TicketType) => (viewing, i) => {
+		const onEdit = editViewing;
+		return (
+			<TicketType viewing={viewing} key={i} onEdit={onEdit} />
+		)
+	}
 	const tickets = viewings.map(viewingsToTickets(Ticket));
 	const newTickets = newViewings.map(viewingsToTickets(NewTicket));
 
@@ -25,6 +28,7 @@ GridFormat.propTypes = {
 	viewings: PropTypes.arrayOf(viewingSchema),
 	newViewings: PropTypes.arrayOf(viewingSchema),
 	addNewViewing: PropTypes.func,
+	editViewing: PropTypes.func,
 }
 
 export default GridFormat;

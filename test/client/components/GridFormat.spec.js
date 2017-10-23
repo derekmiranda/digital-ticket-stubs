@@ -36,7 +36,7 @@ const initShallowCtx = ({
 
 function initMountCtx({
 	initialState = {},
-}) {
+} = {}) {
 	initMount();
 	const ctx = {};
 	ctx.store = createStore(reducer, initialState);
@@ -87,13 +87,19 @@ test('Clicking on Add Viewing button brings up new viewing editor for every clic
 })
 
 test('Typing in Ticket field changes value', t => {
-	const { wrapper } = initMountCtx({
+	const { wrapper, store } = initMountCtx({
 		initialState: {
 			viewings: sampleViewings,
 		},
 	});
-	const textInput = wrapper.first(Ticket).find('[name=title]');
+	const firstTicket = wrapper.find('.ticket').first();
+	const textInput = firstTicket.find('[name="title"]');
+	const title = 'Sword Jogger';
 	textInput.simulate('change', {
-		// event stuff here...
-	});
+		target: {
+			value: title,
+		}
+	})
+	const { viewings } = store.getState();
+	t.is(viewings[0].title, title);
 })

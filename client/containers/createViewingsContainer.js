@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import { addNewViewing } from 'actions/creators';
+import { addNewViewing, editViewing } from 'actions/creators';
 
 const createViewingsContainer = (FormatComponent) => {
   const mapStateToProps = state => state;
-  const mapDispatchToProps = { addNewViewing };
+  const mapDispatchToProps = { addNewViewing, editViewing };
   return connect(mapStateToProps, mapDispatchToProps)(FormatComponent);
 }
 
