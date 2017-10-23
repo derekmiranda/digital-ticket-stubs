@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { viewingSchema } from 'schemas';
 import getReadableFieldName from 'utils/getReadableFieldName';
 
-const Ticket = ({ viewing = {} }) => {
+const Ticket = ({ viewing = {}, className = 'ticket' }) => {
 	const inputList = viewingToInputs(viewing);
 	return (
-		<div>
+		<div className={className}>
 			{inputList}
 		</div>
 	)

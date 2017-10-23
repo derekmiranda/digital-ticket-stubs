@@ -6,7 +6,7 @@ import { viewingSchema } from 'schemas';
 
 const NewTicket = ({ viewing = {} }) => {
 	return (
-		<Ticket viewing={viewing} />
+		<Ticket viewing={viewing} className="new-ticket" />
 	)
 }
 
