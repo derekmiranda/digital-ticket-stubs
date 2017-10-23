@@ -103,3 +103,21 @@ test('Typing in Ticket field changes value', t => {
 	const { viewings } = store.getState();
 	t.is(viewings[0].title, title);
 })
+
+test('Typing in NewTicket field changes value', t => {
+	const { wrapper, store } = initMountCtx({
+		initialState: {
+			newViewings: sampleViewings,
+		},
+	});
+	const firstTicket = wrapper.find('.new-ticket').first();
+	const textInput = firstTicket.find('[name="title"]');
+	const title = 'Sword Jogger';
+	textInput.simulate('change', {
+		target: {
+			value: title,
+		}
+	})
+	const { newViewings } = store.getState();
+	t.is(newViewings[0].title, title);
+})

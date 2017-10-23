@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import Ticket from 'components/Ticket';
 import { viewingSchema } from 'schemas';
 
-const NewTicket = ({ viewing = {} }) => {
+const NewTicket = (props) => {
 	return (
-		<Ticket viewing={viewing} className="new-ticket" />
+		<Ticket {...props} className="new-ticket" />
 	)
-}
-
-NewTicket.propTypes = {
-	viewing: viewingSchema,
 }
 
 export default NewTicket;
