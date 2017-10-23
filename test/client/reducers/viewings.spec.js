@@ -18,7 +18,10 @@ test('Viewings defaults to array', t => {
 })
 
 test('Viewing defaults to object', t => {
-  t.deepEqual(viewing(), {});
+  t.deepEqual(viewing(), {
+    title: '',
+    venue: '',
+  });
 })
 
 test('Can add new viewing to viewings', t => {

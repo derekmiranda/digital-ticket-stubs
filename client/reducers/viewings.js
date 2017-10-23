@@ -5,7 +5,10 @@ import {
   FETCHED_VIEWINGS,
 } from 'actions/types';
 
-export const viewing = (state = {}, action = {}) => {
+export const viewing = (state = {
+  title: '',
+  venue: '',
+}, action = {}) => {
   switch (action.type) {
     case EDIT_VIEWING:
       return {
