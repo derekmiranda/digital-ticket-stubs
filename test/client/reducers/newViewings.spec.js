@@ -1,7 +1,7 @@
 import test from 'ava';
 
 import newViewings from 'reducers/newViewings';
-import viewings from 'reducers/viewings';
+import viewings, { viewing } from 'reducers/viewings';
 import { editNewViewing, addNewViewing } from 'actions/creators';
 
 test("Defaults to viewings' default state", t => {
@@ -19,10 +19,7 @@ test('Can edit new viewing', t => {
 })
 
 test('Can add new viewing', t => {
-  const expected = newViewings([], addNewViewing({
-    id: 1,
-    title: 'Cowboy',
-  }))
+  const expected = newViewings([], addNewViewing())
 
-  t.deepEqual(expected, [{}]);
+  t.deepEqual(expected, [{ id: 1, ...viewing() }]);
 })
