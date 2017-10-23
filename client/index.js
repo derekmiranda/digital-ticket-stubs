@@ -7,11 +7,7 @@ import logger from 'redux-logger';
 import App from 'components/App';
 import reducer from 'reducers';
 
-const store = createStore(reducer, {
-  viewings: [
-    { title: 'Bad Guy' }
-  ]
-},applyMiddleware(logger));
+const store = createStore(reducer, applyMiddleware(logger));
 
 ReactDom.render(
   <Provider store={store}>
