@@ -34,10 +34,12 @@ const initShallowCtx = ({
 	return ctx;
 }
 
-function initMountCtx() {
+function initMountCtx({
+	initialState = {},
+}) {
 	initMount();
 	const ctx = {};
-	ctx.store = createStore(reducer);
+	ctx.store = createStore(reducer, initialState);
 	const GridContainer = createViewingsContainer(GridFormat);
 	ctx.wrapper = mount(
 		<Provider store={ctx.store}>
@@ -51,6 +53,8 @@ const sampleViewings = [
 	{ id: 1, title: "A Hard Day's Night" },
 	{ id: 3, title: "Yellow Submarine" },
 ]
+
+/* Declarative Tests */
 
 test('Renders Ticket for every viewing', t => {
 	const { dumbComponentWrapper } = initShallowCtx({ sampleViewings });
@@ -72,10 +76,24 @@ test('Displays button to add new viewing', t => {
 	), true);
 })
 
+/* Integration Tests */
+
 test('Clicking on Add Viewing button brings up new viewing editor for every click', t => {
 	const { wrapper } = initMountCtx();
 	const addButton = wrapper.find('button');
 	addButton.simulate('click');
 	addButton.simulate('click');
 	t.is(wrapper.find(NewTicket).length, 2);
+})
+
+test('Typing in Ticket field changes value', t => {
+	const { wrapper } = initMountCtx({
+		initialState: {
+			viewings: sampleViewings,
+		},
+	});
+	const textInput = wrapper.first(Ticket).find('[name=title]');
+	textInput.simulate('change', {
+		// event stuff here...
+	});
 })
