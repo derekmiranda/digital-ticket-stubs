@@ -27,7 +27,7 @@ const createOnChange = ({ editFn, id, key }) => event => editFn({
 })
 
 function viewingToInputs({ viewing, onEdit }) {
-	const fields = ['title', 'venue', 'watchtime'];
+	const fields = ['title', 'venue'];
 	const inputs = fields.map((field, i) => {
 		
 		const onChange = createOnChange({
