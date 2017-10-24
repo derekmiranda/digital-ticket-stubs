@@ -3,18 +3,20 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Ticket from 'components/Ticket';
+import Watchtime from 'components/Watchtime';
 import { testRendering, initEnzyme } from 'utils/tests';
 
 initEnzyme();
 
 function initCtx() {
   const ctx = {};
+  ctx.watchtime = '2017-10-15T11:23:54.659Z';
   ctx.sample = {
     id: 1,
     title: 'B- Movie',
     venue: 'The Honeycomb',
+    watchtime: ctx.watchtime,
   }
-  ctx.watchtime = '2017-10-15T11:23:54.659Z';
   ctx.wrapper = shallow(<Ticket viewing={ctx.sample} />);
   return ctx;
 }
@@ -55,13 +57,7 @@ inputTestMacro.title = (field) => `Renders input for ${field}`;
 test('title', inputTestMacro, 'title');
 test('venue', inputTestMacro, 'venue');
 
-test('Has button for adding watchtime', t => {
-  const { sample, wrapper } = initCtx();
-  const watchtimeInputs = createWatchtimeInputs();
-
-  // doesn't contain any watchtime inputs yet
-  t.false(wrapper.containsAnyMatchingElements(watchtimeInputs));
-
-  const addWatchtimeBtn = wrapper.find('button.add-watchtime');
-  t.true(addWatchtimeBtn.exists());
+test('Has a Watchtime component', t => {
+  const { wrapper } = initCtx();
+  t.is(wrapper.find(Watchtime).length, 1);
 })

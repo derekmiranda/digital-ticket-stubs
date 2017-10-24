@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Watchtime from 'components/Watchtime';
 import { viewingSchema } from 'schemas';
 import getReadableFieldName from 'utils/getReadableFieldName';
 
@@ -8,9 +9,8 @@ const Ticket = ({ viewing = {}, className = 'ticket', label = 'Ticket', onEdit }
 	const inputList = viewingToInputs({ viewing, onEdit });
 	return (
 		<div className={className}>
-			<h2>{label}</h2>
+			<h2 key="label">{label}</h2>
 			{inputList}
-			<button className="add-watchtime" />
 		</div>
 	)
 }
@@ -28,8 +28,8 @@ const createOnChange = ({ editFn, id, key }) => event => editFn({
 })
 
 function viewingToInputs({ viewing, onEdit }) {
-	const fields = ['title', 'venue'];
-	const inputs = fields.map((field, i) => {
+	const textFields = ['title', 'venue'];
+	const textInputs = textFields.map(field => {
 		
 		const onChange = createOnChange({
 			editFn: onEdit,
@@ -46,10 +46,15 @@ function viewingToInputs({ viewing, onEdit }) {
 				placeholder={readableField}
 				value={val}
 				className={field}
-				key={i}
+				key={field}
 			/>
 		)
 	})
+
+	const inputs = textInputs.concat(
+		<Watchtime key="watchtime" datetime={viewing.watchtime} />
+	)
+
 	return inputs;
 }
 
