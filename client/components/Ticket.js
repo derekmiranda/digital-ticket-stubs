@@ -10,6 +10,7 @@ const Ticket = ({ viewing = {}, className = 'ticket', label = 'Ticket', onEdit }
 		<div className={className}>
 			<h2>{label}</h2>
 			{inputList}
+			<button className="add-watchtime" />
 		</div>
 	)
 }
@@ -44,7 +45,7 @@ function viewingToInputs({ viewing, onEdit }) {
 				onChange={onChange}
 				placeholder={readableField}
 				value={val}
-				name={field}
+				className={field}
 				key={i}
 			/>
 		)
