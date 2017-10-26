@@ -7,6 +7,7 @@ import Watchtime from 'components/Watchtime';
 import { testRendering, initEnzyme } from 'utils/tests';
 
 initEnzyme();
+testRendering(test, <Ticket />);
 
 function initCtx() {
   const ctx = {};
@@ -20,27 +21,6 @@ function initCtx() {
   ctx.wrapper = shallow(<Ticket viewing={ctx.sample} />);
   return ctx;
 }
-
-function createWatchtimeInputs() {
-  const watchtimeInputs = [
-    'month',
-    'date',
-    'year',
-    'hour',
-    'mins',
-  ]
-    .map(name => <input type="text" name={name} />)
-    .concat(
-      <select name="period">
-        <option value="am">AM</option>
-        <option value="pm">PM</option>
-      </select>
-    )
-
-  return watchtimeInputs;
-}
-
-testRendering(test, <Ticket />);
 
 const inputTestMacro = (t, field) => {
   const { sample, wrapper } = initCtx();
