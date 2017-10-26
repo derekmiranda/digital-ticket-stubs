@@ -8,17 +8,17 @@ import { testRendering, initEnzyme } from 'utils/tests';
 initEnzyme();
 testRendering(test, <Watchtime />);
 
+const datetimeStr = '2017-10-26T15:22:26.609Z';
+
 function createWatchtimeInputs() {
   const watchtimeInputs = [
     'month',
     'date',
     'year',
-  ].map(name => <input type="text" name={name} />)
+  ].map(name => <select name={name} />)
 
   return watchtimeInputs;
 }
-
-const datetimeStr = '2017-10-26T15:22:26.609Z';
 
 function initCtx({ datetime } = {}) {
 	const ctx = {};
@@ -32,4 +32,10 @@ test('Has proper inputs', t => {
 	t.true(wrapper.containsAllMatchingElements(inputs));
 })
 
-test.todo('Displays datetime through inputs');
+test.skip('Displays datetime through inputs', t => {
+	const { wrapper } = initCtx({ datetime: datetimeStr });
+	const inputs = wrapper.find('select');
+	const values = inputs.map(input => input.prop('value'));
+	console.log("values", values)
+	t.pass();
+});

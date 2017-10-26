@@ -8,11 +8,7 @@ const Watchtime = ({ datetime }) => {
     'month',
     'date',
     'year',
-	].map(name => <input type="text"
-		placeholder={getReadableFieldName(name)}
-		name={name}
-		key={name}
-	/>);
+	].map(name => <select name={name} key={name} />);
 	
 	return (
 		<div className='watchtime'>
