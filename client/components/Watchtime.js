@@ -1,8 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import getReadableFieldName from 'utils/getReadableFieldName';
+
 const Watchtime = ({ datetime }) => {
-	return <div>Watchtime</div>;
+	const watchtimeInputs = [
+    'month',
+    'date',
+    'year',
+	].map(name => <input type="text"
+		placeholder={getReadableFieldName(name)}
+		name={name}
+		key={name}
+	/>);
+	
+	return (
+		<div className='watchtime'>
+			{watchtimeInputs}
+		</div>
+	)
 }
 
 Watchtime.propTypes = {
