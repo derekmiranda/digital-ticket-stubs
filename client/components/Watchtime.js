@@ -40,7 +40,7 @@ const Watchtime = ({ datetime }) => {
 	const yearSelect = createTimeSelect({
 		name: 'year',
 		options: yearOptions,
-		value: dateObj && dateObj.getDate(),
+		value: dateObj && dateObj.getFullYear(),
 	})
 
 	return (

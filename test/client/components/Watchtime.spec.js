@@ -26,16 +26,24 @@ function initCtx({ datetime } = {}) {
 	return ctx;
 }
 
-test('Has proper inputs', t => {
+test('Has selects for month, day, and year', t => {
 	const inputs = createWatchtimeInputs();
 	const { wrapper } = initCtx();
-	t.true(wrapper.containsAllMatchingElements(inputs));
+	['month', 'day', 'year'].forEach(timeUnit => {
+		const timeUnitWrap = wrapper.find(`select[name="${timeUnit}"]`);
+		t.is(timeUnitWrap.length, 1);
+	})
 })
 
-test.skip('Displays datetime through inputs', t => {
+test('Displays datetime through selects', t => {
 	const { wrapper } = initCtx({ datetime: datetimeStr });
-	const inputs = wrapper.find('select');
-	const values = inputs.map(input => input.prop('value'));
-	console.log("values", values)
-	t.pass();
+	const selects = wrapper.find('select');
+	const selectValues = selects.map(select => select.prop('value'));
+	
+	const dateObj = new Date(datetimeStr);
+	const monthVal = dateObj.getMonth() + 1;
+	const dayVal = dateObj.getDate();
+	const yearVal = dateObj.getFullYear();
+	const expectedValues = [ monthVal, dayVal, yearVal];
+	t.deepEqual(selectValues, expectedValues);
 });
