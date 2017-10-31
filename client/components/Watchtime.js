@@ -7,35 +7,42 @@ import {
 	createDescendingOptionsRange
 } from './optionsRangeFns';
 
-const Watchtime = ({ datetime }) => {
-	const monthSelect = (
+const createTimeSelect = ({ name, options, value }) => {
+	const capitalize = str => str[0].toUpperCase() + str.slice(1);
+	return (
 		<select
-			name='month'
-			className='month'
+			name={name}
+			className={name}
+			value={value}
 		>
-			{createAscendingOptionsRange(1, 12, 'Month')}
+			{options}
 		</select>
-	);
+	)
+}
 
-	const daySelect = (
-		<select
-			name='month'
-			className='month'
-		>
-			{createAscendingOptionsRange(1, 30, 'Day')}
-		</select>
-	);
+const Watchtime = ({ datetime }) => {
+	const dateObj = datetime && new Date(datetime);
+
+	const monthSelect = createTimeSelect({
+		name: 'month',
+		options: createAscendingOptionsRange(1, 12, 'Month'),
+		value: dateObj && dateObj.getMonth() + 1,
+	})
+
+	const daySelect = createTimeSelect({
+		name: 'day',
+		options: createAscendingOptionsRange(1, 30, 'Day'),
+		value: dateObj && dateObj.getDate(),
+	})
 
 	const currYear = new Date().getFullYear();
-	const yearSelect = (
-		<select
-			name='month'
-			className='month'
-		>
-			{createDescendingOptionsRange(currYear, 1920, 'Year')}
-		</select>
-	);
-	
+	const yearOptions = createDescendingOptionsRange(currYear, 1920, 'Year');
+	const yearSelect = createTimeSelect({
+		name: 'year',
+		options: yearOptions,
+		value: dateObj && dateObj.getDate(),
+	})
+
 	return (
 		<div className='watchtime'>
 			{monthSelect}

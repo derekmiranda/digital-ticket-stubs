@@ -1,6 +1,6 @@
 import React from 'react';
 
-function createOptionsRangeFn(endCond, changeToFirst) {
+const createOptionsRangeFn = (endCond, changeToFirst) => {
 	return function optionRangeFn(first, last, label, prevOpts = [
 		<option key='default'>{label}</option>
 	]) {
