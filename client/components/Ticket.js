@@ -11,6 +11,7 @@ const Ticket = ({ viewing = {}, className = 'ticket', label = 'Ticket', onEdit }
 		<div className={className}>
 			<h2 key="label">{label}</h2>
 			{inputList}
+			<button className="save-ticket">Save</button>
 		</div>
 	)
 }
