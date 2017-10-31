@@ -46,6 +46,7 @@ function viewingToInputs({ viewing, onEdit }) {
 				onChange={onChange}
 				placeholder={readableField}
 				value={val}
+				name={field}
 				className={field}
 				key={field}
 			/>
