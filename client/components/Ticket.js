@@ -62,23 +62,10 @@ function viewingToInputs({ viewing, onEdit }) {
 }
 
 function createWatchtime(viewing, onEdit) {
-	// generate onChange handler based on based in unit of time (e.g. months, years)
-	const onDatetimeEdit = ({ month, day, year }) => {
-		if ( month && day && year ) {
-			const datetimeStr = timeValsToISOString({ month, day, year });
-			return onEdit({
-				id: viewing.id,
-				key: 'watchtime',
-				val: datetimeStr,
-			});
-		}
-	}
-
 	return (
 		<Watchtime
 			key="watchtime"
-			datetime={viewing.watchtime}
-			onDatetimeEdit={onDatetimeEdit}
+			{...viewing.watchtime}
 		/>
 	)
 }

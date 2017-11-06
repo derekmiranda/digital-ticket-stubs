@@ -6,6 +6,7 @@ import {
 	createAscendingOptionsRange,
 	createDescendingOptionsRange
 } from './optionsRangeFns';
+import { datetimeSchema } from 'schemas';
 
 const Watchtime = ({ month, day, year }) => {
 	const monthSelect = createTimeSelect({
@@ -35,9 +36,7 @@ const Watchtime = ({ month, day, year }) => {
 }
 
 Watchtime.propTypes = {
-	month: PropTypes.number,
-	day: PropTypes.number,
-	year: PropTypes.number,
+	...datetimeSchema,
 	onTimeUnitChange: PropTypes.func,
 }
 
