@@ -1,0 +1,1 @@
+export default ({ month, day, year }) => new Date(year, month, day).toISOString();

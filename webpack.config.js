@@ -7,7 +7,12 @@ const plugins = [];
 
 if (process.env.NODE_ENV === 'development') {
   plugins.push(
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      }
+    })
   )
 }
 
@@ -27,7 +32,7 @@ module.exports = {
         test: /\.(jsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [ path.resolve(__dirname, './client') ],
+        include: [path.resolve(__dirname, './client')],
       },
     ]
   },

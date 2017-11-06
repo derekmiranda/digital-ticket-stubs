@@ -3,13 +3,24 @@ import PropTypes from 'prop-types';
 
 import WatchtimeDumb from './WatchtimeDumb';
 
-const DatetimeHandler = ({ datetime }) => {
+const DatetimeHandler = ({ datetime, onDatetimeEdit }) => {
   const dateObj = datetime && new Date(datetime);
-  const props = {
-    month: dateObj && dateObj.getMonth() + 1,
-    day: dateObj && dateObj.getDate(),
-    year: dateObj && dateObj.getFullYear(),
+  const month = dateObj && dateObj.getMonth() + 1;
+  const day = dateObj && dateObj.getDate();
+  const year = dateObj && dateObj.getFullYear();
+
+  const timeVals = {
+    month,
+    day,
+    year,
   };
+
+  const onTimeUnitChange = timeUnit => event => onDatetimeEdit({
+    ...timeVals,
+    [timeUnit]: event.target.value,
+  });
+
+  const props = { ...timeVals, onTimeUnitChange };
 
 	return (
     <WatchtimeDumb {...props} />
@@ -17,7 +28,8 @@ const DatetimeHandler = ({ datetime }) => {
 }
 
 DatetimeHandler.propTypes = {
-	datetime: PropTypes.string,
+  datetime: PropTypes.string,
+  onDatetimeEdit: PropTypes.func.isRequired,
 }
 
 export default DatetimeHandler;
