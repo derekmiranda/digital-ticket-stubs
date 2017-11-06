@@ -3,7 +3,9 @@ import {
   REMOVE_VIEWING,
   EDIT_VIEWING,
   FETCHED_VIEWINGS,
+  EDIT_WATCHTIME
 } from 'actions/types';
+import watchtime from './watchtime';
 
 export const viewing = (state = {
   title: '',
@@ -14,6 +16,11 @@ export const viewing = (state = {
       return {
         ...state,
         [action.key]: action.val,
+      }
+    case EDIT_WATCHTIME:
+      return {
+        ...state,
+        watchtime: watchtime(state.watchtime, action),
       }
     default:
       return state;
