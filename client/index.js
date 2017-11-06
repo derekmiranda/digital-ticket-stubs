@@ -8,7 +8,20 @@ import thunk from 'redux-thunk';
 import App from 'components/App';
 import reducer from 'reducers';
 
-const store = createStore(reducer, applyMiddleware(thunk, logger));
+const store = createStore(reducer, {
+  viewings: [
+    {
+      id: 1,
+      title: 'Butt Goblins 3',
+      venue: 'sdfsdfd',
+      watchtime: {
+        month: 10,
+        day: 26,
+        year: 1992,
+      }
+    }
+  ]
+}, applyMiddleware(thunk, logger));
 
 ReactDom.render(
   <Provider store={store}>
