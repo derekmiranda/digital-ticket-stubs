@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import * as creators from 'actions/creators';
+
+import { editViewing, editNewViewing } from 'actions/creators';
 
 const createTicketContainer = (TicketType, viewingReducer) => {
 	const mapStateToProps = (state, ownProps) => {
@@ -11,7 +12,16 @@ const createTicketContainer = (TicketType, viewingReducer) => {
 		}
 	}
 
-	return connect(mapStateToProps, creators)(TicketType);
+	const editFnsByReducer = {
+		viewings: editViewing,
+		newViewings: editNewViewing,
+	}
+
+	const mapDispatchToProps = {
+		onEdit: editFnsByReducer[viewingReducer],
+	}
+
+	return connect(mapStateToProps, mapDispatchToProps)(TicketType);
 }
 
 export default createTicketContainer;

@@ -13,14 +13,10 @@ const GridFormat = ({
 	editViewing,
 	editNewViewing
 }) => {
-	const viewingsToTickets = (TicketType) => (viewing, i) => {
-		const onEdit = TicketType.prototype.constructor === Ticket
-			? editViewing
-			: editNewViewing;
-		return (
-			<TicketType viewing={viewing} key={i} onEdit={onEdit} />
-		)
-	}
+	const viewingsToTickets = (TicketType) => (viewing, i) => (
+		<TicketType viewing={viewing} key={i} />
+	);
+
 	const TicketContainer = createTicketContainer(Ticket, 'viewings');
 	const NewTicketContainer = createTicketContainer(NewTicket, 'newViewings');
 	const tickets = viewings.map(viewingsToTickets(TicketContainer));
