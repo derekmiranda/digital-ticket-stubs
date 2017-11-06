@@ -7,7 +7,7 @@ import {
 	createDescendingOptionsRange
 } from './optionsRangeFns';
 
-const WatchtimeDumb = ({ month, day, year, onTimeUnitChange }) => {
+const Watchtime = ({ month, day, year, onTimeUnitChange = () => {} }) => {
 	const monthSelect = createTimeSelect({
 		name: 'month',
 		value: month,
@@ -37,10 +37,11 @@ const WatchtimeDumb = ({ month, day, year, onTimeUnitChange }) => {
 	)
 }
 
-WatchtimeDumb.propTypes = {
+Watchtime.propTypes = {
 	month: PropTypes.number,
 	day: PropTypes.number,
 	year: PropTypes.number,
+	onTimeUnitChange: PropTypes.func,
 }
 
 function createTimeSelect (props, options) {
@@ -52,4 +53,4 @@ function createTimeSelect (props, options) {
 	)
 }
 
-export default WatchtimeDumb;
+export default Watchtime;
