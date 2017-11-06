@@ -7,7 +7,43 @@ import {
 	createDescendingOptionsRange
 } from './optionsRangeFns';
 
-const createTimeSelect = ({ name, options, value }) => {
+const WatchtimeDumb = ({ month, day, year }) => {
+	const monthSelect = createTimeSelect({
+		name: 'month',
+		options: createAscendingOptionsRange(1, 12, 'Month'),
+		value: month,
+	})
+
+	const daySelect = createTimeSelect({
+		name: 'day',
+		options: createAscendingOptionsRange(1, 30, 'Day'),
+		value: day,
+  })
+  
+  const currYear = new Date().getFullYear();
+	const yearOptions = createDescendingOptionsRange(currYear, 1920, 'Year');
+	const yearSelect = createTimeSelect({
+		name: 'year',
+		options: yearOptions,
+		value: year,
+	})
+
+	return (
+		<div className='watchtime'>
+			{monthSelect}
+			{daySelect}
+			{yearSelect}
+		</div>
+	)
+}
+
+WatchtimeDumb.propTypes = {
+	month: PropTypes.number,
+	day: PropTypes.number,
+	year: PropTypes.number,
+}
+
+function createTimeSelect ({ name, options, value }) {
 	const capitalize = str => str[0].toUpperCase() + str.slice(1);
 	return (
 		<select
@@ -20,40 +56,4 @@ const createTimeSelect = ({ name, options, value }) => {
 	)
 }
 
-const Watchtime = ({ datetime }) => {
-	const dateObj = datetime && new Date(datetime);
-
-	const monthSelect = createTimeSelect({
-		name: 'month',
-		options: createAscendingOptionsRange(1, 12, 'Month'),
-		value: dateObj && dateObj.getMonth() + 1,
-	})
-
-	const daySelect = createTimeSelect({
-		name: 'day',
-		options: createAscendingOptionsRange(1, 30, 'Day'),
-		value: dateObj && dateObj.getDate(),
-	})
-
-	const currYear = new Date().getFullYear();
-	const yearOptions = createDescendingOptionsRange(currYear, 1920, 'Year');
-	const yearSelect = createTimeSelect({
-		name: 'year',
-		options: yearOptions,
-		value: dateObj && dateObj.getFullYear(),
-	})
-
-	return (
-		<div className='watchtime'>
-			{monthSelect}
-			{daySelect}
-			{yearSelect}
-		</div>
-	)
-}
-
-Watchtime.propTypes = {
-	datetime: PropTypes.string,
-}
-
-export default Watchtime;
+export default WatchtimeDumb;

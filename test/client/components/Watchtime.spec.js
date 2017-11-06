@@ -30,14 +30,14 @@ test('Has selects for month, day, and year', t => {
 	const inputs = createWatchtimeInputs();
 	const { wrapper } = initCtx();
 	['month', 'day', 'year'].forEach(timeUnit => {
-		const timeUnitWrap = wrapper.find(`select[name="${timeUnit}"]`);
+		const timeUnitWrap = wrapper.dive().find(`select[name="${timeUnit}"]`);
 		t.is(timeUnitWrap.length, 1);
 	})
 })
 
 test('Displays datetime through selects', t => {
 	const { wrapper } = initCtx({ datetime: datetimeStr });
-	const selects = wrapper.find('select');
+	const selects = wrapper.dive().find('select');
 	const selectValues = selects.map(select => select.prop('value'));
 	
 	const dateObj = new Date(datetimeStr);
