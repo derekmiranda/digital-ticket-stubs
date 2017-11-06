@@ -6,6 +6,9 @@ import NewTicket from 'components/NewTicket';
 import createTicketContainer from 'containers/createTicketContainer';
 import { viewingSchema } from 'schemas';
 
+const TicketContainer = createTicketContainer(Ticket, 'viewings');
+const NewTicketContainer = createTicketContainer(NewTicket, 'newViewings');
+
 const GridFormat = ({
 	viewings,
 	newViewings,
@@ -16,9 +19,7 @@ const GridFormat = ({
 	const viewingsToTickets = (TicketType) => (viewing, i) => (
 		<TicketType viewing={viewing} key={i} />
 	);
-
-	const TicketContainer = createTicketContainer(Ticket, 'viewings');
-	const NewTicketContainer = createTicketContainer(NewTicket, 'newViewings');
+	
 	const tickets = viewings.map(viewingsToTickets(TicketContainer));
 	const newTickets = newViewings.map(viewingsToTickets(NewTicketContainer));
 
