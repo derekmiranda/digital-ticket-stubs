@@ -7,17 +7,15 @@ import {
 	createDescendingOptionsRange
 } from './optionsRangeFns';
 
-const Watchtime = ({ month, day, year, onTimeUnitChange = () => {} }) => {
+const Watchtime = ({ month, day, year }) => {
 	const monthSelect = createTimeSelect({
 		name: 'month',
 		value: month,
-		onChange: onTimeUnitChange('month'),
 	}, createAscendingOptionsRange(1, 12, 'Month'));
 
 	const daySelect = createTimeSelect({
 		name: 'day',
 		value: day,
-		onChange: onTimeUnitChange('day'),
   }, createAscendingOptionsRange(1, 30, 'Day'));
   
   const currYear = new Date().getFullYear();
@@ -25,7 +23,6 @@ const Watchtime = ({ month, day, year, onTimeUnitChange = () => {} }) => {
 	const yearSelect = createTimeSelect({
 		name: 'year',
 		value: year,
-		onChange: onTimeUnitChange('year'),
 	}, yearOptions)
 
 	return (
