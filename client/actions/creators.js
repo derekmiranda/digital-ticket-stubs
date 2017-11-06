@@ -30,11 +30,9 @@ export const fetchedViewings = (viewings) => ({
 })
 
 // new viewing
-export const editNewViewing = ({ id, key, val }) => ({
+export const editNewViewing = (...args) => ({
+  ...editViewing(...args),
   type: types.EDIT_NEW_VIEWING,
-  id,
-  key,
-  val,
 })
 
 export const addNewViewing = createSimpleActionCreator(types.ADD_NEW_VIEWING);
