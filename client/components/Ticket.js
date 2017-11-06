@@ -20,7 +20,7 @@ const Ticket = ({ viewing = {}, className = 'ticket', label = 'Ticket', onEdit }
 
 Ticket.propTypes = {
 	viewing: viewingSchema,
-	onEdit: PropTypes.func,
+	onEdit: PropTypes.func.isRequired,
 	className: PropTypes.string,
 }
 
