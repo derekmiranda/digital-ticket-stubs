@@ -2,7 +2,7 @@ import React from 'react';
 
 const createOptionsRangeFn = (endCond, changeToFirst) => {
 	return function optionRangeFn(first, last, label, prevOpts = [
-		<option key='default'>{label}</option>
+		<option key='default' value=''>{label}</option>
 	]) {
 		if (endCond(first, last)) {
 			return prevOpts;
