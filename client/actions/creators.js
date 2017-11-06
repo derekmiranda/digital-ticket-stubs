@@ -42,6 +42,23 @@ export const saveNewViewing = (newViewing) => ({
   newViewing,
 })
 
+// watchtime
+export const editWatchtime = ({
+  id,
+  timeUnit,
+  val,
+}) => ({
+  type: types.EDIT_WATCHTIME,
+  id,
+  timeUnit,
+  val,
+})
+
+export const editNewWatchtime = (...args) => ({
+  ...editWatchtime(...args),
+  type: types.EDIT_NEW_WATCHTIME,
+})
+
 // modal
 export const focusViewing = (id) => ({
   type: types.FOCUS_VIEWING,

@@ -9,6 +9,10 @@ export const EDIT_NEW_VIEWING = 'EDIT_NEW_VIEWING';
 export const SAVE_NEW_VIEWING = 'SAVE_NEW_VIEWING';
 export const ADD_NEW_VIEWING = 'ADD_NEW_VIEWING';
 
+// watchtime
+export const EDIT_WATCHTIME = 'EDIT_WATCHTIME';
+export const EDIT_NEW_WATCHTIME = 'EDIT_NEW_WATCHTIME';
+
 // modal
 export const FOCUS_VIEWING = 'FOCUS_VIEWING';
 
