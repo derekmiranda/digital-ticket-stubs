@@ -32,9 +32,11 @@ const GridFormat = ({
 	)
 }
 
+const viewingType = PropTypes.shape(viewingSchema);
+
 GridFormat.propTypes = {
-	viewings: PropTypes.arrayOf(viewingSchema),
-	newViewings: PropTypes.arrayOf(viewingSchema),
+	viewings: PropTypes.arrayOf(viewingType),
+	newViewings: PropTypes.arrayOf(viewingType),
 	addNewViewing: PropTypes.func,
 	editViewing: PropTypes.func,
 }

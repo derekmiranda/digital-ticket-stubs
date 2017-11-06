@@ -19,7 +19,7 @@ const Ticket = ({ viewing = {}, className = 'ticket', label = 'Ticket', onEdit }
 }
 
 Ticket.propTypes = {
-	viewing: viewingSchema,
+	viewing: PropTypes.shape(viewingSchema),
 	onEdit: PropTypes.func.isRequired,
 	className: PropTypes.string,
 }
