@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import createViewingsContainer from 'containers/createViewingsContainer';
+import createTicketContainer from 'containers/createTicketContainer';
 import GridFormat from 'components/GridFormat';
 import Ticket from 'components/Ticket';
 import NewTicket from 'components/NewTicket';
@@ -58,14 +59,16 @@ const sampleViewings = [
 
 test('Renders Ticket for every viewing', t => {
 	const { dumbComponentWrapper } = initShallowCtx({ sampleViewings });
-	const numViewingTix = dumbComponentWrapper.find(Ticket).length;
+	const TicketContainer = createTicketContainer(Ticket, 'viewings');
+	const numViewingTix = dumbComponentWrapper.find(TicketContainer).length;
 	t.is(numViewingTix, sampleViewings.length);
 })
 
 test('Renders NewTicket for every new viewing', t => {
 	const sampleNewViewings = [{}];
 	const { dumbComponentWrapper } = initShallowCtx({ sampleNewViewings });
-	const numViewingTix = dumbComponentWrapper.find(NewTicket).length;
+	const NewTicketContainer = createTicketContainer(NewTicket, 'viewings');
+	const numViewingTix = dumbComponentWrapper.find(NewTicketContainer).length;
 	t.is(numViewingTix, sampleNewViewings.length);
 })
 
