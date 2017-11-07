@@ -6,10 +6,12 @@ import {
   EDIT_WATCHTIME
 } from 'actions/types';
 import watchtime from './watchtime';
+import debug from 'client/utils/debug';
 
 export const viewing = (state = {
   title: '',
   venue: '',
+  watchtime: watchtime(),
 }, action = {}) => {
   switch (action.type) {
     case EDIT_VIEWING:
@@ -34,6 +36,7 @@ const viewings = (state = [], action = {}) => {
     case REMOVE_VIEWING:
       return state.filter(v => v.id !== action.id);
     case EDIT_VIEWING:
+    case EDIT_WATCHTIME:
       return state.map(v => v.id === action.id ? viewing(v, action) : v);
     case FETCHED_VIEWINGS:
       return action.viewings.concat(state);

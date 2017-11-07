@@ -40,10 +40,14 @@ const InputList = ({
 		)
   }
 
+  const { watchtime } = viewing;
 	const inputs = textInputs.concat(
     <Watchtime
       onWatchtimeEdit={onWatchtimeEdit}
       id={viewing.id}
+      month={watchtime.month}
+      day={watchtime.day}
+      year={watchtime.year}
       key="watchtime"
     />
 	);

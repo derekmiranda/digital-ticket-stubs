@@ -14,6 +14,14 @@ const onChangeByTimeUnit = ({ editFn, id, timeUnit }) => event => editFn({
 	val: event.target.value
 })
 
+const createTimeSelect = (props, options) => {
+	return (
+		<select {...props}>
+			{options}
+		</select>
+	)
+}
+
 const Watchtime = ({ month, day, year, id, onWatchtimeEdit }) => {
 	const baseOnChangeParams = {
 		editFn: onWatchtimeEdit,
@@ -61,14 +69,6 @@ Watchtime.propTypes = {
 	...datetimeSchema,
 	onWatchtimeEdit: PropTypes.func.isRequired,
 	id: PropTypes.number,
-}
-
-function createTimeSelect (props, options) {
-	return (
-		<select {...props}>
-			{options}
-		</select>
-	)
 }
 
 export default Watchtime;

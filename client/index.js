@@ -17,7 +17,7 @@ const store = createStore(reducer, {
     {
       id: 1,
       title: 'Butt Goblins 3',
-      venue: 'sdfsdfd',
+      venue: 'Theater',
       watchtime: {
         month: 10,
         day: 26,

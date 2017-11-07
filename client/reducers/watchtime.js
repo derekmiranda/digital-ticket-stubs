@@ -5,7 +5,7 @@ const watchtime = (state = {}, action = {}) => {
 		case EDIT_WATCHTIME:
 			return {
 				...state,
-				[action.timeUnit]: action.val,
+				[action.timeUnit]: Number(action.val),
 			}
 		default:
 			return state;
