@@ -7,14 +7,16 @@ const formattedJSONResponse = (res, data) => (
     .end(JSONFormat(data))
 );
 
+const makeJSONResponseMiddleware = (controllerPromiseFn, ...controllerFnArgs) => {
+  return (req, res) => (
+    controllerPromiseFn(...controllerFnArgs)
+      .then(result => formattedJSONResponse(res, result))
+      // 422 - mainly for incompatible data but need to account for other errors
+      .catch(err => errorResponse({ res, err, statusCode: 422 }))
+  )
+}
+
 module.exports = {
   formattedJSONResponse,
-  makeJSONResponseMiddleware: (controllerPromiseFn, ...controllerFnArgs) => {
-    return (req, res) => (
-      controllerPromiseFn(...controllerFnArgs)
-        .then(result => formattedJSONResponse(res, result))
-        // 422 - mainly for incompatible data but need to account for other errors
-        .catch(err => errorResponse({ res, err, statusCode: 422 }))
-    )
-  }
+  makeJSONResponseMiddleware,
 }
