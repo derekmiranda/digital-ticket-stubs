@@ -3,10 +3,14 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
 
 import App from 'components/App';
 import reducer from 'reducers';
+
+const middleware = [];
+if (process.env.NODE_ENV === 'development') {
+  middleware.push(logger);
+}
 
 const store = createStore(reducer, {
   viewings: [
@@ -21,7 +25,7 @@ const store = createStore(reducer, {
       }
     }
   ]
-}, applyMiddleware(thunk, logger));
+}, applyMiddleware(...middleware));
 
 ReactDom.render(
   <Provider store={store}>
