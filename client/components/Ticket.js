@@ -57,17 +57,14 @@ function viewingToInputs({ viewing, onEdit }) {
 	const textFields = ['title', 'venue'];
 	const textInputs = textFields.map(textFieldToInput);
 
-	const inputs = textInputs.concat(createWatchtime(viewing, onEdit));
-	return inputs;
-}
-
-function createWatchtime(viewing, onEdit) {
-	return (
+	const inputs = textInputs.concat(
 		<Watchtime
 			key="watchtime"
 			{...viewing.watchtime}
 		/>
-	)
+	);
+
+	return inputs;
 }
 
 export default Ticket;

@@ -17,7 +17,7 @@ const GridFormat = ({
 	editNewViewing
 }) => {
 	const viewingsToTickets = (TicketType) => (viewing, i) => (
-		<TicketType viewing={viewing} key={i} />
+		<TicketType idx={i} key={i} />
 	);
 	
 	const tickets = viewings.map(viewingsToTickets(TicketContainer));
