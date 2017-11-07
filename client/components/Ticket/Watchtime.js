@@ -8,15 +8,33 @@ import {
 } from './optionsRangeFns';
 import { datetimeSchema } from 'schemas';
 
-const Watchtime = ({ month, day, year }) => {
+const onChangeByTimeUnit = ({ editFn, id, timeUnit }) => event => editFn({
+	id,
+	timeUnit,
+	val: event.target.value
+})
+
+const Watchtime = ({ month, day, year, id, onWatchtimeEdit }) => {
+	const baseOnChangeParams = {
+		editFn: onWatchtimeEdit,
+		id,
+	}
 	const monthSelect = createTimeSelect({
 		name: 'month',
 		value: month,
+		onChange: onChangeByTimeUnit({
+			...baseOnChangeParams,
+			timeUnit: 'month',
+		}),
 	}, createAscendingOptionsRange(1, 12, 'Month'));
 
 	const daySelect = createTimeSelect({
 		name: 'day',
 		value: day,
+		onChange: onChangeByTimeUnit({
+			...baseOnChangeParams,
+			timeUnit: 'day',
+		}),
   }, createAscendingOptionsRange(1, 30, 'Day'));
   
   const currYear = new Date().getFullYear();
@@ -24,6 +42,10 @@ const Watchtime = ({ month, day, year }) => {
 	const yearSelect = createTimeSelect({
 		name: 'year',
 		value: year,
+		onChange: onChangeByTimeUnit({
+			...baseOnChangeParams,
+			timeUnit: 'year',
+		}),
 	}, yearOptions)
 
 	return (
@@ -37,11 +59,11 @@ const Watchtime = ({ month, day, year }) => {
 
 Watchtime.propTypes = {
 	...datetimeSchema,
-	onTimeUnitChange: PropTypes.func,
+	onWatchtimeEdit: PropTypes.func.isRequired,
+	id: PropTypes.number,
 }
 
 function createTimeSelect (props, options) {
-	const capitalize = str => str[0].toUpperCase() + str.slice(1);
 	return (
 		<select {...props}>
 			{options}
