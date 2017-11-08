@@ -1,15 +1,11 @@
 import { combineReducers } from 'redux';
 
-import viewings from './viewings';
-import newViewings from './newViewings';
+import { reducer as formReducer } from 'redux-form';
 import modalOpen from './modalOpen';
-import searchResults from './searchResults';
 
 const rootReducer = combineReducers({
-  viewings,
-  newViewings,
+  form: formReducer,
   modalOpen,
-  searchResults,
 })
 
 export default rootReducer;

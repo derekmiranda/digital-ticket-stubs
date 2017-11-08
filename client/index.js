@@ -12,20 +12,7 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 
-const store = createStore(reducer, {
-  viewings: [
-    {
-      id: 1,
-      title: 'Butt Goblins 3',
-      venue: 'Theater',
-      watchtime: {
-        month: 10,
-        day: 26,
-        year: 1992,
-      }
-    }
-  ]
-}, applyMiddleware(...middleware));
+const store = createStore(reducer, applyMiddleware(...middleware));
 
 ReactDom.render(
   <Provider store={store}>
