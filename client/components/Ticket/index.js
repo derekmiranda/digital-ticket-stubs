@@ -1,33 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 
-import InputList from './InputList';
-import { viewingSchema } from 'schemas';
+import getReadableFieldName from 'client/utils/getReadableFieldName';
+
+const renderTextField = ({ input, type, label, className }) => (
+	<div className={className}>
+		<h3>{label}</h3>
+		<input type={type} {...input} />
+	</div>
+)
 
 const Ticket = ({
-	viewing = {},
+	name,
 	className = 'ticket',
 	label = 'Ticket',
-	onEdit,
-	onWatchtimeEdit,
 }) => {
+	const fieldNameToInput = (fieldName, i) => {
+		const readableFieldName = getReadableFieldName(fieldName); 
+		return (
+			<Field
+				name={`${name}.${fieldName}`}	
+				type='text'
+				component={renderTextField}
+				label={readableFieldName}
+				className={fieldName}
+				key={i}
+			/>
+		)
+	}
+
+	const textFields = ['title', 'venue'];
+	const textInputs = textFields.map(fieldNameToInput);
+	
 	return (
 		<div className={className}>
-			<h2 key="label">{label}</h2>
-			<InputList
-				viewing={viewing}
-				onEdit={onEdit}
-				onWatchtimeEdit={onWatchtimeEdit}
-			/>
-			<button className="save-ticket">Save</button>
+			<h2>{label}</h2>
+			{textInputs}
 		</div>
 	)
 }
 
 Ticket.propTypes = {
-	viewing: PropTypes.shape(viewingSchema),
-	onEdit: PropTypes.func.isRequired,
-	onWatchtimeEdit: PropTypes.func.isRequired,
+	name: PropTypes.string,
 	className: PropTypes.string,
 	label: PropTypes.string,
 }
