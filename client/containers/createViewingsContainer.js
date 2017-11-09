@@ -1,11 +1,10 @@
-import { connect } from 'react-redux';
-
-import { addNewViewing, editViewing, editNewViewing } from 'actions/creators';
+import { reduxForm } from 'redux-form';
 
 const createViewingsContainer = (FormatComponent) => {
-  const mapStateToProps = state => state;
-  const mapDispatchToProps = { addNewViewing, editViewing, editNewViewing };
-  return connect(mapStateToProps, mapDispatchToProps)(FormatComponent);
+  return reduxForm({
+    form: 'ticketsForm',
+    onSubmit: (values) => console.log(values)
+  })(FormatComponent);
 }
 
 export default createViewingsContainer;
