@@ -15,13 +15,9 @@ const createTimeSelect = (props, options) => {
 	)
 }
 
-const Watchtime = ({ month, day, year, id, onWatchtimeEdit }) => {
-	const baseOnChangeParams = {
-		editFn: onWatchtimeEdit,
-		id,
-	}
+const Watchtime = ({ name }) => {
 	const monthSelect = createTimeSelect({
-		name: 'month',
+		name: `${name}.month`,
 		value: month,
 		onChange: onChangeByTimeUnit({
 			...baseOnChangeParams,
