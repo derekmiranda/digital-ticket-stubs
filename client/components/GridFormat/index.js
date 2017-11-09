@@ -1,25 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FieldArray } from 'redux-form';
 
 import Ticket from 'components/Ticket';
 import NewTicket from 'components/NewTicket';
-import { viewingSchema } from 'schemas';
 
 const GridFormat = ({
-	viewings,
-	newViewings,
-	addNewViewing,
-	editViewing,
-	editNewViewing
+	handleSubmit,
+	pristine
 }) => {
-	const tickets = viewings.map(Ticket);
-	const newTickets = viewings.map(NewTicket);
+	const createTicketsRender = (TicketType, id) => ({ fields }) => {
+		return (
+			<ul id={id}>
+			{fields.map((member, index) => {
+				return (
+					<TicketType 
+						name={member}
+						key={index}
+					/>
+				)
+			})}
+			</ul>
+		)
+	}
 
+	const Tickets = createTicketsRender(Ticket, 'ticket');
+	const NewTickets = createTicketsRender(NewTicket, 'new-ticket');
+	
 	return (
-		<form>
-			{tickets}
-			{newTickets}
-			<button id='add-viewing' onClick={}>+ Add Viewing</button>
+		<form onSubmit={handleSubmit}>
+			<FieldArray name='viewings' component={Tickets} />
+			<FieldArray name='newViewings' component={NewTickets} />
+			<button id='add-viewing' disabled={pristine}>+ Add Viewing</button>
 		</form>
 	)
 }
@@ -27,10 +39,8 @@ const GridFormat = ({
 const viewingType = PropTypes.shape(viewingSchema);
 
 GridFormat.propTypes = {
-	viewings: PropTypes.arrayOf(viewingType),
-	newViewings: PropTypes.arrayOf(viewingType),
-	addNewViewing: PropTypes.func,
-	editViewing: PropTypes.func,
+	handleSubmit: PropTypes.func,
+	pristine: PropTypes.bool,
 }
 
 export default GridFormat;
