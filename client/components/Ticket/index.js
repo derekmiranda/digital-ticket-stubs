@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
+import Watchtime from './Watchtime';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 const renderTextField = ({ input, type, label, className }) => (
@@ -37,6 +38,7 @@ const Ticket = ({
 		<div className={className}>
 			<h2>{label}</h2>
 			{textInputs}
+			{/* <Watchtime name={name} /> */}
 		</div>
 	)
 }

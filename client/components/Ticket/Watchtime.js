@@ -6,13 +6,6 @@ import {
 	createAscendingOptionsRange,
 	createDescendingOptionsRange
 } from './optionsRangeFns';
-import { datetimeSchema } from 'schemas';
-
-const onChangeByTimeUnit = ({ editFn, id, timeUnit }) => event => editFn({
-	id,
-	timeUnit,
-	val: event.target.value
-})
 
 const createTimeSelect = (props, options) => {
 	return (
@@ -66,9 +59,7 @@ const Watchtime = ({ month, day, year, id, onWatchtimeEdit }) => {
 }
 
 Watchtime.propTypes = {
-	...datetimeSchema,
-	onWatchtimeEdit: PropTypes.func.isRequired,
-	id: PropTypes.number,
+	
 }
 
 export default Watchtime;
