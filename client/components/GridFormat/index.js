@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 
 import Ticket from 'components/Ticket';
 import NewTicket from 'components/NewTicket';
-import createTicketContainer from 'containers/createTicketContainer';
 import { viewingSchema } from 'schemas';
-
-const TicketContainer = createTicketContainer(Ticket, 'viewings');
-const NewTicketContainer = createTicketContainer(NewTicket, 'newViewings');
 
 const GridFormat = ({
 	viewings,
@@ -16,19 +12,15 @@ const GridFormat = ({
 	editViewing,
 	editNewViewing
 }) => {
-	const viewingsToTickets = (TicketType) => (viewing, i) => (
-		<TicketType idx={i} key={i} />
-	);
-	
-	const tickets = viewings.map(viewingsToTickets(TicketContainer));
-	const newTickets = newViewings.map(viewingsToTickets(NewTicketContainer));
+	const tickets = viewings.map(Ticket);
+	const newTickets = viewings.map(NewTicket);
 
 	return (
-		<div>
+		<form>
 			{tickets}
 			{newTickets}
-			<button id='add-viewing' onClick={addNewViewing}>+ Add Viewing</button>
-		</div>
+			<button id='add-viewing' onClick={}>+ Add Viewing</button>
+		</form>
 	)
 }
 
