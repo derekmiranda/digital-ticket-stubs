@@ -39,6 +39,7 @@ const Ticket = ({
 			<h2>{label}</h2>
 			{textInputs}
 			<Watchtime name={name} />
+			<button type='button'>Save</button>
 		</div>
 	)
 }
