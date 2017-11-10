@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 import {
@@ -7,46 +8,50 @@ import {
 	createDescendingOptionsRange
 } from './optionsRangeFns';
 
-const createTimeSelect = (props, options) => {
+const createSelectRendererWithOptions = (options) => ({ input, meta: { pristine } }) => {
+	// setting onBlur and onFocus to null since interfering w/ click events
+	// source: https://github.com/erikras/redux-form/issues/860  
 	return (
-		<select {...props}>
+		<select {...input} onBlur={null} onFocus={null}>
 			{options}
 		</select>
 	)
 }
 
-const Watchtime = ({ name }) => {
-	const monthSelect = createTimeSelect({
-		name: `${name}.month`,
-		value: month,
-		onChange: onChangeByTimeUnit({
-			...baseOnChangeParams,
-			timeUnit: 'month',
-		}),
-	}, createAscendingOptionsRange(1, 12, 'Month'));
+const createTimeSelectField = (name, options) => {
+	const renderSelect = createSelectRendererWithOptions(options);
+	return (
+		<Field
+			name={name}
+			component={renderSelect}
+			type='select'
+		/>
+	)
+}
 
-	const daySelect = createTimeSelect({
-		name: 'day',
-		value: day,
-		onChange: onChangeByTimeUnit({
-			...baseOnChangeParams,
-			timeUnit: 'day',
-		}),
-  }, createAscendingOptionsRange(1, 30, 'Day'));
-  
+const Watchtime = ({ name }) => {
+	const watchtimeName = `${name}.watchtime`;
+
+	const monthSelect = createTimeSelectField(
+		`${watchtimeName}.month`,
+		createAscendingOptionsRange(1, 12, 'Month')
+	)
+
+	const daySelect = createTimeSelectField(
+		`${watchtimeName}.day`,
+		createAscendingOptionsRange(1, 30, 'Day')
+	)
+	
   const currYear = new Date().getFullYear();
 	const yearOptions = createDescendingOptionsRange(currYear, 1920, 'Year');
-	const yearSelect = createTimeSelect({
-		name: 'year',
-		value: year,
-		onChange: onChangeByTimeUnit({
-			...baseOnChangeParams,
-			timeUnit: 'year',
-		}),
-	}, yearOptions)
+	const yearSelect = createTimeSelectField(
+		`${watchtimeName}.year`,
+		yearOptions
+	)
 
 	return (
 		<div className='watchtime'>
+			<h3>Watch Time</h3>
 			{monthSelect}
 			{daySelect}
 			{yearSelect}
@@ -55,7 +60,7 @@ const Watchtime = ({ name }) => {
 }
 
 Watchtime.propTypes = {
-	
+	name: PropTypes.string,
 }
 
 export default Watchtime;

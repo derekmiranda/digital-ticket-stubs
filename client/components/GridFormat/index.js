@@ -16,7 +16,11 @@ const renderTickets = ({ fields }) => {
 					)
 				})}
 			</ul>
-			<button id='add-ticket' onClick={() => fields.push({})}>+ Add Viewing</button>
+			<button
+				type='button'	
+				id='add-ticket'
+				onClick={() => fields.push({})}
+			>+ Add Viewing</button>
 		</div>
 	)
 }

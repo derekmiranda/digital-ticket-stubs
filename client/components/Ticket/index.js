@@ -38,7 +38,7 @@ const Ticket = ({
 		<div className={className}>
 			<h2>{label}</h2>
 			{textInputs}
-			{/* <Watchtime name={name} /> */}
+			<Watchtime name={name} />
 		</div>
 	)
 }
