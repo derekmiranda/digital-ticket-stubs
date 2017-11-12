@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field, getFormValues } from 'redux-form';
 
 import Watchtime from './Watchtime';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
+
+const sendIfValid = valid => () => valid && console.log(getFormValues());
 
 const renderTextField = ({
 	input,
@@ -50,6 +52,7 @@ const Ticket = ({
 				className='venue'
 			/> 
 			<Watchtime name={name} />
+			<button type='button'>Save</button>
 		</div>
 	)
 }
