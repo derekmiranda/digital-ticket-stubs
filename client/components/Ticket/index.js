@@ -29,7 +29,7 @@ const Ticket = ({
 	name,
 	className = 'ticket',
 	label = 'Ticket',
-	ticketOnClick,
+	handleTicketSubmit,
 }) => {
 
 	return (
@@ -51,7 +51,7 @@ const Ticket = ({
 				className='venue'
 			/> 
 			<Watchtime name={name} />
-			<button type='button' onClick={ticketOnClick}>Save</button>
+			<button type='button' onClick={handleTicketSubmit}>Save</button>
 		</div>
 	)
 }

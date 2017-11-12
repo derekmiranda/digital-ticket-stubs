@@ -8,10 +8,10 @@ const renderTickets = ({ fields }) => {
 	return (
 		<div id='tickets'>
 			<ul>
-				{fields.map((member, index) => {
+				{fields.map((member, idx) => {
 					return (
-						<li key={index}>
-							<TicketContainer name={member} />
+						<li key={idx}>
+							<TicketContainer name={member} idx={idx} />
 						</li>
 					)
 				})}
