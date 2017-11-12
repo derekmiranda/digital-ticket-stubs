@@ -5,8 +5,6 @@ import { Field, getFormValues } from 'redux-form';
 import Watchtime from './Watchtime';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
-const sendIfValid = valid => () => valid && console.log(getFormValues());
-
 const renderTextField = ({
 	input,
 	type,
