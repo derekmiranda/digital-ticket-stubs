@@ -1,8 +1,7 @@
 import { reduxForm } from 'redux-form';
 
 import Tickets from 'components/Tickets';
-
-export const formName = 'viewingsForm';
+import { ticketsFormName as formName } from 'client/constants';
 
 const ViewingsFormContainer = reduxForm({
   form: formName,
@@ -19,4 +18,7 @@ const ViewingsFormContainer = reduxForm({
   onSubmit: (values) => console.log(values)
 })(Tickets);
 
+export {
+  formName
+}
 export default ViewingsFormContainer;

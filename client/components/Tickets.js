@@ -4,7 +4,7 @@ import { FieldArray } from 'redux-form';
 
 import TicketContainer from 'containers/TicketContainer';
 
-const renderTicketsForm = ({ fields }) => {
+const renderTicketsForm = ({ fields, meta: { error, touched } }) => {
 	return (
 		<div id='tickets-form'>
 			<ul>
@@ -21,6 +21,9 @@ const renderTicketsForm = ({ fields }) => {
 				id='add-ticket'
 				onClick={() => fields.push({})}
 			>+ Add Viewing</button>
+			{touched && error &&
+				<p style={{ color: 'orange' }}>Can't submit till errors resolved</p>
+			}
 		</div>
 	)
 }
@@ -30,7 +33,11 @@ const TicketsForm = ({
 }) => {
 	return (
 		<form onSubmit={handleSubmit}>
-			<FieldArray name='viewings' component={renderTicketsForm} />
+			<FieldArray 
+				name='viewings'
+				component={renderTicketsForm}
+				validate={(value) => console.log('Array validation', value)}
+			/>
 		</form>
 	)
 }
