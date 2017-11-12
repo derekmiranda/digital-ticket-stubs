@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
 
-import Ticket from 'components/Ticket';
+import TicketContainer from 'containers/TicketContainer';
 
 const renderTickets = ({ fields }) => {
 	return (
@@ -11,7 +11,7 @@ const renderTickets = ({ fields }) => {
 				{fields.map((member, index) => {
 					return (
 						<li key={index}>
-							<Ticket name={member} />
+							<TicketContainer name={member} />
 						</li>
 					)
 				})}
