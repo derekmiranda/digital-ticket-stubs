@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { curry } from 'lodash-es';
 
 import Ticket from 'components/Ticket';
-import { formName } from './createViewingsContainer';
+import { formName } from './ViewingsFormContainer';
 
 const formSelector = getFormValues(formName);
 

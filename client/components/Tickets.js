@@ -4,9 +4,9 @@ import { FieldArray } from 'redux-form';
 
 import TicketContainer from 'containers/TicketContainer';
 
-const renderTickets = ({ fields }) => {
+const renderTicketsForm = ({ fields }) => {
 	return (
-		<div id='tickets'>
+		<div id='tickets-form'>
 			<ul>
 				{fields.map((member, idx) => {
 					return (
@@ -25,18 +25,18 @@ const renderTickets = ({ fields }) => {
 	)
 }
 
-const GridFormat = ({
+const TicketsForm = ({
 	handleSubmit,
 }) => {
 	return (
 		<form onSubmit={handleSubmit}>
-			<FieldArray name='viewings' component={renderTickets} />
+			<FieldArray name='viewings' component={renderTicketsForm} />
 		</form>
 	)
 }
 
-GridFormat.propTypes = {
+TicketsForm.propTypes = {
 	handleSubmit: PropTypes.func,
 }
 
-export default GridFormat;
+export default TicketsForm;
