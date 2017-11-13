@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import {
   getFormValues,
   change,
+  arrayRemove,
   getFormSyncErrors,
   getFormAsyncErrors,
   getFormSubmitErrors
@@ -48,13 +49,19 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
       dispatch(change(formName, `${name}.id`, 1000))
     }
   }
-  return { createSubmitHandlerWithState };
+
+  return {
+    createSubmitHandlerWithState,
+    removeTicket: () => dispatch(arrayRemove(formName, 'viewings', idx))
+  };
 }
 
-const mergeProps = (state, { createSubmitHandlerWithState }, ownProps) => {
+const mergeProps = (state, dispatchProps, ownProps) => {
+  const { createSubmitHandlerWithState } = dispatchProps;
   const handleTicketSubmit = createSubmitHandlerWithState(state);
   return {
     ...ownProps,
+    ...dispatchProps,
     handleTicketSubmit,
   }
 }

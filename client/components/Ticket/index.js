@@ -31,6 +31,7 @@ const Ticket = ({
 	className = 'ticket',
 	label = 'Ticket',
 	handleTicketSubmit,
+	removeTicket,
 }) => {
 
 	return (
@@ -52,6 +53,7 @@ const Ticket = ({
 				className='venue'
 			/> 
 			<Watchtime name={`${name}.watchtime`} />
+			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={handleTicketSubmit}>Save</button>
 		</div>
 	)
