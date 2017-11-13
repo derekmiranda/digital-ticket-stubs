@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
 
 import TicketContainer from 'containers/TicketContainer';
+import debug from 'client/utils/debug';
 
-const renderTicketsForm = ({ fields, meta: { error, touched } }) => {
+const renderTicketsForm = ({ fields }) => {
 	return (
 		<div id='tickets-form'>
 			<ul>
@@ -21,9 +22,6 @@ const renderTicketsForm = ({ fields, meta: { error, touched } }) => {
 				id='add-ticket'
 				onClick={() => fields.push({})}
 			>+ Add Viewing</button>
-			{touched && error &&
-				<p style={{ color: 'orange' }}>Can't submit till errors resolved</p>
-			}
 		</div>
 	)
 }
@@ -36,7 +34,6 @@ const TicketsForm = ({
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
-				validate={(value) => console.log('Array validation', value)}
 			/>
 		</form>
 	)
