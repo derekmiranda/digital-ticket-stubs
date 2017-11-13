@@ -29,9 +29,7 @@ const createTimeSelectField = (name, options) => {
 	)
 }
 
-const Watchtime = ({ name }) => {
-	const watchtimeName = `${name}.watchtime`;
-
+const Watchtime = ({ name: watchtimeName }) => {
 	const monthSelect = createTimeSelectField(
 		'month',
 		createAscendingOptionsRange(1, 12, 'Month')

@@ -51,7 +51,7 @@ const Ticket = ({
 				label='Venue'
 				className='venue'
 			/> 
-			<Watchtime name={name} />
+			<Watchtime name={`${name}.watchtime`} />
 			<button type='button' onClick={handleTicketSubmit}>Save</button>
 		</div>
 	)
