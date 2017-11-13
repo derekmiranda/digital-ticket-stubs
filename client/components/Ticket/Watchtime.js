@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field, FormSection } from 'redux-form';
 
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 import {
@@ -33,29 +33,29 @@ const Watchtime = ({ name }) => {
 	const watchtimeName = `${name}.watchtime`;
 
 	const monthSelect = createTimeSelectField(
-		`${watchtimeName}.month`,
+		'month',
 		createAscendingOptionsRange(1, 12, 'Month')
 	)
 
 	const daySelect = createTimeSelectField(
-		`${watchtimeName}.day`,
+		'day',
 		createAscendingOptionsRange(1, 30, 'Day')
 	)
 	
   const currYear = new Date().getFullYear();
 	const yearOptions = createDescendingOptionsRange(currYear, 1920, 'Year');
 	const yearSelect = createTimeSelectField(
-		`${watchtimeName}.year`,
+		'year',
 		yearOptions
 	)
 
 	return (
-		<div className='watchtime'>
+		<FormSection name={watchtimeName} className='watchtime'>
 			<h3>Watch Time</h3>
 			{monthSelect}
 			{daySelect}
 			{yearSelect}
-		</div>
+		</FormSection>
 	)
 }
 

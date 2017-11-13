@@ -1,10 +1,7 @@
 import React from 'react';
 
-import createViewingsContainer from 'containers/createViewingsContainer';
-import GridFormat from './GridFormat';
+import ViewingsFormContainer from 'containers/ViewingsFormContainer';
 
-const GridContainer = createViewingsContainer(GridFormat);
-
-const App = () => <GridContainer />;
+const App = () => <ViewingsFormContainer />;
 
 export default App;
