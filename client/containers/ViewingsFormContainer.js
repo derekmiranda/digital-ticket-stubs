@@ -8,17 +8,12 @@ const ViewingsFormContainer = reduxForm({
   initialValues: {
     viewings: [
       {
-        title: 'Bug Story'
-      },
-      {
-        title: 'Boy Story'
+        title: 'The Room'
       },
     ]
   },
-  onSubmit: (values) => console.log(values)
+  // onSubmit: (values) => console.log(values)
+  onSubmit: () => new Promise((res, rej) => setTimeout(rej, 500, 'Reject'))
 })(Tickets);
 
-export {
-  formName
-}
 export default ViewingsFormContainer;
