@@ -6,6 +6,14 @@ export const createRequestAction = (reqAction) => ({
   type: `REQUEST_${reqAction.type}`,
 })
 
+// ticket submission
+export const startTicketSubmit = (form, ticketsField, index) => ({
+  type: types.START_TICKET_SUBMIT,
+  form,
+  ticketsField,
+  index,
+})
+
 // modal
 export const focusViewing = (id) => ({
   type: types.FOCUS_VIEWING,
