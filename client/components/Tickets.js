@@ -32,10 +32,10 @@ const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
 }
 
 const TicketsForm = ({
-	handleSubmit,
+	handleTicketSubmit,
 }) => {
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleTicketSubmit}>
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
@@ -45,7 +45,7 @@ const TicketsForm = ({
 }
 
 TicketsForm.propTypes = {
-	handleSubmit: PropTypes.func,
+	handleTicketSubmit: PropTypes.func,
 }
 
 export default TicketsForm;
