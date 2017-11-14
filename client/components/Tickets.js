@@ -5,7 +5,7 @@ import { FieldArray } from 'redux-form';
 import TicketContainer from 'containers/TicketContainer';
 import debug from 'client/utils/debug';
 
-const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
+const renderTicketsForm = ({ fields, meta: { ticketSubmitting, submitting, submitFailed } }) => {
 	return (
 		<div id='tickets-form'>
 			<ul>
@@ -17,16 +17,15 @@ const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
 					)
 				})}
 			</ul>
-			{/* <button
+			<button
 				type='button'	
 				id='add-ticket'
 				onClick={() => fields.push({})}
-			>+ Add Viewing</button> */}
+			>+ Add Viewing</button>
 			<button
 				id='add-ticket'
 			>Submit</button>
-			{submitting && <p>Submitting...</p>}
-			{submitFailed && <p>Submit Failed</p>}
+			{ticketSubmitting && <p>Ticket submitting...</p>}
 		</div>
 	)
 }

@@ -13,7 +13,7 @@ const ViewingsFormContainer = reduxForm({
     ]
   },
   // onSubmit: (values) => console.log(values)
-  onSubmit: () => new Promise((res, rej) => setTimeout(rej, 500, 'Reject'))
+  onSubmit: () => new Promise((res, rej) => setTimeout(res, 500, 'Reject'))
 })(Tickets);
 
 export default ViewingsFormContainer;

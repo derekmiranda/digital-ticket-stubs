@@ -1,75 +1,31 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   getFormValues,
   change,
   arrayRemove,
-  getFormSyncErrors,
-  getFormAsyncErrors,
-  getFormSubmitErrors
 } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import Ticket from 'components/Ticket';
 import { ticketsFormName as formName } from 'client/constants';
-import debug from 'client/utils/debug';
+import {
+  startTicketSubmit
+} from 'actions/creators';
 
-const formSelector = getFormValues(formName);
-const syncErrorsSelector = getFormSyncErrors(formName);
-const asyncErrorsSelector = getFormAsyncErrors(formName);
-const submitErrorsSelector = getFormSubmitErrors(formName);
-
-const mapStateToProps = state => state;
-
-const numErrors = errObj => Object.keys(errObj).length;
-const getErrorsForViewing= (state, idx, errorSelectors) => {
-  if (!errorSelectors.length) return null;
-  const currErrorSelector = errorSelectors[0];
-  const errors = currErrorSelector(state);
-  const errorsForViewing = errors && errors.viewings && errors.viewings[idx];
-  return errorsForViewing && numErrors(errorsForViewing)
-    ? errorsForViewing
-    : getErrorsForViewing(state, idx, errorSelectors.slice(1));
-}
-
-const mapDispatchToProps = (dispatch, { idx, name }) => {
-  const createSubmitHandlerWithState = (state) => () => {
-    const formState = formSelector(state);
-    const errors = getErrorsForViewing(state, idx, [
-      syncErrorsSelector,
-      asyncErrorsSelector,
-      submitErrorsSelector,
-    ]);
-
-    if (errors) {
-      debug('Errors:', errors);
-    } else {
-      const { viewings } = formState;
-      const viewing = viewings[idx];
-      debug('Viewing:', viewing);
-      dispatch(change(formName, `${name}.id`, 1000))
-    }
+const mapStateToProps = (_, ownProps) => ownProps;
+const mapDispatchToProps = (dispatch, { idx }) => {
+  const actionCreators = {
+    removeTicket: () => arrayRemove(formName, 'viewings', idx),
+    saveTicket: () => startTicketSubmit(formName, 'viewings', idx),
   }
 
-  return {
-    createSubmitHandlerWithState,
-    removeTicket: () => dispatch(arrayRemove(formName, 'viewings', idx))
-  };
-}
-
-const mergeProps = (state, dispatchProps, ownProps) => {
-  const { createSubmitHandlerWithState } = dispatchProps;
-  const handleTicketSubmit = createSubmitHandlerWithState(state);
-  return {
-    ...ownProps,
-    ...dispatchProps,
-    handleTicketSubmit,
-  }
-}
+  return bindActionCreators(actionCreators, dispatch);
+}; 
 
 const TicketContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
-  mergeProps
+  mapDispatchToProps
 )(Ticket);
 
 TicketContainer.propTypes = {
