@@ -21,17 +21,20 @@ const renderTextField = ({
 	</div>
 )
 
+// dumb validators
 const isRequired = val => val ? undefined : 'Is required';
 const isNotGreatestMovie = val => val !== 'The Room'
 	? 'Is not the greatest movie of all time'
 	: undefined;
 const isAwful = val => val === 'Emoji Movie' && "You're awful";
+
 const Ticket = ({
 	name,
 	className = 'ticket',
 	label = 'Ticket',
 	handleTicketSubmit,
 	removeTicket,
+	ticketSubmitting,
 }) => {
 
 	return (
@@ -55,6 +58,7 @@ const Ticket = ({
 			<Watchtime name={`${name}.watchtime`} />
 			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={handleTicketSubmit}>Save</button>
+			{ticketSubmitting && <p>Submitting Ticket...</p>}
 		</div>
 	)
 }

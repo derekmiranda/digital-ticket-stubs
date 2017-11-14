@@ -59,10 +59,13 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
 const mergeProps = (state, dispatchProps, ownProps) => {
   const { createSubmitHandlerWithState } = dispatchProps;
   const handleTicketSubmit = createSubmitHandlerWithState(state);
+  
+  const ticketSubmitting = ownProps.submittingTickets && ownProps.submittingTickets[ownProps.idx];
   return {
     ...ownProps,
     ...dispatchProps,
     handleTicketSubmit,
+    ticketSubmitting,
   }
 }
 
