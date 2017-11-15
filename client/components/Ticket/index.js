@@ -53,7 +53,7 @@ const Ticket = ({
 			<Watchtime name={`${name}.watchtime`} />
 			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={startTicketSubmit}>Save</button>
-			{ticketSubmitting && <p>Submitting Ticket...</p>}
+			{ticketSubmitting && <p style={{color: 'mediumaquamarine'}}>Submitting Ticket...</p>}
 		</div>
 	)
 }

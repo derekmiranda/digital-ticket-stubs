@@ -5,14 +5,14 @@ import { FieldArray } from 'redux-form';
 import TicketContainer from 'containers/TicketContainer';
 import debug from 'client/utils/debug';
 
-const renderTicketsForm = ({ fields, submittingTickets, meta: { submitting, submitFailed } }) => {
+const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
 	return (
 		<div id='tickets-form'>
 			<ul>
 				{fields.map((member, idx) => {
 					return (
 						<li key={idx}>
-							<TicketContainer name={member} idx={idx} submittingTickets={submittingTickets} />
+							<TicketContainer name={member} idx={idx} />
 						</li>
 					)
 				})}
@@ -25,6 +25,7 @@ const renderTicketsForm = ({ fields, submittingTickets, meta: { submitting, subm
 			<button
 				id='add-ticket'
 			>Save All Stubs</button>
+			{submitting && <p style={{color: 'mediumaquamarine'}}>Saving all stubs...</p>}
 		</div>
 	)
 }
