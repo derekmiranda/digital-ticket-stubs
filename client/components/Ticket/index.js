@@ -26,7 +26,7 @@ const isRequired = val => val ? undefined : 'Is required';
 const Ticket = ({
 	name,
 	className = 'ticket',
-	label = 'Ticket',
+	label = 'Ticket Stub',
 	startTicketSubmit,
 	removeTicket,
 	ticketSubmitting,
@@ -39,7 +39,7 @@ const Ticket = ({
 				name={`${name}.title`}	
 				type='text'
 				component={renderTextField}
-				label='Title'
+				label='Movie Title'
 				className='title'
 				validate={isRequired}
 			/> 

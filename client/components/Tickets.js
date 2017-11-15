@@ -21,10 +21,10 @@ const renderTicketsForm = ({ fields, submittingTickets, meta: { submitting, subm
 				type='button'	
 				id='add-ticket'
 				onClick={() => fields.push({})}
-			>+ Add Viewing</button>
+			>+ Add Stub</button>
 			<button
 				id='add-ticket'
-			>Submit</button>
+			>Save All Stubs</button>
 		</div>
 	)
 }
