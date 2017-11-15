@@ -17,3 +17,14 @@ export const fetchedSearchResults = (results) => ({
   type: types.FETCHED_SEARCH_RESULTS,
   results,
 })
+
+// ticket submission
+export const startTicketSubmit = (index) => ({
+  type: types.START_TICKET_SUBMIT,
+  index,
+})
+
+export const stopTicketSubmit = (index) => ({
+  type: types.STOP_TICKET_SUBMIT,
+  index,
+})
