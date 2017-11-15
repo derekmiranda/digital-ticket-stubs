@@ -22,6 +22,7 @@ const submitErrorsSelector = getFormSubmitErrors(formName);
 
 const mapStateToProps = state => state;
 
+/* Move all this error checking to thunk/saga */
 const numErrors = errObj => Object.keys(errObj).length;
 const getErrorsForViewing= (state, idx, errorSelectors) => {
   if (!errorSelectors.length) return null;
@@ -32,8 +33,10 @@ const getErrorsForViewing= (state, idx, errorSelectors) => {
     ? errorsForViewing
     : getErrorsForViewing(state, idx, errorSelectors.slice(1));
 }
+/*  */
 
 const mapDispatchToProps = (dispatch, { idx, name }) => {
+  /* Move all this error checking to thunk/saga */
   const createSubmitHandlerWithState = (state) => () => {
     const formState = formSelector(state);
     const errors = getErrorsForViewing(state, idx, [
@@ -51,6 +54,7 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
       dispatch(change(formName, `${name}.id`, 1000))
     }
   }
+  /* */
 
   const boundActionCreators = bindActionCreators({
     startTicketSubmit: () => startTicketSubmit(idx),
