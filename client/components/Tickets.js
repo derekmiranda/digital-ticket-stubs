@@ -30,19 +30,13 @@ const renderTicketsForm = ({ fields, submittingTickets, meta: { submitting, subm
 }
 
 const TicketsForm = ({
-	handleTicketSubmit,
+	handleSubmit,
 }) => {
 	return (
-		<form onSubmit={handleTicketSubmit}>
+		<form onSubmit={handleSubmit}>
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
-				props={{
-					submittingTickets: {
-						0: true,
-						2: true,
-					}
-				}}
 			/>
 		</form>
 	)

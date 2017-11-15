@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   getFormValues,
   change,
@@ -11,6 +12,7 @@ import PropTypes from 'prop-types';
 
 import Ticket from 'components/Ticket';
 import { ticketsFormName as formName } from 'client/constants';
+import { startTicketSubmit, stopTicketSubmit } from 'actions/creators'
 import debug from 'client/utils/debug';
 
 const formSelector = getFormValues(formName);
@@ -50,17 +52,24 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
     }
   }
 
+  const boundActionCreators = bindActionCreators({
+    startTicketSubmit: () => startTicketSubmit(idx),
+    removeTicket: () => arrayRemove(formName, 'viewings', idx),
+  }, dispatch);
+
   return {
+    ...boundActionCreators,
     createSubmitHandlerWithState,
-    removeTicket: () => dispatch(arrayRemove(formName, 'viewings', idx))
   };
 }
 
-const mergeProps = (state, dispatchProps, ownProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { createSubmitHandlerWithState } = dispatchProps;
-  const handleTicketSubmit = createSubmitHandlerWithState(state);
-  
-  const ticketSubmitting = ownProps.submittingTickets && ownProps.submittingTickets[ownProps.idx];
+  const { submittingTickets } = stateProps;
+  const { idx } = ownProps;
+  const handleTicketSubmit = createSubmitHandlerWithState(stateProps);
+  const ticketSubmitting = submittingTickets && submittingTickets[idx];
+
   return {
     ...ownProps,
     ...dispatchProps,
