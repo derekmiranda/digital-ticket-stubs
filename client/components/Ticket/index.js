@@ -21,12 +21,7 @@ const renderTextField = ({
 	</div>
 )
 
-// dumb validators
 const isRequired = val => val ? undefined : 'Is required';
-const isNotGreatestMovie = val => val !== 'The Room'
-	? 'Is not the greatest movie of all time'
-	: undefined;
-const isAwful = val => val === 'Emoji Movie' && "You're awful";
 
 const Ticket = ({
 	name,
@@ -46,7 +41,7 @@ const Ticket = ({
 				component={renderTextField}
 				label='Title'
 				className='title'
-				validate={[isRequired, isAwful, isNotGreatestMovie]}
+				validate={isRequired}
 			/> 
 			<Field
 				name={`${name}.venue`}	
