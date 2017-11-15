@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const WDS_PORT = 8000;
 
@@ -22,14 +23,19 @@ const processEnv = Object.assign({
 const stringifiedProcessEnv = stringifyObjVals(processEnv);
 
 // plugins
-const plugins = [];
+const plugins = [
+  new webpack.DefinePlugin({
+    'process.env': stringifiedProcessEnv,
+  })
+];
 
 if (process.env.NODE_ENV === 'development') {
   plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': stringifiedProcessEnv,
-    })
+  )
+} else if (process.env.NODE === 'production') {
+  plugins.push(
+    new MinifyPlugin(),
   )
 }
 
