@@ -10,6 +10,9 @@ const ViewingsFormContainer = reduxForm({
       {
         title: 'The Room'
       },
+      {
+        title: 'The Roo'
+      },
     ]
   },
   // onSubmit: (values) => console.log(values)

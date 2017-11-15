@@ -40,6 +40,7 @@ const TicketsForm = ({
 				props={{
 					submittingTickets: {
 						0: true,
+						2: true,
 					}
 				}}
 			/>
