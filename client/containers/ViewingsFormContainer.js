@@ -8,10 +8,10 @@ const ViewingsFormContainer = reduxForm({
   initialValues: {
     viewings: [
       {
-        title: 'The Room'
+        title: 'My Neighbor Totoro'
       },
       {
-        title: 'The Roo'
+        title: 'Grave of the Fireflies'
       },
     ]
   },
