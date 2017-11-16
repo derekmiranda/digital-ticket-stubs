@@ -17,7 +17,8 @@ import {
 import {
   ticketsFetchSucceeded,
   startTicketSubmit,
-  ticketSubmitSucceeded
+  stopTicketSubmit,
+  ticketSubmitSucceeded,
 } from '../actions/creators';
 
 // export function* fetchData(action) {
@@ -42,6 +43,7 @@ export function* postViewing({
     yield delay(1000);
     yield put(ticketSubmitSucceeded(index))
   } catch (err) {
+    yield put(stopTicketSubmit(index))
     console.error(err);
   }
 }
