@@ -22,8 +22,8 @@ const createViewingWatchtimeConverter = (conversion) => (viewing) => {
   }
 }
 
-const convertClientWatchtime = createViewingWatchtimeConverter(watchtimeObjToISO);
-const convertDbWatchtime = createViewingWatchtimeConverter(watchtimeISOToObj);
+export const convertClientWatchtime = createViewingWatchtimeConverter(watchtimeObjToISO);
+export const convertDbWatchtime = createViewingWatchtimeConverter(watchtimeISOToObj);
 
 export const processViewingsFromClient = (viewings) => {
   return viewings.map(convertClientWatchtime);
