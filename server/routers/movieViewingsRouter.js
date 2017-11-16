@@ -10,13 +10,13 @@ const movieViewingsRouter = express.Router();
 movieViewingsRouter.get('/', makeJSONResponseMiddleware(movieViewingsController.getMovieViewings));
 
 movieViewingsRouter.post('/', (req, res, next) => {
-  const { movieViewing } = req.body;
+  const movieViewing = req.body;
   const middleware = makeJSONResponseMiddleware(movieViewingsController.addMovieViewing, movieViewing);
   return middleware(req, res, next);
 });
 
 movieViewingsRouter.patch('/', (req, res, next) => {
-  const { movieViewings } = req.body;
+  const movieViewings = req.body;
   const middleware = makeJSONResponseMiddleware(movieViewingsController.updateMovieViewings, movieViewings);
   return middleware(req, res, next);
 });
