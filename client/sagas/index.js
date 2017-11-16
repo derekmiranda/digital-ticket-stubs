@@ -1,15 +1,24 @@
-import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
-
-import { fetchViewings, saveNewViewing, removeViewing } from 'services/moviesApi';
-
-/* Adjust */
-import { START_TICKET_SUBMIT } from '../actions/types';
 import {
-  ticketsFetchSucceeded, 
+  call,
+  put,
+  takeLatest,
+  takeEvery,
+} from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import {
+  fetchViewings,
+  saveNewViewing,
+  removeViewing
+} from 'services/viewingsApi';
+
+import {
+  START_TICKET_SUBMIT
+} from '../actions/types';
+import {
+  ticketsFetchSucceeded,
   startTicketSubmit,
   ticketSubmitSucceeded
 } from '../actions/creators';
-/*  */
 
 // export function* fetchData(action) {
 //   try {
@@ -24,17 +33,20 @@ import {
 //   yield takeLatest(FETCH_STARTED, fetchData);
 // }
 
-export function* postViewing({ movie }) {
+export function* postViewing({
+  viewing,
+  index
+}) {
   try {
-    const newViewing = yield call(saveNewViewing, movie);
-    yield put(startTicketSubmit(/* index */, newViewing));
-    yield put(ticketSubmitSucceeded(/* index */))
+    // const newViewing = yield call(saveNewViewing, viewing);
+    yield delay(1000);
+    yield put(ticketSubmitSucceeded(index))
   } catch (err) {
     console.error(err);
   }
 }
 
-function* watchSaveNewViewing() {
+function* watchSaveViewing() {
   yield takeEvery(START_TICKET_SUBMIT, postViewing);
 }
 
@@ -52,5 +64,9 @@ function* watchSaveNewViewing() {
 // }
 
 export default function* rootSaga() {
-  yield [watchFetchData(), watchSaveNewViewing(), watchRequestDeleteViewing()];
+  yield [
+    watchSaveViewing(),
+    // watchFetchData(),
+    // watchRequestDeleteViewing()
+  ];
 }
