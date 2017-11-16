@@ -1,9 +1,5 @@
 function watchtimeObjToISO(obj) {
   const { month, day, year } = obj;
-  if (!month || !day || !year) {
-    console.error('Incomplete watchtime');
-    return;
-  }
   return new Date(year, month, day).toISOString();
 }
 
