@@ -19,8 +19,9 @@ export const fetchedSearchResults = (results) => ({
 })
 
 // ticket requests
-export const startTicketSubmit = (index) => ({
+export const startTicketSubmit = (viewing, index) => ({
   type: types.START_TICKET_SUBMIT,
+  viewing,
   index,
 })
 
@@ -29,9 +30,10 @@ export const stopTicketSubmit = (index) => ({
   index,
 })
 
-export const ticketSubmitSucceeded = (index) => ({
+export const ticketSubmitSucceeded = (index, id) => ({
   type: types.TICKET_SUBMIT_SUCCEEDED,
   index,
+  id,
 })
 
 export const startTicketsFetch = createSimpleActionCreator(types.START_TICKETS_FETCH);

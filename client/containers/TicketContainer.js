@@ -51,7 +51,8 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
       const { viewings } = formState;
       const viewing = viewings[idx];
       debug('Viewing:', viewing);
-      dispatch(change(formName, `${name}.id`, 1000))
+      dispatch(startTicketSubmit(viewing, idx));
+      // dispatch(change(formName, `${name}.id`, 1000))
     }
   }
   /* */
