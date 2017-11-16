@@ -1,15 +1,23 @@
+// importing to allow generators and async/await working
+import 'babel-polyfill';
+
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 
 import App from 'components/App';
 import reducer from 'reducers';
+import rootSaga from 'sagas';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [
   thunk,
+  sagaMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
@@ -17,6 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export const store = createStore(reducer, applyMiddleware(...middleware));
+sagaMiddleware.run(rootSaga);
 
 ReactDom.render(
   <Provider store={store}>
