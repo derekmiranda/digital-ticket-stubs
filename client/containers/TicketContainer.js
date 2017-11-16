@@ -25,8 +25,13 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { submittingTickets } = stateProps;
   const { dispatch } = dispatchProps;
-  const { idx } = ownProps;
-  const handleTicketSubmit = createTicketSubmitHandler(stateProps, idx, dispatch);
+  const { idx, name } = ownProps;
+  const handleTicketSubmit = createTicketSubmitHandler({
+    state: stateProps,
+    idx,
+    dispatch,
+    name,
+  });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
 
   return {
