@@ -8,6 +8,7 @@ import { delay } from 'redux-saga';
 import {
   fetchViewings,
   saveNewViewing,
+  updateViewing,
   removeViewing
 } from 'services/viewingsApi';
 
@@ -39,8 +40,13 @@ export function* postViewing({
   index
 }) {
   try {
-    // const newViewing = yield call(saveNewViewing, viewing);
-    yield delay(1000);
+    // if viewing has id, will assume that it's synced on the database
+    const saveMethod = viewing.id ? 
+    const newViewing = yield call(saveNewViewing, viewing);
+
+    // simulate server latency
+    yield delay(500);
+
     yield put(ticketSubmitSucceeded(index))
   } catch (err) {
     yield put(stopTicketSubmit(index))

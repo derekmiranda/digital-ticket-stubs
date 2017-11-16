@@ -1,9 +1,17 @@
-import { processViewingsFromDb, processViewingsFromClient } from './processing';
+import { 
+  processViewingsFromDb, 
+  processViewingsFromClient,
+  convertDbWatchtime,
+} from './processing';
 
 export const fetchViewings = () => {
   return fetch(process.env.VIEWINGS_API_URL)
     .then(res => res.json())
     .then(processViewingsFromDb)
+}
+
+export const updateViewing = (viewing) => {
+
 }
 
 export const updateViewings = (viewings) => {
