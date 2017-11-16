@@ -19,10 +19,11 @@ export const fetchedSearchResults = (results) => ({
 })
 
 // ticket requests
-export const startTicketSubmit = (viewing, index) => ({
+export const startTicketSubmit = ({ viewing, index, ticketName }) => ({
   type: types.START_TICKET_SUBMIT,
   viewing,
   index,
+  ticketName,
 })
 
 export const stopTicketSubmit = (index) => ({

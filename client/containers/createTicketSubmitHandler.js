@@ -47,7 +47,13 @@ const createTicketSubmitHandler = ({
   const { viewings } = formState;
   const viewing = viewings[idx];
 
-  dispatch(ticketSubmit({ viewing, errors, idx, ticketFieldNames }))
+  dispatch(ticketSubmit({
+    viewing,
+    errors,
+    index: idx,
+    ticketFieldNames,
+    ticketName
+  }));
 
   // // touch all fields within ticket
   // dispatch(touch)
