@@ -29,26 +29,29 @@ function* saveViewing({
 }) {
   try {
     // if viewing has id, will assume that it's synced on the database
-    // const saveMethod = viewing.id ? updateViewing : saveNewViewing;
-    // const savedViewing = yield call(saveMethod, viewing);
+    const saveMethod = viewing.id ? patchViewing : postViewing;
+    const viewingId = yield saveMethod(viewing);
 
     // simulate server latency
-    yield delay(500);
+    // yield delay(500);
 
     // yield put(change(ticketsFormName, viewingName, newViewing))
-    yield put(ticketSubmitSucceeded(index))
+    console.log('Saved viewing', viewingId);
+    yield put(ticketSubmitSucceeded(index, viewingId))
   } catch (err) {
     yield put(stopTicketSubmit(index))
     console.error(err);
   }
 }
 
-function patchViewing() {
-
+function* patchViewing(viewing) {
+  const res = yield call(updateViewing, viewing);
+  yield viewing.id;
 }
 
-function postViewing() {
-
+function* postViewing(viewing) {
+  const createdViewing = yield call(saveNewViewing, viewing);
+  yield createdViewing.id;
 }
 
 function* watchStartTicketSubmit() {
