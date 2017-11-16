@@ -27,7 +27,7 @@ const Ticket = ({
 	name,
 	className = 'ticket',
 	label = 'Ticket Stub',
-	startTicketSubmit,
+	handleTicketSubmit,
 	removeTicket,
 	ticketSubmitting,
 }) => {
@@ -52,7 +52,7 @@ const Ticket = ({
 			/> 
 			<Watchtime name={`${name}.watchtime`} />
 			<button type='button' onClick={removeTicket}>Delete</button>
-			<button type='button' onClick={startTicketSubmit}>Save</button>
+			<button type='button' onClick={handleTicketSubmit}>Save</button>
 			{ticketSubmitting && <p style={{color: 'mediumaquamarine'}}>Submitting Ticket...</p>}
 		</div>
 	)
