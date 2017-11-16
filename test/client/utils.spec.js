@@ -1,6 +1,7 @@
 import test from 'ava';
 
 import { objWithoutKey } from 'client/utils/reducerUtils';
+import { getTicketFields } from 'client/utils/formUtils';
 
 const obj = {
 	a: 1,
@@ -30,5 +31,12 @@ test('Removes number key from obj', t => {
 			a: 1,
 			b: 3,
 		}
+	)
+})
+
+test('getTicketFields() only returns strings that include the target string', t => {
+	t.deepEqual(
+		getTicketFields(['butts', 'butt', 'booty', 'yumbutt'], 'butt'),
+		['butts', 'butt', 'yumbutt']
 	)
 })
