@@ -11,7 +11,7 @@ export const fetchViewings = () => {
 }
 
 export const updateViewing = (viewing) => {
-
+  return updateViewings([ viewing ]);
 }
 
 export const updateViewings = (viewings) => {
