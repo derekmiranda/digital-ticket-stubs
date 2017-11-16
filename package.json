@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "devstart": "NODE_ENV=development npm run devbuild && nodemon server",
+    "devstart": "NODE_ENV=development nodemon server",
     "build": "NODE_ENV=production webpack",
     "devbuild": "NODE_ENV=development webpack",
     "watch": "NODE_ENV=production webpack --watch",
