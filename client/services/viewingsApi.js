@@ -22,21 +22,19 @@ export const updateViewings = (viewings) => {
       'Content-Type': 'application/json',
     },
     method: 'PATCH',
-    body: processedViewings,
+    body: JSON.stringify(processedViewings),
   })
     .then(res => res.json())
 }
 
 export const saveNewViewing = (viewing) => {
-  const body = JSON.stringify({ viewing });
-
   return fetch(process.env.VIEWINGS_API_URL, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'POST',
-    body,
+    body: JSON.stringify(viewing),
   })
     .then(res => res.json())
 }
