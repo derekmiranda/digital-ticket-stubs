@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "git@github.com:derekmiranda/digital-ticket-stubs.git",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "lodash-es": "^4.17.4",
@@ -18,8 +19,8 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
+    "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
-    "saga": "^0.0.1",
     "sequelize": "^4.10.3"
   },
   "scripts": {
