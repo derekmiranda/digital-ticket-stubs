@@ -9,7 +9,7 @@
     "babel-polyfill": "^6.26.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
-    "lodash-es": "^4.17.4",
+    "lodash": "^4.17.4",
     "node-fetch": "^1.7.3",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
