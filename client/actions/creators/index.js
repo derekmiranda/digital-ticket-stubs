@@ -1,4 +1,4 @@
-import * as types from './types';
+import * as types from '../types';
 
 export const createSimpleActionCreator = type => () => ({ type });
 export const createRequestAction = (reqAction) => ({
