@@ -1,26 +1,21 @@
 import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
 import Tickets from 'components/Tickets';
 import { ticketsFormName as formName } from 'client/constants';
 
 const getUserId = () => 1;
 
-const ViewingsFormContainer = reduxForm({
+const ReduxFormContainer = reduxForm({
   form: formName,
-  initialValues: {
-    viewings: [
-      {
-        title: 'My Neighbor Totoro'
-      },
-      {
-        title: 'Grave of the Fireflies'
-      },
-    ]
-    // for testing only
-    .map(viewing => ({ ...viewing, UserId: getUserId() }))
-  },
   // onSubmit: (values) => console.log(values)
   onSubmit: () => new Promise((res, rej) => setTimeout(rej, 500, 'Reject'))
 })(Tickets);
+
+const ViewingsFormContainer = connect(
+  state => ({
+    initialValues: state.initialViewings,
+  })
+)(ReduxFormContainer);
 
 export default ViewingsFormContainer;
