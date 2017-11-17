@@ -13,8 +13,8 @@ export const focusViewing = (id) => ({
 })
 
 // search results
-export const fetchedSearchResults = (results) => ({
-  type: types.FETCHED_SEARCH_RESULTS,
+export const loadedSearchResults = (results) => ({
+  type: types.LOADED_SEARCH_RESULTS,
   results,
 })
 
@@ -36,5 +36,7 @@ export const ticketSubmitSucceeded = (index) => ({
   index,
 })
 
-export const startTicketsFetch = createSimpleActionCreator(types.START_TICKETS_FETCH);
-export const ticketsFetchSucceeded = createSimpleActionCreator(types.TICKETS_FETCH_SUCCEEDED);
+// initial ticket loading
+export const startTicketsLoad = createSimpleActionCreator(types.START_TICKETS_LOAD);
+export const ticketsLoadSucceeded = createSimpleActionCreator(types.TICKETS_LOAD_SUCCEEDED);
+export const ticketsLoadFailed = createSimpleActionCreator(types.TICKETS_LOAD_FAILED);
