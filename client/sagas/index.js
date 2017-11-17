@@ -1,17 +1,4 @@
-import {
-  call,
-  put,
-  takeLatest,
-  takeEvery,
-} from 'redux-saga/effects';
-import { delay } from 'redux-saga';
-import { change } from 'redux-form';
-import {
-  fetchViewings,
-  saveNewViewing,
-  updateViewing,
-  removeViewing
-} from 'services/viewingsApi';
+import { all } from 'redux-saga/effects';
 
 import watchStartTicketSubmit from './watchStartTicketSubmit';
 
@@ -44,9 +31,9 @@ import watchStartTicketSubmit from './watchStartTicketSubmit';
 // }
 
 export default function* rootSaga() {
-  yield [
+  yield all([
     watchStartTicketSubmit(),
     // watchFetchData(),
     // watchRequestDeleteViewing()
-  ];
+  ]);
 }
