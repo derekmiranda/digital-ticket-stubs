@@ -32,9 +32,11 @@ const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
 
 const TicketsForm = ({
 	handleSubmit,
+	loading,
 }) => {
 	return (
 		<form onSubmit={handleSubmit}>
+			{loading && <p style={{color: 'green'}}>Loading...</p>}
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}

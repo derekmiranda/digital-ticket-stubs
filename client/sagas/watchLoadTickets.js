@@ -11,7 +11,7 @@ import { fetchViewings } from 'services/viewingsApi';
 function* loadTickets() {
 	try {
 		const loadedTickets = yield call(fetchViewings);
-		yield put(ticketsLoadSucceeded, loadedTickets);
+		yield put(ticketsLoadSucceeded(loadedTickets));
 	} catch (err) {
 		console.error(err);
 	}
