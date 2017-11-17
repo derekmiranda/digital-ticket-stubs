@@ -31,10 +31,9 @@ export const stopTicketSubmit = (index) => ({
   index,
 })
 
-export const ticketSubmitSucceeded = (index, id) => ({
+export const ticketSubmitSucceeded = (index) => ({
   type: types.TICKET_SUBMIT_SUCCEEDED,
   index,
-  id,
 })
 
 export const startTicketsFetch = createSimpleActionCreator(types.START_TICKETS_FETCH);
