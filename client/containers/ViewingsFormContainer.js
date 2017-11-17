@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, arrayPush } from 'redux-form';
 import { connect } from 'react-redux';
 
 import Tickets from 'components/Tickets';
 import { startTicketsLoad } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
+
+const getUserId = () => 1;
 
 class LoadContainer extends PureComponent {
   componentDidMount() {
@@ -30,7 +32,12 @@ const ViewingsFormContainer = connect(
     loading: state.loading,
     initialValues: state.initialViewings,
   }),
-  { startTicketsLoad }
+  {
+    startTicketsLoad,
+    addTicket: () => arrayPush(formName, 'viewings', {
+      UserId: getUserId(),
+    })
+  }
 )(ReduxFormContainer);
 
 export default ViewingsFormContainer;
