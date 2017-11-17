@@ -1,21 +1,7 @@
 import { all } from 'redux-saga/effects';
 
 import watchStartTicketSubmit from './watchStartTicketSubmit';
-
-// export function* fetchData(action) {
-//   try {
-//     const movies = yield call(fetchViewings);
-//     yield put(ticketsFetchSucceeded(movies));
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// function* watchFetchData() {
-//   yield takeLatest(FETCH_STARTED, fetchData);
-// }
-
-// 
+import watchLoadTickets from './watchLoadTickets';
 
 // export function* clearViewing({ movie, movieIdx }) {
 //   try {
@@ -33,7 +19,7 @@ import watchStartTicketSubmit from './watchStartTicketSubmit';
 export default function* rootSaga() {
   yield all([
     watchStartTicketSubmit(),
-    // watchFetchData(),
+    watchLoadTickets(),
     // watchRequestDeleteViewing()
   ]);
 }

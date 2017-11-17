@@ -38,5 +38,9 @@ export const ticketSubmitSucceeded = (index) => ({
 
 // initial ticket loading
 export const startTicketsLoad = createSimpleActionCreator(types.START_TICKETS_LOAD);
-export const ticketsLoadSucceeded = createSimpleActionCreator(types.TICKETS_LOAD_SUCCEEDED);
 export const ticketsLoadFailed = createSimpleActionCreator(types.TICKETS_LOAD_FAILED);
+
+export const ticketsLoadSucceeded = (loadedTickets) => ({
+  type: types.TICKETS_LOAD_SUCCEEDED,
+  loadedTickets,
+})
