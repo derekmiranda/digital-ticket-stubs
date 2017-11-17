@@ -10,16 +10,16 @@ import { START_TICKET_DELETE } from 'actions/types';
 import { removeViewing } from 'services/viewingsApi';
 import { ticketsFormName } from 'client/constants';
 
-function* deleteTicket({ index, id }) {
+function* deleteTicket({ formId, id }) {
 	if (!id) {
-		yield put(arrayRemove(ticketsFormName, 'viewings', index));
+		yield put(arrayRemove(ticketsFormName, 'viewings', formId));
 	} else {
 		try {
 			yield call(removeViewing, id);
-			yield put(ticketDeleteSucceeded(index));
-			yield put(arrayRemove(ticketsFormName, 'viewings', index));
+			yield put(ticketDeleteSucceeded(formId));
+			yield put(arrayRemove(ticketsFormName, 'viewings', formId));
 		} catch (err) {
-			yield put(ticketDeleteFailed(index));
+			yield put(ticketDeleteFailed(formId));
 			console.error(err);
 		}
 	}
