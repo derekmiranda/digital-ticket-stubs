@@ -1,7 +1,5 @@
 import {
   getFormValues,
-  change,
-  touch,
   getFormSyncErrors,
   getFormAsyncErrors,
   getFormSubmitErrors
@@ -35,17 +33,17 @@ const createTicketSubmitHandler = ({
   dispatch,
   name: ticketName,
 }) => () => {
-  const formState = formSelector(state);
   const errors = getErrorsForViewing(state, idx, [
     syncErrorsSelector,
     asyncErrorsSelector,
     submitErrorsSelector,
   ]);
 
+  const formState = formSelector(state);
   const fieldNames = Object.keys(state.form[formName].registeredFields);
   const ticketFieldNames = getTicketFields(fieldNames, ticketName);
   const { viewings } = formState;
-  const viewing = viewings[idx];
+  const viewing = viewings && viewings[idx];
 
   dispatch(ticketSubmit({
     viewing,
@@ -54,21 +52,6 @@ const createTicketSubmitHandler = ({
     ticketFieldNames,
     ticketName
   }));
-
-  // // touch all fields within ticket
-  // dispatch(touch)
-
-  // if (errors) {
-  //   debug('Errors:', errors);
-  // } else {
-  //   const {
-  //     viewings
-  //   } = formState;
-  //   const viewing = viewings[idx];
-  //   debug('Viewing:', viewing);
-  //   dispatch(startTicketSubmit(viewing, idx));
-  //   // dispatch(change(formName, `${name}.id`, 1000))
-  // }
 }
 
 export default createTicketSubmitHandler;
