@@ -6,8 +6,6 @@ import Tickets from 'components/Tickets';
 import { startTicketsLoad } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 
-const getUserId = () => 1;
-
 class LoadContainer extends PureComponent {
   componentDidMount() {
     this.props.startTicketsLoad();

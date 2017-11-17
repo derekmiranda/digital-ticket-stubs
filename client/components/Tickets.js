@@ -5,6 +5,8 @@ import { FieldArray } from 'redux-form';
 import TicketContainer from 'containers/TicketContainer';
 import debug from 'client/utils/debug';
 
+const getUserId = () => 1;
+
 const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
 	return (
 		<div id='tickets-form'>
@@ -20,7 +22,9 @@ const renderTicketsForm = ({ fields, meta: { submitting, submitFailed } }) => {
 			<button
 				type='button'	
 				id='add-ticket'
-				onClick={() => fields.push({})}
+				onClick={() => fields.push({
+					UserId: getUserId(),
+				})}
 			>+ Add Stub</button>
 			<button
 				id='add-ticket'
