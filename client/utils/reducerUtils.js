@@ -15,3 +15,10 @@ export function objWithoutKey(obj, ...keySeq) {
 		return Object.assign({}, objWithoutKey(obj[firstKey], ...keySeq.slice(1)))
 	}
 }
+
+export function reducerFromObj(obj = {}, initialState) {
+	return (state = initialState, action = {}) => {
+		const stateChange = obj[action.type];
+		return typeof stateChange === 'function' ? stateChange(state, action) : state;	
+	}	
+}
