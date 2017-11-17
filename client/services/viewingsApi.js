@@ -15,7 +15,7 @@ export const updateViewing = (viewing) => {
 }
 
 export const updateViewings = (viewings) => {
-  const processedViewings = processViewingsFromDb(viewings);
+  const processedViewings = processViewingsFromClient(viewings);
   return fetch(process.env.VIEWINGS_API_URL, {
     headers: {
       Accept: 'application/json',

@@ -3,13 +3,10 @@ import {
   put,
   takeEvery,
 } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 import { change } from 'redux-form';
 import {
-  fetchViewings,
   saveNewViewing,
   updateViewing,
-  removeViewing
 } from 'services/viewingsApi';
 
 import {
@@ -22,16 +19,6 @@ import {
 } from '../actions/creators';
 import { ticketsFormName } from 'client/constants';
 
-function* patchViewing(viewing) {
-  const res = yield call(updateViewing, viewing);
-  return viewing.id;
-}
-
-function* postViewing(viewing) {
-  const createdViewing = yield call(saveNewViewing, viewing);
-  return createdViewing.id;
-}
-
 function* saveViewing({
   viewing,
   index,
@@ -39,12 +26,14 @@ function* saveViewing({
 }) {
   try {
     // if viewing has id, will assume that it's synced on the database
-    const saveMethod = viewing.id ? patchViewing : postViewing;
-    const viewingId = yield call(saveMethod, viewing);
-
-    yield put(ticketSubmitSucceeded(index, viewingId))
-    // add id from database to viewing
-    yield put(change(ticketsFormName, `${ticketName}.id`, viewingId));
+    if (viewing.id) {
+      yield call(updateViewing, viewing);
+    } else {
+      const createdViewing = yield call(saveNewViewing, viewing);
+      // add id from database to viewing
+      yield put(change(ticketsFormName, `${ticketName}.id`, createdViewing.id));
+    }
+    yield put(ticketSubmitSucceeded(index))
   } catch (err) {
     yield put(stopTicketSubmit(index))
     console.error(err);
