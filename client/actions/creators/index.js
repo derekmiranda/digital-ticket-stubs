@@ -44,3 +44,19 @@ export const ticketsLoadSucceeded = (loadedTickets) => ({
   type: types.TICKETS_LOAD_SUCCEEDED,
   loadedTickets,
 })
+
+// ticket deletion
+export const startTicketDelete = (index) => ({
+  type: types.START_TICKET_DELETE,
+  index,
+})
+
+export const ticketDeleteSucceeded = (index) => ({
+  type: types.TICKET_DELETE_SUCCEEDED,
+  index, 
+})
+
+export const ticketDeleteFailed = (index) => ({
+  type: types.TICKET_DELETE_FAILED,
+  index,
+})
