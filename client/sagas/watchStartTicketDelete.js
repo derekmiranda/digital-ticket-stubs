@@ -5,7 +5,7 @@ import {
 } from 'redux-saga/effects';
 import { arrayRemove } from 'redux-form';
 
-import { ticketDeleteSucceeded } from 'actions/creators';
+import { ticketDeleteSucceeded, ticketDeleteFailed } from 'actions/creators';
 import { START_TICKET_DELETE } from 'actions/types';
 import { removeViewing } from 'services/viewingsApi';
 import { ticketsFormName } from 'client/constants';
@@ -19,6 +19,7 @@ function* deleteTicket({ index, id }) {
 			yield put(ticketDeleteSucceeded(index));
 			yield put(arrayRemove(ticketsFormName, 'viewings', index));
 		} catch (err) {
+			yield put(ticketDeleteFailed(index));
 			console.error(err);
 		}
 	}
