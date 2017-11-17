@@ -5,7 +5,7 @@ export const requestAction = baseType => `REQUEST_${baseType}`;
 export const FOCUS_VIEWING = 'FOCUS_VIEWING';
 
 // search results
-export const FETCHED_SEARCH_RESULTS = 'FETCHED_SEARCH_RESULTS';
+export const LOADED_SEARCH_RESULTS = 'LOADED_SEARCH_RESULTS';
 
 // requests
 export const TICKET_SUBMIT = 'TICKET_SUBMIT';

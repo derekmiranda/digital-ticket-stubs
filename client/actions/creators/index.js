@@ -7,9 +7,9 @@ export const createRequestAction = (reqAction) => ({
 })
 
 // modal
-export const focusViewing = (id) => ({
+export const focusViewing = (viewingName) => ({
   type: types.FOCUS_VIEWING,
-  id,
+  viewingName,
 })
 
 // search results
