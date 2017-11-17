@@ -46,9 +46,10 @@ export const ticketsLoadSucceeded = (loadedTickets) => ({
 })
 
 // ticket deletion
-export const startTicketDelete = (index) => ({
+export const startTicketDelete = (index, id) => ({
   type: types.START_TICKET_DELETE,
   index,
+  id,
 })
 
 export const ticketDeleteSucceeded = (index) => ({

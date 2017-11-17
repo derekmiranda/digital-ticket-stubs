@@ -8,6 +8,6 @@ export default function* rootSaga() {
   yield all([
     watchStartTicketSubmit(),
     watchLoadTickets(),
-    // watchRequestDeleteViewing()
+    watchStartTicketDelete()
   ]);
 }

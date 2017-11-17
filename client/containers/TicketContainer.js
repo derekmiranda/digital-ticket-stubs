@@ -7,6 +7,7 @@ import Ticket from 'components/Ticket';
 import { startTicketDelete } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
+import debug from 'client/utils/debug';
 
 const formSelector = getFormValues(formName);
 
@@ -30,13 +31,21 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     name,
   });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
-  const removeTicket = () => dispatch(startTicketDelete(idx));
+
+  function createRemoveTicket(idx) {
+    const formState = formSelector(stateProps);
+    const { viewings } = formState;
+    if (viewings) {
+      const viewing = viewings[idx];
+      return () => dispatch(startTicketDelete(idx, viewing.id));
+    }
+  }
 
   return {
     ...ownProps,
     ...dispatchProps,
     handleTicketSubmit,
-    removeTicket,
+    removeTicket: createRemoveTicket(idx),
     ticketSubmitting,
   }
 }
