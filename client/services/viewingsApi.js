@@ -2,6 +2,7 @@ import {
   processViewingsFromDb, 
   processViewingsFromClient,
   convertDbWatchtime,
+  convertClientWatchtime,
 } from './processing';
 
 export const fetchViewings = () => {
@@ -28,13 +29,14 @@ export const updateViewings = (viewings) => {
 }
 
 export const saveNewViewing = (viewing) => {
+  const processedViewing = convertClientWatchtime(viewing);
   return fetch(process.env.VIEWINGS_API_URL, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'POST',
-    body: JSON.stringify(viewing),
+    body: JSON.stringify(processedViewing),
   })
     .then(res => res.json())
 }
