@@ -12,7 +12,10 @@ const makeJSONResponseMiddleware = (controllerPromiseFn, ...controllerFnArgs) =>
     controllerPromiseFn(...controllerFnArgs)
       .then(result => formattedJSONResponse(res, result))
       // 422 - mainly for incompatible data but need to account for other errors
-      .catch(err => errorResponse({ res, err, statusCode: 422 }))
+      .catch(err => {
+        console.error(err);
+        errorResponse({ res, err, statusCode: 422 })
+      })
   )
 }
 
