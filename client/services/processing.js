@@ -1,6 +1,6 @@
 function watchtimeObjToISO(obj) {
   const { month, day, year } = obj;
-  return month && day && year && new Date(year, month + 1, day).toISOString();
+  return month && day && year && new Date(year, month - 1, day).toISOString();
 }
 
 function watchtimeISOToObj(iso) {
