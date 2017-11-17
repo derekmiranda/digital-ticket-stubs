@@ -41,8 +41,8 @@ export const saveNewViewing = (viewing) => {
     .then(res => res.json())
 }
 
-export const removeViewing = (viewing) => {
-  return fetch(`${process.env.VIEWINGS_API_URL}/${viewing.id}`, {
+export const removeViewing = (id) => {
+  return fetch(`${process.env.VIEWINGS_API_URL}/${id}`, {
     method: 'DELETE',
   })
     .then(res => res.json())
