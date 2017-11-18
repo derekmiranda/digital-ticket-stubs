@@ -37,7 +37,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const { viewings } = formState;
     if (viewings) {
       const viewing = viewings[idx];
-      return () => dispatch(startTicketDelete(idx, viewing.id));
+      return () => dispatch(startTicketDelete(viewing.formId, viewing.id));
     }
   }
 

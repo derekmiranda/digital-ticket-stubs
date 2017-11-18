@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Tickets from 'components/Tickets';
 import { startTicketsLoad } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
+import getFormId from 'client/getFormId';
 
 const getUserId = () => 1;
 
@@ -36,6 +37,7 @@ const ViewingsFormContainer = connect(
     startTicketsLoad,
     addTicket: () => arrayPush(formName, 'viewings', {
       UserId: getUserId(),
+      formId: getFormId(),
     })
   }
 )(ReduxFormContainer);

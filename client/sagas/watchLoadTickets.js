@@ -7,11 +7,16 @@ import {
 import { ticketsLoadSucceeded } from 'actions/creators';
 import { START_TICKETS_LOAD } from 'actions/types';
 import { fetchViewings } from 'services/viewingsApi';
+import getFormId from 'client/getFormId';
 
 function* loadTickets() {
 	try {
 		const loadedTickets = yield call(fetchViewings);
-		yield put(ticketsLoadSucceeded(loadedTickets));
+		const loadedTicketsWithFormIds = loadedTickets.map(ticket => ({
+			...ticket,
+			formId: getFormId(),
+		}))
+		yield put(ticketsLoadSucceeded(loadedTicketsWithFormIds));
 	} catch (err) {
 		console.error(err);
 	}

@@ -19,21 +19,21 @@ export const loadedSearchResults = (results) => ({
 })
 
 // ticket requests
-export const startTicketSubmit = ({ viewing, index, ticketName }) => ({
+export const startTicketSubmit = ({ viewing, formId, ticketName }) => ({
   type: types.START_TICKET_SUBMIT,
   viewing,
-  index,
+  formId,
   ticketName,
 })
 
-export const stopTicketSubmit = (index) => ({
+export const stopTicketSubmit = (formId) => ({
   type: types.STOP_TICKET_SUBMIT,
-  index,
+  formId,
 })
 
-export const ticketSubmitSucceeded = (index) => ({
+export const ticketSubmitSucceeded = (formId) => ({
   type: types.TICKET_SUBMIT_SUCCEEDED,
-  index,
+  formId,
 })
 
 // initial ticket loading
@@ -46,18 +46,23 @@ export const ticketsLoadSucceeded = (loadedTickets) => ({
 })
 
 // ticket deletion
-export const startTicketDelete = (index, id) => ({
+export const startTicketDelete = (formId, id) => ({
   type: types.START_TICKET_DELETE,
-  index,
+  formId,
   id,
 })
 
-export const ticketDeleteSucceeded = (index) => ({
-  type: types.TICKET_DELETE_SUCCEEDED,
-  index, 
+export const removeTicket = (formId) => ({
+  type: types.REMOVE_TICKET,
+  formId,
 })
 
-export const ticketDeleteFailed = (index) => ({
+export const ticketDeleteSucceeded = (formId) => ({
+  type: types.TICKET_DELETE_SUCCEEDED,
+  formId, 
+})
+
+export const ticketDeleteFailed = (formId) => ({
   type: types.TICKET_DELETE_FAILED,
-  index,
+  formId,
 })
