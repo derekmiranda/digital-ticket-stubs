@@ -36,7 +36,7 @@ const renderTextField = (props) => {
 	)
 }
 
-class TextFieldWithRef extends PureComponent {
+class AutofocusTextField extends PureComponent {
 	componentDidMount() {
 		this.textInput.focus();
 	}
@@ -49,7 +49,7 @@ class TextFieldWithRef extends PureComponent {
 					{...input}
 					ref={(input) => this.textInput = input}
 				/>
-			</TextFieldDecoration>	
+			</TextFieldDecoration>
 		)
 	}
 }
@@ -72,7 +72,7 @@ const Ticket = ({
 			<Field
 				name={`${name}.title`}	
 				type='text'
-				component={TextFieldWithRef}
+				component={AutofocusTextField}
 				label='Movie Title'
 				className='title'
 				validate={isRequired}
