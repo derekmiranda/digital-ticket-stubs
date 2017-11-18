@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, FormSection } from 'redux-form';
 
-import { normalizeMonth, normalizeDay, normalizeYear } from './normalizers';
+import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 
 const createTimeInputField = (name, normalize) => {
@@ -23,8 +23,9 @@ const createTimeInputField = (name, normalize) => {
 }
 
 const Watchtime = ({ name: watchtimeName, idx }) => {
+	const normalizeDay = createDayNormalizer(idx);
 	const monthInput = createTimeInputField('month', normalizeMonth); 
-	const dayInput = createTimeInputField('day', normalizeDay(idx));
+	const dayInput = createTimeInputField('day', normalizeDay);
 	const yearInput = createTimeInputField('year', normalizeYear);
 
 	return (

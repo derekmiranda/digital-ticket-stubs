@@ -28,7 +28,7 @@ const getMaxDay = (watchtime, maxDayRef) => {
   } 
 }
 
-export const normalizeDay = (idx) => normalizeBase((value, prev, allValues) => {
+export const createDayNormalizer = (idx) => normalizeBase((value, prev, allValues) => {
   const viewing = allValues.viewings[idx];
   const { watchtime } = viewing;
 
