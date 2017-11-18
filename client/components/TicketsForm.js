@@ -8,6 +8,12 @@ import debug from 'client/utils/debug';
 const renderTicketsForm = ({ fields, addTicket, handleSubmit, meta: { submitting, submitFailed } }) => {
 	return (
 		<div id='tickets-form'>
+			<h1>Digital Ticket Stubs</h1>
+			<input type='text' placeholder='Search for a movie...' id='search'/>
+			<button type='button'>Search</button>
+			<div>
+				<button type='button'>Sort</button>
+			</div>
 			<ul>
 				{fields.map((member, idx) => {
 					return (
