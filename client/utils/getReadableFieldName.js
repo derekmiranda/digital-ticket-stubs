@@ -1,4 +1,4 @@
-const capitalize = str => str[0].toUpperCase() + str.slice(1);
+import { capitalize } from './general';
 
 export default function getReadableFieldName(field) {
   const specialCases = {
