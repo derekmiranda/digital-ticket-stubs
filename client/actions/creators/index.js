@@ -19,21 +19,21 @@ export const loadedSearchResults = (results) => ({
 })
 
 // ticket requests
-export const startTicketSubmit = ({ viewing, formId, ticketName }) => ({
+export const startTicketSubmit = ({ viewing, index, ticketName }) => ({
   type: types.START_TICKET_SUBMIT,
   viewing,
-  formId,
+  index,
   ticketName,
 })
 
-export const stopTicketSubmit = (formId) => ({
+export const stopTicketSubmit = (index) => ({
   type: types.STOP_TICKET_SUBMIT,
-  formId,
+  index,
 })
 
-export const ticketSubmitSucceeded = (formId) => ({
+export const ticketSubmitSucceeded = (index) => ({
   type: types.TICKET_SUBMIT_SUCCEEDED,
-  formId,
+  index,
 })
 
 // initial ticket loading
