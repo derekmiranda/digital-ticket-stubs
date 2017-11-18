@@ -52,6 +52,11 @@ export const startTicketDelete = (formId, id) => ({
   id,
 })
 
+export const deleteTicket = (formId) => ({
+  type: types.DELETE_TICKET,
+  formId,
+})
+
 export const ticketDeleteSucceeded = (formId) => ({
   type: types.TICKET_DELETE_SUCCEEDED,
   formId, 
