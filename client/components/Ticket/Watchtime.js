@@ -2,12 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, FormSection } from 'redux-form';
 
-import getReadableFieldName from 'client/utils/getReadableFieldName';
-import {
-	createAscendingOptionsRange,
-	createDescendingOptionsRange
-} from './optionsRangeFns';
-
 const createTimeInputField = (name, normalize) => {
 	return (
 		<Field
