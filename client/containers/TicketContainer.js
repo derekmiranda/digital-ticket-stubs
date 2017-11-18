@@ -46,7 +46,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     ...ownProps,
     ...dispatchProps,
-    id: viewing.id,
+    viewing,
     handleTicketSubmit,
     removeTicket,
     handleKeyUp,

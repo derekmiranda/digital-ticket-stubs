@@ -59,7 +59,7 @@ const isRequired = val => val ? undefined : 'Is required';
 const Ticket = ({
 	name,
 	className = 'ticket',
-	label = 'Ticket Stub',
+	viewing,
 	handleTicketSubmit,
 	handleKeyUp,
 	removeTicket,
@@ -68,7 +68,7 @@ const Ticket = ({
 }) => {
 	return (
 		<div className={className} onKeyUp={handleKeyUp}>
-			<h2>{label}</h2>
+			<h2>{viewing.id ? 'Ticket Stub' : 'New Ticket Stub'}</h2>
 			<Field
 				name={`${name}.title`}	
 				type='text'
