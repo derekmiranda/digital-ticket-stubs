@@ -9,10 +9,29 @@ import {
   TICKETS_LOAD_SUCCEEDED,
   FOCUS_VIEWING,
   LOADED_SEARCH_RESULTS,
+  REMOVE_TICKET,
 } from 'actions/types';
+import { ticketsFormName } from 'client/constants';
 
 const rootReducer = combineReducers({
-  form: formReducer,
+  form: formReducer.plugin({
+    [ticketsFormName]: (state, action = {}) => {
+      switch (action.type) {
+        case REMOVE_TICKET:
+          return {
+            ...state,
+            values: state.values && {
+              ...state.values,
+              viewings: state.values.viewings && state.values.viewings.filter(
+                v => v.formId !== action.formId
+              )
+            }
+          }
+        default:
+          return state;
+      }
+    }
+  }),
   submittingTickets,
   initialViewings,
   modalOpen: reducerFromObj({
