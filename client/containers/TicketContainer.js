@@ -41,11 +41,18 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     }
   }
 
+  const createKeyUpHandler = () => event => {
+    if (event.key === 'Enter') {
+      handleTicketSubmit();
+    }
+  }
+
   return {
     ...ownProps,
     ...dispatchProps,
     handleTicketSubmit,
     removeTicket: createRemoveTicket(idx),
+    handleKeyUp: createKeyUpHandler(),
     ticketSubmitting,
   }
 }

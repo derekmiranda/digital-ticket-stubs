@@ -28,12 +28,13 @@ const Ticket = ({
 	className = 'ticket',
 	label = 'Ticket Stub',
 	handleTicketSubmit,
+	handleKeyUp,
 	removeTicket,
 	ticketSubmitting,
 	idx,
 }) => {
 	return (
-		<div className={className}>
+		<div className={className} onKeyUp={handleKeyUp}>
 			<h2>{label}</h2>
 			<Field
 				name={`${name}.title`}	
