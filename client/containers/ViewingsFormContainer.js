@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { reduxForm, arrayPush } from 'redux-form';
 import { connect } from 'react-redux';
 
-import Tickets from 'components/Tickets';
+import TicketsForm from 'components/TicketsForm';
 import { startTicketsLoad } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 import getFormId from 'client/getFormId';
@@ -16,7 +16,7 @@ class LoadContainer extends PureComponent {
 
   render() {
     return (
-      <Tickets {...this.props} />
+      <TicketsForm {...this.props} />
     )
   }
 } 
