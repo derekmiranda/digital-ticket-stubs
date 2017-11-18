@@ -5,7 +5,10 @@ export const requestAction = baseType => `REQUEST_${baseType}`;
 export const FOCUS_VIEWING = 'FOCUS_VIEWING';
 
 // search results
-export const LOADED_SEARCH_RESULTS = 'LOADED_SEARCH_RESULTS';
+export const LOADED_SEARCH_RESULTS = 'LOADED_SEARCH_RESULTS'; 
+
+// sorting
+export const SORT_TICKETS = 'SORT_TICKETS';
 
 // ticket submit
 export const TICKET_SUBMIT = 'TICKET_SUBMIT';

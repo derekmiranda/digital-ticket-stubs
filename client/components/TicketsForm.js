@@ -5,14 +5,20 @@ import { FieldArray } from 'redux-form';
 import TicketContainer from 'containers/TicketContainer';
 import debug from 'client/utils/debug';
 
-const renderTicketsForm = ({ fields, addTicket, handleSubmit, meta: { submitting, submitFailed } }) => {
+const renderTicketsForm = ({
+	fields,
+	addTicket,
+	sortTickets,
+	handleSubmit,
+	meta: { submitting, submitFailed }
+}) => {
 	return (
 		<div id='tickets-form'>
 			<h1>Digital Ticket Stubs</h1>
 			<input type='text' placeholder='Search for a movie...' id='search'/>
 			<button type='button'>Search</button>
 			<div>
-				<button type='button'>Sort</button>
+				<button type='button' onClick={sortTickets}>Sort</button>
 			</div>
 			<ul>
 				{fields.map((member, idx) => {
@@ -42,6 +48,7 @@ const TicketsForm = ({
 	handleSubmit,
 	loading,
 	addTicket,
+	sortTickets,
 }) => {
 	return (
 		<form>
@@ -49,7 +56,7 @@ const TicketsForm = ({
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
-				props={{ addTicket, handleSubmit }}
+				props={{ addTicket, handleSubmit, sortTickets }}
 			/>
 		</form>
 	)

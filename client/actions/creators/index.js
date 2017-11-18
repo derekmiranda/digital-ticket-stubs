@@ -66,3 +66,6 @@ export const ticketDeleteFailed = (formId) => ({
   type: types.TICKET_DELETE_FAILED,
   formId,
 })
+
+// sorting
+export const sortTickets = createSimpleActionCreator(types.SORT_TICKETS);

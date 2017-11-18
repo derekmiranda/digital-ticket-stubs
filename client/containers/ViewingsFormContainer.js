@@ -3,7 +3,7 @@ import { reduxForm, arrayPush } from 'redux-form';
 import { connect } from 'react-redux';
 
 import TicketsForm from 'components/TicketsForm';
-import { startTicketsLoad } from 'actions/creators';
+import { startTicketsLoad, sortTickets } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 import getFormId from 'client/getFormId';
 
@@ -38,7 +38,8 @@ const ViewingsFormContainer = connect(
     addTicket: () => arrayPush(formName, 'viewings', {
       UserId: getUserId(),
       formId: getFormId(),
-    })
+    }),
+    sortTickets,
   }
 )(ReduxFormContainer);
 
