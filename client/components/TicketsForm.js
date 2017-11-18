@@ -7,19 +7,11 @@ import debug from 'client/utils/debug';
 
 const renderTicketsForm = ({
 	fields,
-	addTicket,
-	sortTickets,
 	handleSubmit,
 	meta: { submitting, submitFailed }
 }) => {
 	return (
 		<div id='tickets-form'>
-			<h1>Digital Ticket Stubs</h1>
-			<input type='text' placeholder='Search for a movie...' id='search'/>
-			<button type='button'>Search</button>
-			<div>
-				<button type='button' onClick={sortTickets}>Sort</button>
-			</div>
 			<ul>
 				{fields.map((member, idx) => {
 					return (
@@ -29,11 +21,6 @@ const renderTicketsForm = ({
 					)
 				})}
 			</ul>
-			<button
-				type='button'	
-				id='add-ticket'
-				onClick={addTicket}
-			>+ Add Stub</button>
 			<button
 				type='button'
 				id='add-ticket'
@@ -52,12 +39,23 @@ const TicketsForm = ({
 }) => {
 	return (
 		<form>
+			<h1>Digital Ticket Stubs</h1>
+			<input type='text' placeholder='Search for a movie...' id='search'/>
+			<button type='button'>Search</button>
+			<div>
+				<button type='button' onClick={sortTickets}>Sort</button>
+			</div>
 			{loading && <p style={{color: 'green'}}>Loading...</p>}
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
-				props={{ addTicket, handleSubmit, sortTickets }}
+				props={{ handleSubmit }}
 			/>
+			<button
+				type='button'	
+				id='add-ticket'
+				onClick={addTicket}
+			>+ Add Stub</button>
 		</form>
 	)
 }
