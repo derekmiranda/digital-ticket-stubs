@@ -2,21 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, FormSection } from 'redux-form';
 
+import { normalizeMonth, normalizeDay, normalizeYear } from './normalizers';
+import { capitalize } from 'client/utils/general';
+
 const createTimeInputField = (name, normalize) => {
+	const label = capitalize(name);
 	return (
-		<Field
-			name={name}
-			component='input'
-			type='text'
-			normalize={normalize}
-		/>
+		<div className={name}>
+			<label>
+				{label} <Field
+					name={name}
+					component='input'
+					placeholder={label}
+					type='number'
+					normalize={normalize}
+				/>
+			</label>
+		</div>
 	)
 }
 
-const Watchtime = ({ name: watchtimeName }) => {
-	const monthInput = createTimeInputField('month', () => {}); 
-	const dayInput = createTimeInputField('day', () => {});
-	const yearInput = createTimeInputField('year', () => {});
+const Watchtime = ({ name: watchtimeName, idx }) => {
+	const monthInput = createTimeInputField('month', normalizeMonth); 
+	const dayInput = createTimeInputField('day', normalizeDay(idx));
+	const yearInput = createTimeInputField('year', normalizeYear);
 
 	return (
 		<FormSection name={watchtimeName} className='watchtime'>
