@@ -1,25 +1,58 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Field, getFormValues } from 'redux-form';
 
 import Watchtime from './Watchtime';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
-const renderTextField = ({
-	input,
-	type,
-	label,
+const TextFieldDecoration = ({
 	className,
+	label,
+	children,
 	meta: { touched, error },
 }) => (
 	<div className={className}>
 		<h3>{label}</h3>
-		<input type={type} {...input} />
+		{children}	
 		{touched && error &&
 			<p style={{color: 'red'}}>{error}</p>
 		}
 	</div>
 )
+
+const renderTextField = (props) => {
+	const {
+		input,
+		type,
+		label,
+		className,
+		meta: { touched, error },
+	} = props;
+
+	return (
+		<TextFieldDecoration {...props}>
+			<input type={type} {...input}/>
+		</TextFieldDecoration>
+	)
+}
+
+class TextFieldWithRef extends PureComponent {
+	componentDidMount() {
+		this.textInput.focus();
+	}
+
+	render() {
+		const { input, type } = this.props;
+		return ( 
+			<TextFieldDecoration {...this.props}>
+				<input type={type}
+					{...input}
+					ref={(input) => this.textInput = input}
+				/>
+			</TextFieldDecoration>	
+		)
+	}
+}
 
 const isRequired = val => val ? undefined : 'Is required';
 
@@ -39,7 +72,7 @@ const Ticket = ({
 			<Field
 				name={`${name}.title`}	
 				type='text'
-				component={renderTextField}
+				component={TextFieldWithRef}
 				label='Movie Title'
 				className='title'
 				validate={isRequired}
