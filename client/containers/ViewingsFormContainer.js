@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Tickets from 'components/Tickets';
 import { startTicketsLoad } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
+import getFormId from 'client/getFormId';
 
 const getUserId = () => 1;
 
@@ -27,7 +28,6 @@ const ReduxFormContainer = reduxForm({
   onSubmit: () => new Promise((res, rej) => setTimeout(rej, 500, 'Reject'))
 })(LoadContainer);
 
-let formId = 1;
 const ViewingsFormContainer = connect(
   state => ({
     loading: state.loading,
@@ -37,7 +37,7 @@ const ViewingsFormContainer = connect(
     startTicketsLoad,
     addTicket: () => arrayPush(formName, 'viewings', {
       UserId: getUserId(),
-      formId: formId++,
+      formId: getFormId(),
     })
   }
 )(ReduxFormContainer);
