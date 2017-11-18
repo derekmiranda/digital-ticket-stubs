@@ -23,7 +23,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { submittingTickets } = stateProps;
   const { dispatch } = dispatchProps;
   const { idx, name } = ownProps;
+  
+  const formState = formSelector(stateProps);
+  const { viewings } = formState;
+  const viewing = viewings[idx];
 
+  const removeTicket = () => dispatch(startTicketDelete(viewing.formId, viewing.id));
   const handleTicketSubmit = createTicketSubmitHandler({
     state: stateProps,
     idx,
@@ -32,16 +37,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
 
-  function createRemoveTicket(idx) {
-    const formState = formSelector(stateProps);
-    const { viewings } = formState;
-    if (viewings) {
-      const viewing = viewings[idx];
-      return () => dispatch(startTicketDelete(viewing.formId, viewing.id));
-    }
-  }
-
-  const createKeyUpHandler = () => event => {
+  const handleKeyUp = (event) => {
     if (event.key === 'Enter') {
       handleTicketSubmit();
     }
@@ -50,9 +46,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     ...ownProps,
     ...dispatchProps,
+    id: viewing.id,
     handleTicketSubmit,
-    removeTicket: createRemoveTicket(idx),
-    handleKeyUp: createKeyUpHandler(),
+    removeTicket,
+    handleKeyUp,
     ticketSubmitting,
   }
 }
