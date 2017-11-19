@@ -28,15 +28,14 @@ const renderTicketsForm = ({
 	)
 }
 
-const createRadioInput = curry(
-	(targetValue, handleChange, value) => (
-		<label><input type='radio'
+const createSortButton = curry(
+	(handleChange, value) => (
+		<button type='button'
 			value={value}
-			checked={targetValue === value}
-			onChange={() => handleChange(value)}
-		/>
+			onClick={() => handleChange(value)}
+		>
 			{getReadableFieldName(value)}
-		</label>
+		</button>
 	)
 )
 
@@ -46,10 +45,10 @@ const TicketsForm = ({
 	addTicket,
 	sortTickets,
 }) => {
-	const createRadioInputWithTarget = createRadioInput('title', sortTickets); 
-	const titleRadio = createRadioInputWithTarget('title');
-	const venueRadio = createRadioInputWithTarget('venue');
-	const watchtimeRadio = createRadioInputWithTarget('watchtime');
+	const createSortButtonWithTarget = createSortButton(sortTickets); 
+	const titleSortBtn = createSortButtonWithTarget('title');
+	const venueSortBtn = createSortButtonWithTarget('venue');
+	const watchtimeSortBtn = createSortButtonWithTarget('watchtime');
 	return (
 		<form>
 			<h1>Digital Ticket Stubs</h1>
@@ -57,9 +56,9 @@ const TicketsForm = ({
 			<button type='button'>Search</button>
 			<div id='sort'>
 				<p>Sort by:</p>
-				{titleRadio}
-				{venueRadio}
-				{watchtimeRadio}
+				{titleSortBtn}
+				{venueSortBtn}
+				{watchtimeSortBtn}
 			</div>
 			{loading && <p style={{color: 'green'}}>Loading...</p>}
 			<FieldArray 
