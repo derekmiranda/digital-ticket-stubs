@@ -14,16 +14,20 @@ const putSavedViewingsFirst = (v1, v2) => {
   return 0;
 }
 
-const byTitle = (v1, v2) => {
-  return v1.title > v2.title;
+const sortsByCriteria = {
+  title: (v1, v2) => {
+    return v1.title > v2.title;
+  }
 }
 
 const viewings = (state = [], action = {}) => {
   switch (action.type) {
     case REMOVE_TICKET:
       return state.filter(v => v.formId !== action.formId);
-    case SORT_TICKETS:
-      return state.slice().sort(byTitle).sort(putSavedViewingsFirst);
+    case SORT_TICKETS: {
+      const criteriaSort = sortsByCriteria[action.criteria] || sortsByCriteria.title;
+      return state.slice().sort(criteriaSort).sort(putSavedViewingsFirst);
+    }
     default:
       return state;
   }
