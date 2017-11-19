@@ -14,11 +14,24 @@ const putItemsThatMeetCondFirst = (cond) => (i1, i2) => {
   return 0;
 }
 const putSavedViewingsFirst = putItemsThatMeetCondFirst(i => i.id);
+const hasWatchtime = v => {
+  const wt = v.watchtime;
+  return wt && wt.month && wt.day && wt.year;
+}
+const watchtimeToMs = (watchtime) => {
+  const { month, day, year } = watchtime;
+  return new Date(year, month - 1, day).getTime();
+}
 const sortByWatchtime = (v1, v2) => {
-  return putItemsThatMeetCondFirst(i => {
-    const wt = i.watchtime;
-    return wt && wt.month && wt.day && wt.year;
-  })(v1, v2)
+  // prioritizes items with a full watchtime object
+  return (
+    // put items with watchtime first
+    putItemsThatMeetCondFirst(hasWatchtime)(v1, v2) ||
+    // sort by time in ms if both viewings have full watchtimes
+    hasWatchtime(v1) && hasWatchtime(v2) 
+      ? watchtimeToMs(v1) < watchtimeToMs(v2)
+      : 0
+  )
 }
 
 const createSortByKey = key => (o1, o2) => o1[key] > o2[key];
