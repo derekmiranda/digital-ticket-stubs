@@ -37,8 +37,11 @@ const TicketsForm = ({
 			<h1>Digital Ticket Stubs</h1>
 			<input type='text' placeholder='Search for a movie...' id='search'/>
 			<button type='button'>Search</button>
-			<div>
-				<button type='button' onClick={sortTickets}>Sort</button>
+			<div id='sort'>
+				<p>Sort by:</p>
+				<label><input type='radio'/>Title</label>
+				<label><input type='radio'/>Venue</label>
+				<label><input type='radio'/>Watchtime</label>
 			</div>
 			{loading && <p style={{color: 'green'}}>Loading...</p>}
 			<FieldArray 
