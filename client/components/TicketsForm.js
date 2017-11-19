@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
+import curry from 'lodash/curry';
 
 import TicketContainer from 'containers/TicketContainer';
 import debug from 'client/utils/debug';
+import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 const renderTicketsForm = ({
 	fields,
@@ -26,12 +28,28 @@ const renderTicketsForm = ({
 	)
 }
 
+const createRadioInput = curry(
+	(targetValue, handleChange, value) => (
+		<label><input type='radio'
+			value={value}
+			checked={targetValue === value}
+			onChange={() => handleChange(value)}
+		/>
+			{getReadableFieldName(value)}
+		</label>
+	)
+)
+
 const TicketsForm = ({
 	handleSubmit,
 	loading,
 	addTicket,
 	sortTickets,
 }) => {
+	const createRadioInputWithTarget = createRadioInput('title', sortTickets); 
+	const titleRadio = createRadioInputWithTarget('title');
+	const venueRadio = createRadioInputWithTarget('venue');
+	const watchtimeRadio = createRadioInputWithTarget('watchtime');
 	return (
 		<form>
 			<h1>Digital Ticket Stubs</h1>
@@ -39,9 +57,9 @@ const TicketsForm = ({
 			<button type='button'>Search</button>
 			<div id='sort'>
 				<p>Sort by:</p>
-				<label><input type='radio'/>Title</label>
-				<label><input type='radio'/>Venue</label>
-				<label><input type='radio'/>Watchtime</label>
+				{titleRadio}
+				{venueRadio}
+				{watchtimeRadio}
 			</div>
 			{loading && <p style={{color: 'green'}}>Loading...</p>}
 			<FieldArray 
