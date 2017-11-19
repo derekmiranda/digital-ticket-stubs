@@ -8,6 +8,7 @@ import { reducerFromObj } from 'client/utils/reducerUtils';
 import {
   START_TICKETS_LOAD,
   TICKETS_LOAD_SUCCEEDED,
+  TICKETS_LOAD_FAILED,
   FOCUS_VIEWING,
   LOADED_SEARCH_RESULTS,
 } from 'actions/types';
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   loading: reducerFromObj({
     [START_TICKETS_LOAD]: () => true,
     [TICKETS_LOAD_SUCCEEDED]: () => false,
+    [TICKETS_LOAD_FAILED]: () => false,
   }, false), 
   searchResults: reducerFromObj({
     [LOADED_SEARCH_RESULTS]: (_, action) => action.results,

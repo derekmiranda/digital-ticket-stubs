@@ -4,7 +4,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects';
 
-import { ticketsLoadSucceeded } from 'actions/creators';
+import { ticketsLoadSucceeded, ticketsLoadFailed } from 'actions/creators';
 import { START_TICKETS_LOAD } from 'actions/types';
 import { fetchViewings } from 'services/viewingsApi';
 import getFormId from 'client/getFormId';
@@ -18,6 +18,7 @@ function* loadTickets() {
 		}))
 		yield put(ticketsLoadSucceeded(loadedTicketsWithFormIds));
 	} catch (err) {
+		yield put(ticketsLoadFailed());
 		console.error(err);
 	}
 }

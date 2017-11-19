@@ -21,11 +21,6 @@ const renderTicketsForm = ({
 					)
 				})}
 			</ul>
-			<button
-				type='button'
-				id='add-ticket'
-				onClick={handleSubmit}
-			>Save All Stubs</button>
 			{submitting && <p style={{color: 'mediumaquamarine'}}>Saving all stubs...</p>}
 		</div>
 	)
@@ -56,6 +51,11 @@ const TicketsForm = ({
 				id='add-ticket'
 				onClick={addTicket}
 			>+ Add Stub</button>
+			<button
+				type='button'
+				id='add-ticket'
+				onClick={handleSubmit}
+			>Save All Stubs</button>
 		</form>
 	)
 }
