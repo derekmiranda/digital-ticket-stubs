@@ -5,19 +5,28 @@ import {
 import debug from 'client/utils/debug';
 
 // puts viewings saved on db at the top
-const putSavedViewingsFirst = (v1, v2) => {
-  if (v1.id && !v2.id) {
+const putItemsThatMeetCondFirst = (cond) => (i1, i2) => {
+  if (cond(i1) && !cond(i2)) {
     return -1;
-  } else if (v2.id && !v1.id) {
+  } else if (cond(i2) && !cond(i1)) {
     return 1;
   }
   return 0;
 }
+const putSavedViewingsFirst = putItemsThatMeetCondFirst(i => i.id);
+const sortByWatchtime = (v1, v2) => {
+  return putItemsThatMeetCondFirst(i => {
+    const wt = i.watchtime;
+    return wt && wt.month && wt.day && wt.year;
+  })(v1, v2)
+}
 
-const sortsByCriteria = {
-  title: (v1, v2) => {
-    return v1.title > v2.title;
+const createSortByKey = key => (o1, o2) => o1[key] > o2[key];
+const getSortByCriteria = (criteria) => {
+  if (criteria === 'watchtime') {
+    return sortByWatchtime;
   }
+  return createSortByKey(criteria || 'title');
 }
 
 const viewings = (state = [], action = {}) => {
@@ -25,7 +34,7 @@ const viewings = (state = [], action = {}) => {
     case REMOVE_TICKET:
       return state.filter(v => v.formId !== action.formId);
     case SORT_TICKETS: {
-      const criteriaSort = sortsByCriteria[action.criteria] || sortsByCriteria.title;
+      const criteriaSort = getSortByCriteria(action.criteria);
       return state.slice().sort(criteriaSort).sort(putSavedViewingsFirst);
     }
     default:
