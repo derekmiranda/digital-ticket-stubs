@@ -11,7 +11,7 @@ const putItemsThatMeetCondFirst = (cond) => (i1, i2) => {
 export const putSavedViewingsFirst = putItemsThatMeetCondFirst(i => i.id);
 
 const hasWatchtime = v => {
-  const wt = v.watchtime;
+	const wt = v.watchtime;
   return wt && wt.month && wt.day && wt.year;
 }
 const watchtimeToMs = (watchtime) => {
@@ -25,9 +25,9 @@ const sortByWatchtime = (v1, v2) => {
     // put items with watchtime first
     putItemsThatMeetCondFirst(hasWatchtime)(v1, v2) ||
     // sort by time in ms if both viewings have full watchtimes
-    hasWatchtime(v1) && hasWatchtime(v2) 
+    (hasWatchtime(v1) && hasWatchtime(v2)
       ? watchtimeToMs(v1.watchtime) > watchtimeToMs(v2.watchtime)
-      : 0
+      : 0)
   )
 }
 
