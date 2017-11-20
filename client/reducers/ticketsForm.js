@@ -35,17 +35,21 @@ const sortByWatchtime = (v1, v2) => {
   )
 }
 
-const createSortByKey = key => (o1, o2) => o1[key] > o2[key];
+const createSortByStringAtKey = key => (o1, o2) => {
+  const str1 = o1[key] && o1[key].toLowerCase();
+  const str2 = o2[key] && o2[key].toLowerCase();
+  return str1 > str2;
+}
 const getSortByCriteria = (criteria) => {
   if (criteria === 'watchtime') {
     return sortByWatchtime;
   } else if (criteria === 'venue') {
     return (v1, v2) => {
       return putItemsThatMeetCondFirst(i => i[criteria])(v1,v2)
-        || createSortByKey(criteria);
+        || createSortByStringAtKey(criteria);
     }
   }
-  return createSortByKey(criteria || 'title');
+  return createSortByStringAtKey(criteria || 'title');
 }
 
 const viewings = (state = [], action = {}) => {
