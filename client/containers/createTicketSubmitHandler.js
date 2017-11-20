@@ -30,7 +30,6 @@ const getErrorsForViewing= (state, idx, errorSelectors) => {
 const createTicketSubmitHandler = ({
   state,
   idx,
-  dispatch,
   name: ticketName,
 }) => () => {
   const errors = getErrorsForViewing(state, idx, [
@@ -45,13 +44,13 @@ const createTicketSubmitHandler = ({
   const { viewings } = formState;
   const viewing = viewings && viewings[idx];
 
-  dispatch(ticketSubmit({
+  return ticketSubmit({
     viewing,
     errors,
     index: idx,
     ticketFieldNames,
     ticketName
-  }));
+  });
 }
 
 export default createTicketSubmitHandler;

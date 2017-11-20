@@ -60,12 +60,17 @@ const Ticket = ({
 	className = 'ticket',
 	viewing,
 	handleTicketSubmit,
-	handleKeyUp,
 	handleWatchtimeBlur,
 	removeTicket,
 	ticketSubmitting,
 	idx,
 }) => {
+	const handleKeyUp = (event) => {
+		if (event.key === 'Enter') {
+			handleTicketSubmit();
+		}
+	}
+
 	return (
 		<div className={className} onKeyUp={handleKeyUp}>
 			<h2>{viewing.id ? 'Ticket Stub' : 'New Ticket Stub'}</h2>
