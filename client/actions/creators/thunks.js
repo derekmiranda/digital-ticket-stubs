@@ -19,7 +19,6 @@ export function ticketSubmit({
 		dispatch(touch(formName, ...ticketFieldNames))
 
 		if (!errors) {
-			debug('Viewing:', viewing);
 			dispatch(startTicketSubmit({ viewing, index, ticketName }));
 			// dispatch(change(formName, `${name}.id`, 1000))
 		}

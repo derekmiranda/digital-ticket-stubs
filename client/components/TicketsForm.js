@@ -4,8 +4,8 @@ import { FieldArray } from 'redux-form';
 import curry from 'lodash/curry';
 
 import TicketContainer from 'containers/TicketContainer';
-import debug from 'client/utils/debug';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
+import debug from 'client/utils/debug';
 
 const renderTicketsForm = ({
 	fields,
