@@ -33,7 +33,8 @@ const sortByWatchtime = (v1, v2) => {
 
 const createSortByStringAtKey = key => (o1, o2) => {
   const str1 = o1[key] && o1[key].toLowerCase();
-  const str2 = o2[key] && o2[key].toLowerCase();
+	const str2 = o2[key] && o2[key].toLowerCase();
+	console.log(str1, str2)
   return str1 > str2;
 }
 
@@ -42,8 +43,8 @@ export const getSortByCriteria = (criteria) => {
     return sortByWatchtime;
   } else if (criteria === 'venue') {
     return (v1, v2) => {
-      return putItemsThatMeetCondFirst(i => i[criteria])(v1,v2)
-        || createSortByStringAtKey(criteria);
+			const itemsWithVenueFirst = putItemsThatMeetCondFirst(i => i[criteria])(v1,v2);
+      return itemsWithVenueFirst || createSortByStringAtKey(criteria)(v1, v2);
     }
   }
   return createSortByStringAtKey(criteria || 'title');
