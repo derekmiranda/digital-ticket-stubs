@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, getFormValues } from 'redux-form';
 
 import Watchtime from './Watchtime';
+import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 const TextFieldDecoration = ({
@@ -53,8 +54,6 @@ class AutofocusTextField extends PureComponent {
 		)
 	}
 }
-
-const isRequired = val => val ? undefined : 'Is required';
 
 const Ticket = ({
 	name,

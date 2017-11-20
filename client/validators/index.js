@@ -1,0 +1,1 @@
+export const isRequired = val => val ? undefined : 'Required';
