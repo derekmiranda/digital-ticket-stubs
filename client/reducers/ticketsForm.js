@@ -20,7 +20,8 @@ const hasWatchtime = v => {
 }
 const watchtimeToMs = (watchtime) => {
   const { month, day, year } = watchtime;
-  return new Date(year, month - 1, day).getTime();
+  const timeMs = new Date(year, month - 1, day).getTime(); 
+  return timeMs;
 }
 const sortByWatchtime = (v1, v2) => {
   // prioritizes items with a full watchtime object
@@ -29,7 +30,7 @@ const sortByWatchtime = (v1, v2) => {
     putItemsThatMeetCondFirst(hasWatchtime)(v1, v2) ||
     // sort by time in ms if both viewings have full watchtimes
     hasWatchtime(v1) && hasWatchtime(v2) 
-      ? watchtimeToMs(v1) < watchtimeToMs(v2)
+      ? watchtimeToMs(v1.watchtime) > watchtimeToMs(v2.watchtime)
       : 0
   )
 }
@@ -38,6 +39,11 @@ const createSortByKey = key => (o1, o2) => o1[key] > o2[key];
 const getSortByCriteria = (criteria) => {
   if (criteria === 'watchtime') {
     return sortByWatchtime;
+  } else if (criteria === 'venue') {
+    return (v1, v2) => {
+      return putItemsThatMeetCondFirst(i => i[criteria])(v1,v2)
+        || createSortByKey(criteria);
+    }
   }
   return createSortByKey(criteria || 'title');
 }
