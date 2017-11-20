@@ -5,6 +5,7 @@ import { getFormValues } from 'redux-form';
 
 import Ticket from 'components/Ticket';
 import { startTicketDelete } from 'actions/creators';
+import { validateWatchtime } from 'actions/creators/thunks';
 import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
@@ -51,6 +52,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     removeTicket,
     handleKeyUp,
     ticketSubmitting,
+    handleWatchtimeBlur: validateWatchtime,
   }
 }
 

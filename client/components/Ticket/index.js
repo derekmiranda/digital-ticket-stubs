@@ -61,6 +61,7 @@ const Ticket = ({
 	viewing,
 	handleTicketSubmit,
 	handleKeyUp,
+	handleWatchtimeBlur,
 	removeTicket,
 	ticketSubmitting,
 	idx,
@@ -83,7 +84,10 @@ const Ticket = ({
 				label='Venue'
 				className='venue'
 			/> 
-			<Watchtime name={`${name}.watchtime`} idx={idx}/>
+			<Watchtime name={`${name}.watchtime`}
+				idx={idx}
+				handleWatchtimeBlur={handleWatchtimeBlur}
+			/>
 			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={handleTicketSubmit}>Save</button>
 			{ticketSubmitting && <p style={{color: 'mediumaquamarine'}}>Submitting Ticket...</p>}

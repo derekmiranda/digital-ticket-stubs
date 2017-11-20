@@ -22,7 +22,11 @@ const createTimeInputField = (name, normalize) => {
 	)
 }
 
-const Watchtime = ({ name: watchtimeName, idx }) => {
+const Watchtime = ({
+	name: watchtimeName,
+	idx,
+	handleWatchtimeBlur,
+}) => {
 	const normalizeDay = createDayNormalizer(idx);
 	const monthInput = createTimeInputField('month', normalizeMonth); 
 	const dayInput = createTimeInputField('day', normalizeDay);

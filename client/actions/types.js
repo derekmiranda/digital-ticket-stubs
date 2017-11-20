@@ -10,6 +10,10 @@ export const LOADED_SEARCH_RESULTS = 'LOADED_SEARCH_RESULTS';
 // sorting
 export const SORT_TICKETS = 'SORT_TICKETS';
 
+// custom validation
+export const VALIDATE_WATCHTIME = 'VALIDATE_WATCHTIME';
+export const WATCHTIME_ERROR = 'WATCHTIME_ERROR';
+
 // ticket submit
 export const TICKET_SUBMIT = 'TICKET_SUBMIT';
 export const START_TICKET_SUBMIT = 'START_TICKET_SUBMIT';
