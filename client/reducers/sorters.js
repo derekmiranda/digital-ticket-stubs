@@ -34,7 +34,6 @@ const sortByWatchtime = (v1, v2) => {
 const createSortByStringAtKey = key => (o1, o2) => {
   const str1 = o1[key] && o1[key].toLowerCase();
 	const str2 = o2[key] && o2[key].toLowerCase();
-	console.log(str1, str2)
   return str1 > str2;
 }
 

@@ -39,7 +39,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const boundActionCreators = bindActionCreators({
     removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
-    handleWatchtimeBlur: () => validateWatchtime(viewing),
+    handleWatchtimeBlur: () => validateWatchtime(viewing, idx),
   }, dispatch);
 
   const handleKeyUp = (event) => {

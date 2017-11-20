@@ -27,7 +27,7 @@ export function ticketSubmit({
 	}
 }
 
-export function validateWatchtime(viewing) {
+export function validateWatchtime(viewing, index) {
 	return (dispatch) => {
 		const wt = viewing.watchtime;
 		if (wt && 
@@ -36,7 +36,7 @@ export function validateWatchtime(viewing) {
 		) {
 			dispatch({
 				type: WATCHTIME_ERROR,
-				formId: viewing.formId,
+				index,
 				message: 'Watch time must be completely empty or filled out',
 			})
 		}
