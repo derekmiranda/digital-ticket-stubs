@@ -13,6 +13,7 @@ export const SORT_TICKETS = 'SORT_TICKETS';
 // custom validation
 export const VALIDATE_WATCHTIME = 'VALIDATE_WATCHTIME';
 export const WATCHTIME_ERROR = 'WATCHTIME_ERROR';
+export const WATCHTIME_VALID = 'WATCHTIME_VALID';
 
 // ticket submit
 export const TICKET_SUBMIT = 'TICKET_SUBMIT';

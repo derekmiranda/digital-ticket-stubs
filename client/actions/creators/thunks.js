@@ -3,7 +3,7 @@ import {
   touch,
 } from 'redux-form';
 
-import { WATCHTIME_ERROR } from 'actions/types';
+import { WATCHTIME_ERROR, WATCHTIME_VALID } from 'actions/types';
 import { startTicketSubmit, stopTicketSubmit } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 import debug from 'client/utils/debug';
@@ -27,7 +27,7 @@ export function ticketSubmit({
 	}
 }
 
-export function validateWatchtime(viewing, index) {
+export function validateWatchtime(viewing) {
 	return (dispatch) => {
 		const wt = viewing.watchtime;
 		if (wt && 
@@ -36,8 +36,13 @@ export function validateWatchtime(viewing, index) {
 		) {
 			dispatch({
 				type: WATCHTIME_ERROR,
-				index,
+				formId: viewing.formId,
 				message: 'Watch time must be completely empty or filled out',
+			})
+		} else {
+			dispatch({
+				type: WATCHTIME_VALID,
+				formId: viewing.formId,
 			})
 		}
 	}
