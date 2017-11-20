@@ -86,7 +86,7 @@ const Ticket = ({
 			/> 
 			<Watchtime name={`${name}.watchtime`}
 				idx={idx}
-				handleWatchtimeBlur={handleWatchtimeBlur}
+				handleBlur={handleWatchtimeBlur}
 			/>
 			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={handleTicketSubmit}>Save</button>

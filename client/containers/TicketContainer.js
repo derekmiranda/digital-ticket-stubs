@@ -29,7 +29,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { viewings } = formState;
   const viewing = viewings[idx];
 
-  const removeTicket = () => dispatch(startTicketDelete(viewing.formId, viewing.id));
   const handleTicketSubmit = createTicketSubmitHandler({
     state: stateProps,
     idx,
@@ -37,6 +36,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     name,
   });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
+
+  const boundActionCreators = bindActionCreators({
+    removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
+    handleWatchtimeBlur: () => validateWatchtime(viewing),
+  }, dispatch);
 
   const handleKeyUp = (event) => {
     if (event.key === 'Enter') {
@@ -47,12 +51,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     ...ownProps,
     ...dispatchProps,
-    viewing,
+    ...boundActionCreators,
     handleTicketSubmit,
-    removeTicket,
+    viewing,
     handleKeyUp,
     ticketSubmitting,
-    handleWatchtimeBlur: validateWatchtime,
   }
 }
 
