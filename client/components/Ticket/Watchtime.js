@@ -6,20 +6,6 @@ import curry from 'lodash/curry';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 
-const renderInputWithBlur = ({ input, type, placeholder, handleBlur }) => {
-	const customOnBlur = (...args) => {
-		handleBlur(...args);
-		return input.onBlur(...args);
-	}
-	return (
-		<input {...input}
-			type={type}
-			onBlur={customOnBlur}
-			placeholder={placeholder}
-		/>
-	)
-}
-
 const createTimeInputField = curry((handleBlur, name, normalize) => {
 	const label = capitalize(name);
 	return (
@@ -27,11 +13,11 @@ const createTimeInputField = curry((handleBlur, name, normalize) => {
 			<label>
 				{label} <Field
 					name={name}
-					component={renderInputWithBlur}
+					component='input'
 					placeholder={label}
 					type='number'
 					normalize={normalize}
-					handleBlur={handleBlur}
+					onBlur={handleBlur}
 				/>
 			</label>
 		</div>
