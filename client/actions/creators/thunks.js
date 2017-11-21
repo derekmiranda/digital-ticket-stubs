@@ -1,14 +1,22 @@
 import {
-  change,
-  touch,
+	change,
+	touch,
 } from 'redux-form';
 
-import { WATCHTIME_ERROR, WATCHTIME_VALID } from 'actions/types';
-import { startTicketSubmit, stopTicketSubmit } from 'actions/creators';
-import { ticketsFormName as formName } from 'client/constants';
+import {
+	WATCHTIME_ERROR,
+	WATCHTIME_VALID
+} from 'actions/types';
+import {
+	startTicketSubmit,
+	stopTicketSubmit
+} from 'actions/creators';
+import {
+	ticketsFormName as formName
+} from 'client/constants';
 import debug from 'client/utils/debug';
 
-export function ticketSubmit({ 
+export function ticketSubmit({
 	viewing,
 	errors,
 	index,
@@ -20,24 +28,25 @@ export function ticketSubmit({
 		dispatch(touch(formName, ...ticketFieldNames))
 
 		if (!errors) {
-			dispatch(startTicketSubmit({ viewing, index, ticketName }));
-			// dispatch(change(formName, `${name}.id`, 1000))
-		}
-		else debug(errors)
+			dispatch(startTicketSubmit({
+				viewing,
+				index,
+				ticketName
+			}));
+		} else debug(errors)
 	}
 }
 
 export function validateWatchtime(viewing, index) {
 	return (dispatch) => {
 		const wt = viewing.watchtime;
-		if (wt && 
+		if (wt &&
 			// all or no watch time properties must be filled
 			!(wt.month && wt.day && wt.year || !wt.month && !wt.day && !wt.year)
 		) {
 			dispatch({
 				type: WATCHTIME_ERROR,
 				index,
-				message: 'Watch time must be completely empty or filled out',
 			})
 		} else {
 			dispatch({
