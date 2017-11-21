@@ -63,6 +63,7 @@ const Ticket = ({
 	handleTicketSubmit,
 	handleWatchtimeBlur,
 	removeTicket,
+	clearWatchtime,
 	ticketSubmitting,
 	watchtimeError,
 	idx,
@@ -95,6 +96,7 @@ const Ticket = ({
 				idx={idx}
 				handleBlur={handleWatchtimeBlur}
 				allTouched={allWatchtimeTouched}
+				clearValues={clearWatchtime}
 				error={watchtimeError}
 			/>
 			<button type='button' onClick={removeTicket}>Delete</button>

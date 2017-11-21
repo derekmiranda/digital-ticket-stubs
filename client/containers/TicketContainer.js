@@ -5,7 +5,7 @@ import { getFormValues, getFormMeta } from 'redux-form';
 
 import Ticket from 'components/Ticket';
 import { startTicketDelete } from 'actions/creators';
-import { validateWatchtime } from 'actions/creators/thunks';
+import { validateWatchtime, clearWatchtime } from 'actions/creators/thunks';
 import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
@@ -52,6 +52,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const boundActionCreators = bindActionCreators({
     removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
     handleWatchtimeBlur: () => validateWatchtime(viewing, idx),
+    clearWatchtime: () => clearWatchtime(name),
     handleTicketSubmit,
   }, dispatch);
 

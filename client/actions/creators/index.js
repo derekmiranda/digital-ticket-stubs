@@ -72,3 +72,9 @@ export const sortTickets = (criteria) => ({
   type: types.SORT_TICKETS,
   criteria,
 })
+
+// watchtime
+export const clearWatchtime = (index) => ({
+  type: types.CLEAR_WATCHTIME,
+  index,
+})

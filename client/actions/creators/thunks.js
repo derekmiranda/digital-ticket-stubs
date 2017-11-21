@@ -47,3 +47,7 @@ export function validateWatchtime(viewing, index) {
 		}
 	}
 }
+
+export function clearWatchtime(fieldName) {
+	return dispatch => dispatch(change(formName, `${fieldName}.watchtime`, null));
+}
