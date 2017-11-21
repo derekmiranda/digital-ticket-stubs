@@ -45,7 +45,7 @@ const Watchtime = ({
 			{dayInput}
 			{yearInput}
 			<button type='button' onClick={clearValues}>Clear Time</button>
-			{allTouched && error && <p style={{ color: 'red' }}>{error}</p>}
+			{allTouched && error && <p style={{ color: 'red' }}>{error.message}</p>}
 		</FormSection>
 	)
 }

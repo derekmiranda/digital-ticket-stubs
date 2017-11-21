@@ -6,7 +6,7 @@ const watchtimeErrors = (state = {}, action = {}) => {
 		case WATCHTIME_ERROR:
 			return {
 				...state,
-				[action.index]: action.message,
+				[action.index]: { message: action.message },
 			}
 		case WATCHTIME_VALID:
 			return objWithoutKey(state, action.index);
