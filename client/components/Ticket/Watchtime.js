@@ -29,6 +29,7 @@ const Watchtime = ({
 	idx,
 	handleBlur,
 	error,
+	allTouched,
 }) => {
 	const normalizeDay = createDayNormalizer(idx);
 	const createTimeInputFieldWithBlur = createTimeInputField(handleBlur);
@@ -42,7 +43,7 @@ const Watchtime = ({
 			{monthInput}
 			{dayInput}
 			{yearInput}
-			{error && <p style={{ color: 'red' }}>{error}</p>}
+			{allTouched && error && <p style={{ color: 'red' }}>{error}</p>}
 		</FormSection>
 	)
 }

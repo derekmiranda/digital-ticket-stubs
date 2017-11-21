@@ -33,6 +33,14 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const viewing = viewings[idx];
   const viewingMeta = formMeta && formMeta.viewings[idx];
 
+  // bool indicating whether each input in watchtime has been touched
+  const allWatchtimeTouched = !!(viewingMeta && viewingMeta.watchtime &&
+    Object.keys(viewingMeta.watchtime).every((key) => {
+      const wt = viewingMeta.watchtime[key];
+      return wt && wt.touched;
+    })
+  )
+
   const handleTicketSubmit = createTicketSubmitHandler({
     state: stateProps,
     idx,
@@ -52,7 +60,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     ...dispatchProps,
     ...boundActionCreators,
     viewing,
-    viewingMeta,
+    allWatchtimeTouched,
     ticketSubmitting,
     watchtimeError,
   }

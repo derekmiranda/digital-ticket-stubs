@@ -59,6 +59,7 @@ const Ticket = ({
 	name,
 	className = 'ticket',
 	viewing,
+	allWatchtimeTouched,
 	handleTicketSubmit,
 	handleWatchtimeBlur,
 	removeTicket,
@@ -93,6 +94,7 @@ const Ticket = ({
 			<Watchtime name={`${name}.watchtime`}
 				idx={idx}
 				handleBlur={handleWatchtimeBlur}
+				allTouched={allWatchtimeTouched}
 				error={watchtimeError}
 			/>
 			<button type='button' onClick={removeTicket}>Delete</button>
