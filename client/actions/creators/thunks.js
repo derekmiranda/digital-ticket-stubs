@@ -47,6 +47,7 @@ export function validateWatchtime(viewing, index) {
 			dispatch({
 				type: WATCHTIME_ERROR,
 				index,
+				message: 'Watch time must be filled out or empty'
 			})
 		} else {
 			dispatch({

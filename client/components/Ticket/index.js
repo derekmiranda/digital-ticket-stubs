@@ -61,7 +61,7 @@ const Ticket = ({
 	viewing,
 	allWatchtimeTouched,
 	handleTicketSubmit,
-	handleWatchtimeBlur,
+	validateWatchtime,
 	removeTicket,
 	clearWatchtime,
 	ticketSubmitting,
@@ -94,7 +94,8 @@ const Ticket = ({
 			/> 
 			<Watchtime name={`${name}.watchtime`}
 				idx={idx}
-				handleBlur={handleWatchtimeBlur}
+				handleChange={validateWatchtime}
+				handleBlur={validateWatchtime}
 				allTouched={allWatchtimeTouched}
 				clearValues={clearWatchtime}
 				error={watchtimeError}

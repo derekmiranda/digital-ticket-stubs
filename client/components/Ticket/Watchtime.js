@@ -6,7 +6,7 @@ import curry from 'lodash/curry';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 
-const createTimeInputField = curry((handleBlur, name, normalize) => {
+const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
 	const label = capitalize(name);
 	return (
 		<div className={name}>
@@ -17,6 +17,7 @@ const createTimeInputField = curry((handleBlur, name, normalize) => {
 					placeholder={label}
 					type='number'
 					normalize={normalize}
+					onChange={handleChange}
 					onBlur={handleBlur}
 				/>
 			</label>
@@ -27,16 +28,17 @@ const createTimeInputField = curry((handleBlur, name, normalize) => {
 const Watchtime = ({
 	name: watchtimeName,
 	idx,
+	handleChange,
 	handleBlur,
 	error,
 	allTouched,
 	clearValues,
 }) => {
 	const normalizeDay = createDayNormalizer(idx);
-	const createTimeInputFieldWithBlur = createTimeInputField(handleBlur);
-	const monthInput = createTimeInputFieldWithBlur('month', normalizeMonth); 
-	const dayInput = createTimeInputFieldWithBlur('day', normalizeDay);
-	const yearInput = createTimeInputFieldWithBlur('year', normalizeYear);
+	const createTimeInputFieldWithHandlers = createTimeInputField(handleChange, handleBlur);
+	const monthInput = createTimeInputFieldWithHandlers('month', normalizeMonth); 
+	const dayInput = createTimeInputFieldWithHandlers('day', normalizeDay);
+	const yearInput = createTimeInputFieldWithHandlers('year', normalizeYear);
 
 	return (
 		<FormSection name={watchtimeName} className='watchtime'>

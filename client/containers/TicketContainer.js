@@ -51,7 +51,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const boundActionCreators = bindActionCreators({
     removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
-    handleWatchtimeBlur: () => validateWatchtime(viewing, idx),
+    validateWatchtime: () => validateWatchtime(viewing, idx),
     clearWatchtime: () => clearWatchtime(name),
     handleTicketSubmit,
   }, dispatch);
