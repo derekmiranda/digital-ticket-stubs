@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import ticketsForm from './ticketsForm';
 import submittingTickets from './submittingTickets';
 import initialViewings from './initialViewings';
-import watchtimeErrors from './watchtimeErrors';
+import watchtimeWarnings from './watchtimeWarnings';
 import { reducerFromObj } from 'client/utils/reducerUtils';
 import {
   START_TICKETS_LOAD,
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   }),
   submittingTickets,
   initialViewings,
-  watchtimeErrors,
+  watchtimeWarnings,
   modalOpen: reducerFromObj({
     [FOCUS_VIEWING]: (_, action) => action.viewingName,
   }, null),

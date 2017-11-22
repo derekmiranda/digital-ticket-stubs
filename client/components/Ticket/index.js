@@ -65,7 +65,7 @@ const Ticket = ({
 	removeTicket,
 	clearWatchtime,
 	ticketSubmitting,
-	watchtimeError,
+	watchtimeWarning,
 	idx,
 }) => {
 	const handleKeyUp = (event) => {
@@ -98,7 +98,7 @@ const Ticket = ({
 				handleBlur={validateWatchtime}
 				allTouched={allWatchtimeTouched}
 				clearValues={clearWatchtime}
-				error={watchtimeError}
+				warning={watchtimeWarning}
 			/>
 			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={handleTicketSubmit}>Save</button>

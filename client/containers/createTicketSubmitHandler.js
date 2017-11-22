@@ -27,10 +27,6 @@ const getErrorsForViewing = (state, idx, errorSelectors) => {
     : getErrorsForViewing(state, idx, errorSelectors.slice(1));
 }
 
-const getWatchtimeErrors = (state, idx) => {
-  return state.watchtimeErrors[idx] || null;
-}
-
 const createTicketSubmitHandler = ({
   state,
   idx,
@@ -41,7 +37,6 @@ const createTicketSubmitHandler = ({
     asyncErrorsSelector,
     submitErrorsSelector,
   ])
-    || getWatchtimeErrors(state, idx)
 
   const formState = formSelector(state);
   const fieldNames = Object.keys(state.form[formName].registeredFields);

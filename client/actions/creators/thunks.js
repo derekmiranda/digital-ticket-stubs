@@ -4,7 +4,7 @@ import {
 } from 'redux-form';
 
 import {
-	WATCHTIME_ERROR,
+	WATCHTIME_WARN,
 	WATCHTIME_VALID
 } from 'actions/types';
 import {
@@ -45,9 +45,9 @@ export function validateWatchtime(viewing, index) {
 			!(wt.month && wt.day && wt.year || !wt.month && !wt.day && !wt.year)
 		) {
 			dispatch({
-				type: WATCHTIME_ERROR,
+				type: WATCHTIME_WARN,
 				index,
-				message: 'Watch time must be filled out or empty'
+				message: 'Watch time must be completely filled out to be saved'
 			})
 		} else {
 			dispatch({

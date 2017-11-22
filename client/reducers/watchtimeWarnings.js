@@ -1,9 +1,9 @@
-import { WATCHTIME_VALID, WATCHTIME_ERROR } from 'actions/types';
+import { WATCHTIME_VALID, WATCHTIME_WARN } from 'actions/types';
 import { objWithoutKey } from 'client/utils/reducerUtils';
 
-const watchtimeErrors = (state = {}, action = {}) => {
+const watchtimeWarnings = (state = {}, action = {}) => {
 	switch (action.type) {
-		case WATCHTIME_ERROR:
+		case WATCHTIME_WARN:
 			return {
 				...state,
 				[action.index]: { message: action.message },
@@ -15,4 +15,4 @@ const watchtimeErrors = (state = {}, action = {}) => {
 	}
 }
 
-export default watchtimeErrors
+export default watchtimeWarnings

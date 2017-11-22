@@ -30,7 +30,7 @@ const Watchtime = ({
 	idx,
 	handleChange,
 	handleBlur,
-	error,
+	warning,
 	allTouched,
 	clearValues,
 }) => {
@@ -47,7 +47,7 @@ const Watchtime = ({
 			{dayInput}
 			{yearInput}
 			<button type='button' onClick={clearValues}>Clear Time</button>
-			{allTouched && error && <p style={{ color: 'red' }}>{error.message}</p>}
+			{allTouched && warning && <p style={{ color: 'goldenrod' }}>{warning.message}</p>}
 		</FormSection>
 	)
 }
