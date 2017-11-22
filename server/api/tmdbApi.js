@@ -1,10 +1,13 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: `./config/.${process.env.NODE_ENV}.env`
+});
 const fetch = require('node-fetch');
 
 const cleanUpMovies = require('./cleanUpMovies');
 
 const apiUrl = 'https://api.themoviedb.org/3';
 const apiKey = process.env.TMDB_API_V3_KEY;
+console.log("process.env", process.env)
 
 async function makeApiRequest(url) {
   try {
