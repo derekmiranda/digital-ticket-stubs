@@ -39,7 +39,8 @@ const renderTextField = (props) => {
 
 class AutofocusTextField extends PureComponent {
 	componentDidMount() {
-		this.textInput.focus();
+		// don't focus if saved on db
+		!(this.props.viewing && this.props.viewing.id) && this.textInput.focus();
 	}
 
 	render() {

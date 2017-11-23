@@ -60,22 +60,24 @@ const TicketsForm = ({
 				{venueSortBtn}
 				{watchtimeSortBtn}
 			</div>
+			<div id='stub-btns'>
+				<button
+					type='button'	
+					id='add-ticket'
+					onClick={addTicket}
+				>+ Add Stub</button>
+				<button
+					type='button'
+					id='add-ticket'
+					onClick={handleSubmit}
+				>Save All Stubs</button>
+			</div>
 			{loading && <p style={{color: 'green'}}>Loading...</p>}
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
 				props={{ handleSubmit }}
 			/>
-			<button
-				type='button'	
-				id='add-ticket'
-				onClick={addTicket}
-			>+ Add Stub</button>
-			<button
-				type='button'
-				id='add-ticket'
-				onClick={handleSubmit}
-			>Save All Stubs</button>
 		</form>
 	)
 }
