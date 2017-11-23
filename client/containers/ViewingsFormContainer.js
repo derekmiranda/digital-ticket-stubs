@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { reduxForm, arrayPush } from 'redux-form';
+import { reduxForm, arrayUnshift } from 'redux-form';
 import { connect } from 'react-redux';
 
 import TicketsForm from 'components/TicketsForm';
@@ -35,7 +35,7 @@ const ViewingsFormContainer = connect(
   }),
   {
     startTicketsLoad,
-    addTicket: () => arrayPush(formName, 'viewings', {
+    addTicket: () => arrayUnshift(formName, 'viewings', {
       UserId: getUserId(),
       formId: getFormId(),
     }),

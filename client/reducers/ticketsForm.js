@@ -2,7 +2,7 @@ import {
   REMOVE_TICKET,
   SORT_TICKETS,
 } from 'actions/types';
-import { getSortByCriteria, putSavedViewingsFirst } from './sorters';
+import { getSortByCriteria, putSavedViewingsLast } from './sorters';
 import debug from 'client/utils/debug';
 
 const viewings = (state = [], action = {}) => {
@@ -11,7 +11,7 @@ const viewings = (state = [], action = {}) => {
       return state.filter(v => v.formId !== action.formId);
     case SORT_TICKETS: {
       const criteriaSort = getSortByCriteria(action.criteria);
-      return state.slice().sort(criteriaSort).sort(putSavedViewingsFirst);
+      return state.slice().sort(criteriaSort).sort(putSavedViewingsLast);
     }
     default:
       return state;

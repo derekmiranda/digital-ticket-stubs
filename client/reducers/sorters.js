@@ -8,7 +8,7 @@ const putItemsThatMeetCondFirst = (cond) => (i1, i2) => {
   return 0;
 }
 
-export const putSavedViewingsFirst = putItemsThatMeetCondFirst(i => i.id);
+export const putSavedViewingsLast = putItemsThatMeetCondFirst(i => !(i.id));
 
 const hasWatchtime = v => {
 	const wt = v.watchtime;
