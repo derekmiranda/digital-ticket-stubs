@@ -6,8 +6,12 @@ import TicketsForm from 'components/TicketsForm';
 import { startTicketsLoad, sortTickets } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 import getFormId from 'client/getFormId';
+import { getUserId } from 'auth';
 
-const getUserId = () => 1;
+const createBaseViewing = () => ({
+  UserId: getUserId(),
+  formId: getFormId(),
+})
 
 class LoadContainer extends PureComponent {
   componentDidMount() {
@@ -35,10 +39,7 @@ const ViewingsFormContainer = connect(
   }),
   {
     startTicketsLoad,
-    addTicket: () => arrayUnshift(formName, 'viewings', {
-      UserId: getUserId(),
-      formId: getFormId(),
-    }),
+    addTicket: () => arrayUnshift(formName, 'viewings', createBaseViewing()),
     sortTickets,
   }
 )(ReduxFormContainer);
