@@ -49,6 +49,11 @@ const TicketsForm = ({
 	const titleSortBtn = createSortButtonWithTarget('title');
 	const venueSortBtn = createSortButtonWithTarget('venue');
 	const watchtimeSortBtn = createSortButtonWithTarget('watchtime');
+
+	const loadingMsg = (
+		<p style={{color: 'green'}}>Loading...</p>
+	)
+
 	return (
 		<form>
 			<h1>Digital Ticket Stubs</h1>
@@ -62,17 +67,17 @@ const TicketsForm = ({
 			</div>
 			<div id='stub-btns'>
 				<button
-					type='button'	
-					id='add-ticket'
-					onClick={addTicket}
-				>+ Add Stub</button>
-				<button
 					type='button'
 					id='add-ticket'
+					onClick={addTicket}
+					>+ Add Stub</button>
+					<button
+						type='button'
+						id='add-ticket'
 					onClick={handleSubmit}
 				>Save All Stubs</button>
 			</div>
-			{loading && <p style={{color: 'green'}}>Loading...</p>}
+			{loading && loadingMsg}
 			<FieldArray 
 				name='viewings'
 				component={renderTicketsForm}
