@@ -57,8 +57,6 @@ const TicketsForm = ({
 	return (
 		<form>
 			<h1>Digital Ticket Stubs</h1>
-			<input type='text' placeholder='Search for a movie...' id='search'/>
-			<button type='button'>Search</button>
 			<div id='sort'>
 				<p>Sort by:</p>
 				{titleSortBtn}
