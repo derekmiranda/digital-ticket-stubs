@@ -1,28 +1,25 @@
-import { take, race, call } from 'redux-saga/effects';
+import { take, race, call, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { actionTypes } from 'redux-form'; 
+import { actionTypes } from 'redux-form';
 
-const { CHANGE: FORM_CHANGE }  = actionTypes;
+import { searchWaitTime } from 'constants';
 
-const titleChangeActions = (action) => {
-  return (
-    action.type === FORM_CHANGE
-    && action.meta
-    && action.meta.field.includes('title')
-  )
+const { CHANGE, BLUR }  = actionTypes;
+
+const changeActionWithMeta = (action) => (
+  action.type === CHANGE && action.meta
+)
+const titleChangeAction = (action) => (
+  changeActionWithMeta(action) && action.meta.field.includes('title')
+)
+
+function* waitToSearch() {
+  yield call(delay, searchWaitTime);
+  console.log('waited');
 }
 
 function* handleMovieSearch() {
-  while (true) {
-    const action = yield take(titleChangeActions);
-    const { waited, change } = yield race({
-      change: take(titleChangeActions),
-      waited: call(delay, 2000)
-    })
-    if (waited) {
-      console.log('2 seconds have passed since a change')
-    }
-  }
+  yield takeLatest(titleChangeAction, waitToSearch);
 }
 
 export default handleMovieSearch;
