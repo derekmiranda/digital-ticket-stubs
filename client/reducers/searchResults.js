@@ -1,9 +1,12 @@
-import { FETCHED_SEARCH_RESULTS } from 'actions/types';
+import { LOADED_SEARCH_RESULTS } from 'actions/types';
 
-const searchResults = (state = [], action = {}) => {
+const searchResults = (state = {}, action = {}) => {
 	switch (action.type) {
-		case FETCHED_SEARCH_RESULTS:
-			return action.results;
+		case LOADED_SEARCH_RESULTS:
+			return {
+				...state,
+				[action.index]: action.results,
+			}
 		default:
 			return state;
 	}

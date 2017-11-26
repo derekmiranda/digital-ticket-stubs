@@ -22,7 +22,11 @@ const mapDispatchToProps = (dispatch, { idx, name }) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { submittingTickets, watchtimeWarnings } = stateProps;
+  const {
+    submittingTickets,
+    watchtimeWarnings,
+    searchResults,
+  } = stateProps;
   const { dispatch } = dispatchProps;
   const { idx, name } = ownProps;
   
@@ -48,6 +52,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
   const watchtimeWarning = watchtimeWarnings && watchtimeWarnings[idx];
+  const searchMovies = searchResults && searchResults[idx]; 
 
   const boundActionCreators = bindActionCreators({
     removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
@@ -64,6 +69,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     allWatchtimeTouched,
     ticketSubmitting,
     watchtimeWarning,
+    searchMovies,
   }
 }
 

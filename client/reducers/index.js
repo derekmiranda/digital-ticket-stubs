@@ -5,6 +5,7 @@ import ticketsForm from './ticketsForm';
 import submittingTickets from './submittingTickets';
 import initialViewings from './initialViewings';
 import watchtimeWarnings from './watchtimeWarnings';
+import searchResults from './searchResults';
 import { reducerFromObj } from 'client/utils/reducerUtils';
 import {
   START_TICKETS_LOAD,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   submittingTickets,
   initialViewings,
   watchtimeWarnings,
+  searchResults,
   modalOpen: reducerFromObj({
     [FOCUS_VIEWING]: (_, action) => action.viewingName,
   }, null),
@@ -30,9 +32,6 @@ const rootReducer = combineReducers({
     [TICKETS_LOAD_SUCCEEDED]: () => false,
     [TICKETS_LOAD_FAILED]: () => false,
   }, false), 
-  searchResults: reducerFromObj({
-    [LOADED_SEARCH_RESULTS]: (_, action) => action.results,
-  }, null),
 })
 
 export default rootReducer;

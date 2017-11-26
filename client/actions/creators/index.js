@@ -13,8 +13,9 @@ export const focusViewing = (viewingName) => ({
 })
 
 // search results
-export const loadedSearchResults = (results) => ({
+export const loadedSearchResults = (index, results) => ({
   type: types.LOADED_SEARCH_RESULTS,
+  index,
   results,
 })
 

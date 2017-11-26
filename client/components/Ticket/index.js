@@ -4,6 +4,7 @@ import { Field, getFormValues } from 'redux-form';
 
 import { AutofocusTextField, renderTextField } from './TicketComponents';
 import Watchtime from './Watchtime';
+import SearchResults from 'components/SearchResults';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -18,6 +19,7 @@ const Ticket = ({
 	clearWatchtime,
 	ticketSubmitting,
 	watchtimeWarning,
+	searchMovies,
 	idx,
 }) => {
 	const handleKeyUp = (event) => {
@@ -36,7 +38,10 @@ const Ticket = ({
 				label='Movie Title'
 				className='title'
 				validate={isRequired}
-			/> 
+			/>
+			{searchMovies && (
+				<SearchResults results={searchMovies} />
+			)}
 			<Field
 				name={`${name}.venue`}	
 				type='text'
