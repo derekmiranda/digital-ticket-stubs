@@ -4,6 +4,7 @@ import { actionTypes } from 'redux-form';
 
 import { searchForTitle } from 'services/searchApi';
 import { loadedSearchResults } from 'actions/creators';
+import { getViewingsIndex } from 'client/utils/formUtils';
 import { searchWaitTime } from 'constants';
 
 const { CHANGE }  = actionTypes;
@@ -14,15 +15,12 @@ const changeActionWithMeta = (action) => (
 const titleChangeAction = (action) => (
   changeActionWithMeta(action) && action.meta.field.includes('title')
 )
-const getFieldIndex = (field) => {
-  const match = field.match(/^viewings\[(\d+)\]/);
-  return match && match[1];
-} 
+
 
 function* waitToSearch({ meta: { field }, payload }) {
   yield call(delay, searchWaitTime);
   const results = yield searchForTitle(payload);
-  const index = getFieldIndex(field);
+  const index = getViewingsIndex(field);
   yield put(loadedSearchResults(index, results));
 }
 
