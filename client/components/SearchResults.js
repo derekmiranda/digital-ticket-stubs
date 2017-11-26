@@ -6,7 +6,7 @@ const SearchResults = ({ results }) => {
     const { title } = result;
     return (
       <li key={idx}>
-        <a>{title}</a>
+        <a href='javascript:;'>{title}</a>
       </li>
     )
   })
