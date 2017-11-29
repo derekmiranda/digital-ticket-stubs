@@ -9,8 +9,6 @@ import getReadableFieldName from 'client/utils/getReadableFieldName';
 import debug from 'client/utils/debug';
 
 const StyledTicketsForm = styled.form`
-	display: inline-block;
-
 	ul {
 		padding: 0;
 	}
@@ -26,6 +24,10 @@ const StyledTicketsForm = styled.form`
 	.loading {
 		color: green;
 	}
+`
+
+const StyledSorter = styled.div`
+
 `
 
 const renderTicketsForm = ({
