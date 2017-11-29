@@ -2,10 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
 import curry from 'lodash/curry';
+import styled from 'styled-components';
 
 import TicketContainer from 'containers/TicketContainer';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 import debug from 'client/utils/debug';
+
+const StyledTicketsForm = styled.form`
+	width: 80%;
+	display: inline-block;
+
+	ul {
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	.submitting {
+		color: mediumaquamarine;
+	}
+
+	.loading {
+		color: green;
+	}
+`
 
 const renderTicketsForm = ({
 	fields,
@@ -23,7 +45,7 @@ const renderTicketsForm = ({
 					)
 				})}
 			</ul>
-			{submitting && <p style={{color: 'mediumaquamarine'}}>Saving all stubs...</p>}
+			{submitting && <p className='submitting'>Saving all stubs...</p>}
 		</div>
 	)
 }
@@ -51,14 +73,13 @@ const TicketsForm = ({
 	const watchtimeSortBtn = createSortButtonWithTarget('watchtime');
 
 	const loadingMsg = (
-		<p style={{color: 'green'}}>Loading...</p>
+		<p className='loading'>Loading...</p>
 	)
 
 	return (
-		<form>
-			<h1>Digital Ticket Stubs</h1>
+		<StyledTicketsForm>
 			<div id='sort'>
-				<p>Sort by:</p>
+				<strong>Sort by:</strong>
 				{titleSortBtn}
 				{venueSortBtn}
 				{watchtimeSortBtn}
@@ -81,7 +102,7 @@ const TicketsForm = ({
 				component={renderTicketsForm}
 				props={{ handleSubmit }}
 			/>
-		</form>
+		</StyledTicketsForm>
 	)
 }
 
