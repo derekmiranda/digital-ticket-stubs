@@ -9,7 +9,6 @@ import getReadableFieldName from 'client/utils/getReadableFieldName';
 import debug from 'client/utils/debug';
 
 const StyledTicketsForm = styled.form`
-	width: 80%;
 	display: inline-block;
 
 	ul {
