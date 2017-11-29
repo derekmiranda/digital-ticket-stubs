@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Field, getFormValues } from 'redux-form';
+import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
+
+const StyledTextField = styled.div`
+	display: inline-block;
+`
 
 export const TextFieldDecoration = ({
 	className,
@@ -12,13 +17,13 @@ export const TextFieldDecoration = ({
 	children,
 	meta: { touched, error },
 }) => (
-	<div className={className}>
+	<StyledTextField className={className}>
 		<h3>{label}</h3>
 		{children}	
 		{touched && error &&
 			<p style={{color: 'red'}}>{error}</p>
 		}
-	</div>
+	</StyledTextField>
 )
 
 export const renderTextField = (props) => {

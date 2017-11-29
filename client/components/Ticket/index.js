@@ -11,6 +11,12 @@ import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 const shadowDist = 2;
 const StyledTicket = styled.div`
+	@media (min-width: 600px) {
+		width: 30em;
+	}
+
+	background-color: wheat;
+	display: inline-block;	
 	margin: 20px;
 	padding: 10px;
 	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
