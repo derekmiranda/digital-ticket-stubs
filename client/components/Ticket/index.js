@@ -11,10 +11,12 @@ import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 const shadowDist = 2;
 const StyledTicket = styled.div`
+	margin: 20px;
 	padding: 10px;
 	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
+	font-size: 80%;
 
-	h2 {
+	h1 {
 		margin-top: 0;
 	}
 `
@@ -41,7 +43,7 @@ const Ticket = ({
 
 	return (
 		<StyledTicket className={className} onKeyUp={handleKeyUp}>
-			<h2>{viewing.id ? 'Ticket Stub' : 'New Ticket Stub'}</h2>
+			<h1>{viewing.id ? 'Ticket Stub' : 'New Ticket Stub'}</h1>
 			<Field
 				name={`${name}.title`}	
 				type='text'
