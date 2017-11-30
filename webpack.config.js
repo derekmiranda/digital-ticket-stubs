@@ -31,11 +31,11 @@ const plugins = [
 
 if (process.env.NODE_ENV === 'development') {
   plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   )
 } else if (process.env.NODE_ENV === 'production') {
   plugins.push(
-    new MinifyPlugin(),
+    new MinifyPlugin()
   )
 }
 

@@ -9,6 +9,7 @@ const Container = styled.main`
 	padding: 20px;
 	height: 100%;
 	background-color: ${bgColor};
+	background-image: url("assets/art-deco-bg.png");
 	color: ${mainTextColor};
 	font-family: Helvetica, sans-serif;
 	text-align: center;

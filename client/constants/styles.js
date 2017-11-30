@@ -1,3 +1,3 @@
-export const bgColor = '#eee'
-export const mainTextColor = '#081c24'
-export const tmdbPrimaryColor = '#081c24'
+export const bgColor = '#333333'
+export const mainTextColor = '#98c2bd'
+export const tmdbPrimaryColor = '#01d277'
