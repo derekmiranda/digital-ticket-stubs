@@ -15,9 +15,11 @@ const StyledTicket = styled.div`
 		width: 30em;
 	}
 
-	background-color: mediumaquamarine;
-	background-image: url("assets/ticket-texture.jpg");
+	background-color: rgba(0,0,0,0);
+	background-image: url("assets/ticket.png");
+	background-size: 320px 180px;
 	background-position: center;
+	background-repeat: no-repeat;
 	display: inline-block;	
 	margin: 20px;
 	padding: 10px;
