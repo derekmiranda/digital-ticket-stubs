@@ -8,6 +8,10 @@ import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
+import {
+	forMobile,
+	forDesktop,
+} from 'client/utils/styleUtils';
 
 const shadowDist = 2;
 const width = 400;
@@ -18,19 +22,19 @@ const mobileHeight = 180;
 const StyledTicket = styled.div`
 	box-sizing: border-box;
 
-	@media (max-width: 600px) {
+	${forMobile(`
 		width: ${mobileWidth}px;
 		height: ${mobileHeight}px;
 		background-size: ${mobileWidth}px ${mobileHeight}px;
 		margin: 0;
-	}
+	`)}
 
-	@media (min-width: 600px) {
+	${forDesktop(`
 		width: ${width}px;
 		height: ${height}px;
 		background-size: ${width}px ${height}px;
 		margin: 20px;
-	}
+	`)}
 
 	background-color: rgba(0,0,0,0);
 	background-image: url("assets/ticket.png");
