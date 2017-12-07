@@ -10,6 +10,9 @@ module.exports = function (sequelize, DataTypes) {
     },
     venue: DataTypes.STRING,
     watchtime: DataTypes.DATE,
+    backdropPath: DataTypes.STRING,
+    posterPath: DataTypes.STRING,
+    picsUpdateTime: DataTypes.DATE,
   })
 
   MovieViewing.associate = function (models) {
