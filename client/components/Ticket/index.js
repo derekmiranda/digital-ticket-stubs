@@ -10,24 +10,40 @@ import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 const shadowDist = 2;
+const width = 400;
+const height = 225;
+const mobileWidth = 320;
+const mobileHeight = 180;
+
 const StyledTicket = styled.div`
+	box-sizing: border-box;
+
+	@media (max-width: 600px) {
+		width: ${mobileWidth}px;
+		height: ${mobileHeight}px;
+		background-size: ${mobileWidth}px ${mobileHeight}px;
+		margin: 0;
+	}
+
 	@media (min-width: 600px) {
-		width: 30em;
+		width: ${width}px;
+		height: ${height}px;
+		background-size: ${width}px ${height}px;
+		margin: 20px;
 	}
 
 	background-color: rgba(0,0,0,0);
 	background-image: url("assets/ticket.png");
-	background-size: 320px 180px;
 	background-position: center;
 	background-repeat: no-repeat;
 	display: inline-block;	
-	margin: 20px;
 	padding: 10px;
 	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
 	font-size: 80%;
 
 	h1 {
 		margin-top: 0;
+		margin-bottom: 0;
 	}
 `
 
