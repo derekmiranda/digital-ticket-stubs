@@ -11,12 +11,18 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// CORS
+// Response Headers
 app.use((req, res, next) => {
 	res.header({
+		// CORS
 		'Access-Control-Allow-Origin': '*',
 		'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE',
 		'Access-Control-Allow-Headers': 'Content-Type, Accepts',
+
+		// Cache Settings
+		'Cache-Control': process.env.NODE_ENV === 'development'
+			? 'no-cache, must-revalidate'
+			: undefined,
 	});
 	next();
 })
