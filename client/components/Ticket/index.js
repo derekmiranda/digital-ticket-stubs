@@ -23,9 +23,10 @@ const StyledTicket = styled.div`
 	box-sizing: border-box;
 
 	${forMobile(`
-		width: ${mobileWidth}px;
-		height: ${mobileHeight}px;
-		background-size: ${mobileWidth}px ${mobileHeight}px;
+		width: 100%;
+		height: 0;
+		padding-bottom: 56.25%;
+		background-size: 100% auto;
 		margin: 0;
 	`)}
 
@@ -34,6 +35,7 @@ const StyledTicket = styled.div`
 		height: ${height}px;
 		background-size: ${width}px ${height}px;
 		margin: 20px;
+		padding: 10px;
 	`)}
 
 	background-color: rgba(0,0,0,0);
@@ -41,7 +43,6 @@ const StyledTicket = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	display: inline-block;	
-	padding: 10px;
 	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
 	font-size: 80%;
 
