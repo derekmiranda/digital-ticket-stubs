@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, FormSection } from 'redux-form';
 import curry from 'lodash/curry';
 
+import TicketInput from 'components/styled/TicketInput';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 
@@ -13,7 +14,7 @@ const createTimeInputField = curry((handleChange, handleBlur, name, normalize) =
 			<label>
 				{label} <Field
 					name={name}
-					component='input'
+					component={TicketInput}
 					placeholder={label}
 					type='number'
 					normalize={normalize}

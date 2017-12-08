@@ -4,6 +4,7 @@ import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
+import TicketInput from 'components/styled/TicketInput';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -37,7 +38,7 @@ export const renderTextField = (props) => {
 
 	return (
 		<TextFieldDecoration {...props}>
-			<input type={type} {...input}/>
+			<TicketInput type={type} {...input}/>
 		</TextFieldDecoration>
 	)
 }
@@ -52,7 +53,7 @@ export class AutofocusTextField extends PureComponent {
 		const { input, type } = this.props;
 		return ( 
 			<TextFieldDecoration {...this.props}>
-				<input type={type}
+				<TicketInput type={type}
 					{...input}
 					ref={(input) => this.textInput = input}
 				/>
