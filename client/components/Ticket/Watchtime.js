@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, FormSection } from 'redux-form';
+import styled from 'styled-components';
 import curry from 'lodash/curry';
 
 import TicketInput from 'components/styled/TicketInput';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 
+const TimeSection = styled.div`
+	display: inline;
+
+	input: {
+		width: 1em;
+	}
+`
+
 const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
 	const label = capitalize(name);
 	return (
-		<div className={name}>
+		<TimeSection className={name}>
 			<label>
 				{label} <Field
 					name={name}
@@ -22,7 +31,7 @@ const createTimeInputField = curry((handleChange, handleBlur, name, normalize) =
 					onBlur={handleBlur}
 				/>
 			</label>
-		</div>
+		</TimeSection>
 	)
 })
 
