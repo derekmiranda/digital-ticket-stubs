@@ -66,3 +66,5 @@ typings/
 
 # exclude sample files
 !*sample*
+
+nodemon.json
