@@ -24,9 +24,6 @@ const rootReducer = combineReducers({
   initialViewings,
   watchtimeWarnings,
   searchResults,
-  modalOpen: reducerFromObj({
-    [FOCUS_VIEWING]: (_, action) => action.viewingName,
-  }, null),
   loading: reducerFromObj({
     [START_TICKETS_LOAD]: () => true,
     [TICKETS_LOAD_SUCCEEDED]: () => false,
