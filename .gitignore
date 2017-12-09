@@ -68,3 +68,4 @@ typings/
 !*sample*
 
 nodemon.json
+.DS_Store
