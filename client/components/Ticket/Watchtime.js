@@ -11,26 +11,26 @@ import { capitalize } from 'client/utils/general';
 const TimeSection = styled.div`
 	display: inline;
 
-	input: {
-		width: 1em;
+	input {
+		width: 3em;
+		margin-left: .5em; 
+		margin-right: .5em; 
 	}
 `
 
 const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
-	const label = capitalize(name);
+	const label = name.includes('month') ? 'Mon' : capitalize(name);
 	return (
 		<TimeSection className={name}>
-			<label>
-				{label} <Field
-					name={name}
-					component={TicketInput}
-					placeholder={label}
-					type='number'
-					normalize={normalize}
-					onChange={handleChange}
-					onBlur={handleBlur}
-				/>
-			</label>
+			<Field
+				name={name}
+				component={TicketInput}
+				placeholder={label}
+				type='number'
+				normalize={normalize}
+				onChange={handleChange}
+				onBlur={handleBlur}
+			/>
 		</TimeSection>
 	)
 })
@@ -56,7 +56,7 @@ const Watchtime = ({
 			{monthInput}
 			{dayInput}
 			{yearInput}
-			<button type='button' onClick={clearValues}>Clear Time</button>
+			<button type='button' onClick={clearValues}>Clear</button>
 			{allTouched && warning && <p style={{ color: 'goldenrod' }}>{warning.message}</p>}
 		</FormSection>
 	)
