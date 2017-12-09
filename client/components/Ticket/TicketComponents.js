@@ -8,23 +8,19 @@ import TicketInput from 'components/styled/TicketInput';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
-const StyledTextField = styled.div`
-	display: inline-block;
-`
-
 export const TextFieldDecoration = ({
 	className,
 	label,
 	children,
 	meta: { touched, error },
 }) => (
-	<StyledTextField className={className}>
+	<div className={className}>
 		<h3>{label}</h3>
 		{children}	
 		{touched && error &&
 			<p style={{color: 'red'}}>{error}</p>
 		}
-	</StyledTextField>
+	</div>
 )
 
 export const renderTextField = (props) => {
