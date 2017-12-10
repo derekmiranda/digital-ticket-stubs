@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { bgColor, mainTextColor } from 'constants';
+import { getThumbImg } from '../utils/imgUtils';
 
 const StyledList = styled.ol`
   background-color: ${bgColor};
@@ -23,9 +24,14 @@ const StyledList = styled.ol`
 
 const SearchResults = ({ results }) => {
   const rows = results.map((result, idx) => {
-    const { title } = result;
+    const { title, poster_path } = result;
+    const thumbnail = poster_path && (
+      <img src={getThumbImg(poster_path)} />
+    )
+
     return (
       <li key={idx}>
+        {thumbnail}        
         <a href='javascript:;'>{title}</a>
       </li>
     )
