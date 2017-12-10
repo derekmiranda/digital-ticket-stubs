@@ -6,7 +6,7 @@ import {
 	forDesktop,
 } from 'client/utils/styleUtils';
 
-const shadowDist = 2;
+const shadowDist = 5;
 const width = 400;
 const height = 225;
 const mobileWidth = 320;
@@ -39,7 +39,7 @@ const StyledTicket = styled(Ticket)`
 	background-position: center;
 	background-repeat: no-repeat;
 	display: inline-block;	
-	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
+	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
 	font-size: 80%;
 `
 
