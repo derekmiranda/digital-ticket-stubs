@@ -21,7 +21,7 @@ const line = `
 		content: '';
 		margin: 0 auto;
 		display: block;
-		width: 80%;
+		width: calc(100% - 2em);
 		height: 1px;
 		background-color: black;
 	}
