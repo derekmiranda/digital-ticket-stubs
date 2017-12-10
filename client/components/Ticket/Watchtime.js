@@ -7,6 +7,7 @@ import curry from 'lodash/curry';
 import TicketInput from 'components/styled/TicketInput';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
+import { renderTextField } from './TicketComponents';
 
 const TimeSection = styled.div`
 	display: inline;
@@ -24,7 +25,7 @@ const createTimeInputField = curry((handleChange, handleBlur, name, normalize) =
 		<TimeSection className={name}>
 			<Field
 				name={name}
-				component={TicketInput}
+				component={renderTextField}
 				placeholder={label}
 				type='number'
 				normalize={normalize}
