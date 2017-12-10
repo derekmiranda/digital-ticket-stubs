@@ -7,7 +7,7 @@ import curry from 'lodash/curry';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 import { renderTextField } from './TicketComponents';
-import { WatchtimeTextField } from 'components/styled/StyledTicket';
+import { WatchtimeTextField } from 'components/styled/StyledTicketComponents';
 
 const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
 	const label = name.includes('month') ? 'Mon' : capitalize(name);
@@ -42,7 +42,7 @@ const Watchtime = ({
 
 	return (
 		<FormSection name={watchtimeName} className='watchtime'>
-			<h3>Watch Time</h3>
+			<p>Watch Time</p>
 			{monthInput}
 			{dayInput}
 			{yearInput}

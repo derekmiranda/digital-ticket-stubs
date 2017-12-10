@@ -9,12 +9,10 @@ import getReadableFieldName from 'client/utils/getReadableFieldName';
 
 export const TextFieldDecoration = ({
 	className,
-	label,
 	children,
 	meta: { touched, error },
 }) => (
 		<div className={className}>
-			<h3>{label}</h3>
 			{children}
 			{touched && error &&
 				<p style={{ color: 'red' }}>{error}</p>

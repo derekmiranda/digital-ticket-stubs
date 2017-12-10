@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
-import { BaseTextField } from 'components/styled/StyledTicket';
+import { VenueField, TitleField } from 'components/styled/StyledTicketComponents';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -34,14 +34,14 @@ const Ticket = ({
 			<Field
 				name={`${name}.venue`}
 				type='text'
-				component={BaseTextField}
+				component={VenueField}
 				placeholder='Venue'
 				className='venue'
 			/>
 			<Field
 				name={`${name}.title`}
 				type='text'
-				component={BaseTextField}
+				component={TitleField}
 				placeholder='Movie Title'
 				className='title'
 				validate={isRequired}
