@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { getFormValues, getFormMeta } from 'redux-form';
 
-import Ticket from 'components/Ticket';
+import StyledTicket from 'components/styled/StyledTicket';
 import { startTicketDelete } from 'actions/creators';
 import { validateWatchtime, clearWatchtime } from 'actions/creators/thunks';
 import { ticketsFormName as formName } from 'client/constants';
@@ -77,7 +77,7 @@ const TicketContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(Ticket);
+)(StyledTicket);
 
 TicketContainer.propTypes = {
   idx: PropTypes.number.isRequired,
