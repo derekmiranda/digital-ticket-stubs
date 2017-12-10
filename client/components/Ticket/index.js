@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
-import { TitleField, renderTextField } from './TicketComponents';
 import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
+import { BaseTextField } from 'components/styled/StyledTicket';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -34,14 +34,14 @@ const Ticket = ({
 			<Field
 				name={`${name}.venue`}
 				type='text'
-				component={renderTextField}
+				component={BaseTextField}
 				placeholder='Venue'
 				className='venue'
 			/>
 			<Field
 				name={`${name}.title`}
 				type='text'
-				component={renderTextField}
+				component={BaseTextField}
 				placeholder='Movie Title'
 				className='title'
 				validate={isRequired}

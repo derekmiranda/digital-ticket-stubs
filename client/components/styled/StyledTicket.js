@@ -5,6 +5,7 @@ import {
 	forMobile,
 	forDesktop,
 } from 'client/utils/styleUtils';
+import { renderTextField } from '../Ticket/TicketComponents';
 
 const shadowDist = 2;
 const width = 400;
@@ -49,3 +50,22 @@ const StyledTicket = styled(Ticket)`
 `
 
 export default StyledTicket
+
+export const BaseTextField = styled(renderTextField)`
+	display: inline-block;
+
+	input {
+		background-color: rgba(0,0,0,0);
+		border: 0;
+		border-bottom: 1px solid black;
+		margin: 0 1em 0 1em;
+	}
+`
+
+export const WatchtimeTextField = BaseTextField.extend`
+	input {
+		width: 4em;
+		margin-left: .25em; 
+		margin-right: .25em; 
+	}
+`

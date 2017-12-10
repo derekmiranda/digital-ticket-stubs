@@ -4,35 +4,24 @@ import { Field, FormSection } from 'redux-form';
 import styled from 'styled-components';
 import curry from 'lodash/curry';
 
-import TicketInput from 'components/styled/TicketInput';
 import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizers';
 import { capitalize } from 'client/utils/general';
 import { renderTextField } from './TicketComponents';
-
-const TimeSection = styled.div`
-	display: inline;
-
-	input {
-		width: 4em;
-		margin-left: .5em; 
-		margin-right: .5em; 
-	}
-`
+import { WatchtimeTextField } from 'components/styled/StyledTicket';
 
 const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
 	const label = name.includes('month') ? 'Mon' : capitalize(name);
 	return (
-		<TimeSection className={name}>
-			<Field
-				name={name}
-				component={renderTextField}
-				placeholder={label}
-				type='number'
-				normalize={normalize}
-				onChange={handleChange}
-				onBlur={handleBlur}
-			/>
-		</TimeSection>
+		<Field
+			className={name}
+			name={name}
+			component={WatchtimeTextField}
+			placeholder={label}
+			type='number'
+			normalize={normalize}
+			onChange={handleChange}
+			onBlur={handleBlur}
+		/>
 	)
 })
 

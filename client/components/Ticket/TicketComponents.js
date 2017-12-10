@@ -4,7 +4,6 @@ import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
-import TicketInput from 'components/styled/TicketInput';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -34,6 +33,8 @@ export const renderTextField = (props) => {
 	} = props;
 
 	return (
-		<TicketInput type={type} placeholder={placeholder} {...input} />
+		<TextFieldDecoration {...props}>
+			<input type={type} placeholder={placeholder} {...input} />
+		</TextFieldDecoration>
 	)
 }
