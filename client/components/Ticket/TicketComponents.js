@@ -14,14 +14,14 @@ export const TextFieldDecoration = ({
 	children,
 	meta: { touched, error },
 }) => (
-	<div className={className}>
-		<h3>{label}</h3>
-		{children}	
-		{touched && error &&
-			<p style={{color: 'red'}}>{error}</p>
-		}
-	</div>
-)
+		<div className={className}>
+			<h3>{label}</h3>
+			{children}
+			{touched && error &&
+				<p style={{ color: 'red' }}>{error}</p>
+			}
+		</div>
+	)
 
 export const renderTextField = (props) => {
 	const {
@@ -29,13 +29,12 @@ export const renderTextField = (props) => {
 		type,
 		label,
 		className,
+		placeholder,
 		meta: { touched, error },
 	} = props;
 
 	return (
-		<TextFieldDecoration {...props}>
-			<TicketInput type={type} {...input}/>
-		</TextFieldDecoration>
+		<TicketInput type={type} placeholder={placeholder} {...input} />
 	)
 }
 
@@ -47,7 +46,7 @@ export class AutofocusTextField extends PureComponent {
 
 	render() {
 		const { input, type } = this.props;
-		return ( 
+		return (
 			<TextFieldDecoration {...this.props}>
 				<TicketInput type={type}
 					{...input}

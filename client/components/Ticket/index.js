@@ -13,45 +13,6 @@ import {
 	forDesktop,
 } from 'client/utils/styleUtils';
 
-const shadowDist = 2;
-const width = 400;
-const height = 225;
-const mobileWidth = 320;
-const mobileHeight = 180;
-
-const StyledTicket = styled.div`
-	box-sizing: border-box;
-
-	${forMobile(`
-		width: 100%;
-		height: 0;
-		padding-bottom: 56.25%;
-		background-size: 100% auto;
-		margin: 0;
-	`)}
-
-	${forDesktop(`
-		width: ${width}px;
-		height: ${height}px;
-		background-size: ${width}px ${height}px;
-		margin: 20px;
-		padding: 10px;
-	`)}
-
-	background-color: rgba(0,0,0,0);
-	background-image: url("assets/ticket.png");
-	background-position: center;
-	background-repeat: no-repeat;
-	display: inline-block;	
-	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
-	font-size: 80%;
-
-	h1 {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-`
-
 const Ticket = ({
 	name,
 	className = 'ticket',
@@ -73,26 +34,25 @@ const Ticket = ({
 	}
 
 	return (
-		<StyledTicket className={className} onKeyUp={handleKeyUp}>
-			<h1>{viewing.id ? 'Ticket Stub' : 'New Ticket Stub'}</h1>
+		<div className={className} onKeyUp={handleKeyUp}>
 			<Field
-				name={`${name}.title`}	
+				name={`${name}.venue`}
 				type='text'
 				component={renderTextField}
-				label='Movie Title'
+				placeholder='Venue'
+				className='venue'
+			/>
+			<Field
+				name={`${name}.title`}
+				type='text'
+				component={renderTextField}
+				placeholder='Movie Title'
 				className='title'
 				validate={isRequired}
 			/>
 			{searchMovies && (
 				<SearchResults results={searchMovies} />
 			)}
-			<Field
-				name={`${name}.venue`}	
-				type='text'
-				component={renderTextField}
-				label='Venue'
-				className='venue'
-			/> 
 			<Watchtime name={`${name}.watchtime`}
 				idx={idx}
 				handleChange={validateWatchtime}
@@ -103,8 +63,8 @@ const Ticket = ({
 			/>
 			<button type='button' onClick={removeTicket}>Delete</button>
 			<button type='button' onClick={handleTicketSubmit}>Save</button>
-			{ticketSubmitting && <p style={{color: 'mediumaquamarine'}}>Submitting Ticket...</p>}
-		</StyledTicket>
+			{ticketSubmitting && <p style={{ color: 'mediumaquamarine' }}>Submitting Ticket...</p>}
+		</div>
 	)
 }
 
@@ -114,4 +74,44 @@ Ticket.propTypes = {
 	label: PropTypes.string,
 }
 
-export default Ticket;
+const shadowDist = 2;
+const width = 400;
+const height = 225;
+const mobileWidth = 320;
+const mobileHeight = 180;
+
+const StyledTicket = styled(Ticket)`
+	box-sizing: border-box;
+
+	${forMobile(`
+		width: 100%;
+		height: 0;
+		padding-bottom: 56.25%;
+		background-size: 100% auto;
+		margin: 0;
+	`)}
+
+	${forDesktop(`
+		width: ${width}px;
+		height: ${height}px;
+		background-size: ${width}px ${height}px;
+		margin: 20px;
+		padding: 10px;
+	`)}
+
+	opacity: ${props => props.viewing.id ? 1 : .75};
+	background-color: rgba(0,0,0,0);
+	background-image: url("assets/ticket.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;	
+	box-shadow: ${shadowDist}px ${shadowDist}px 10px #888888;
+	font-size: 80%;
+
+	h1 {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+`
+
+export default StyledTicket;
