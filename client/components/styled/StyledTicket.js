@@ -21,6 +21,7 @@ const StyledTicket = styled(Ticket)`
 		padding-bottom: 56.25%;
 		background-size: 100% auto;
 		margin: 0;
+		margin-bottom: 2em;
 	`)}
 
 	${forDesktop(`
@@ -31,6 +32,7 @@ const StyledTicket = styled(Ticket)`
 		padding: 10px;
 	`)}
 
+	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
 	background-color: rgba(0,0,0,0);
 	background-image: url("assets/ticket.png");
