@@ -13,7 +13,7 @@ const TimeSection = styled.div`
 	display: inline;
 
 	input {
-		width: 3em;
+		width: 4em;
 		margin-left: .5em; 
 		margin-right: .5em; 
 	}
