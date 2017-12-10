@@ -21,8 +21,16 @@ const createViewingWatchtimeConverter = (conversion) => (viewing) => {
 export const convertClientWatchtime = createViewingWatchtimeConverter(watchtimeObjToISO);
 export const convertDbWatchtime = createViewingWatchtimeConverter(watchtimeISOToObj);
 
+const trimStrVals = (viewing) => ({
+  ...viewing,
+  title: viewing.title && viewing.title.trim(),
+  venue: viewing.venue && viewing.venue.trim(),
+})
+
 export const processViewingsFromClient = (viewings) => {
-  return viewings.map(convertClientWatchtime);
+  return viewings
+    .map(convertClientWatchtime)
+    .map(trimStrVals)
 }
 
 export const processViewingsFromDb = (viewings) => {
