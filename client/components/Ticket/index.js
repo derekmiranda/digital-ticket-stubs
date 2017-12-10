@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
-import { AutofocusTextField, renderTextField } from './TicketComponents';
+import { TitleField, renderTextField } from './TicketComponents';
 import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
 import { isRequired } from 'validators';

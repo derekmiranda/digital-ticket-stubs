@@ -37,22 +37,3 @@ export const renderTextField = (props) => {
 		<TicketInput type={type} placeholder={placeholder} {...input} />
 	)
 }
-
-export class AutofocusTextField extends PureComponent {
-	componentDidMount() {
-		// don't focus if saved on db
-		this.props.viewing && !(this.props.viewing.id) && this.textInput.focus();
-	}
-
-	render() {
-		const { input, type } = this.props;
-		return (
-			<TextFieldDecoration {...this.props}>
-				<TicketInput type={type}
-					{...input}
-					ref={(input) => this.textInput = input}
-				/>
-			</TextFieldDecoration>
-		)
-	}
-}
