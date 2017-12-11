@@ -6,10 +6,31 @@ import styled from 'styled-components';
 
 import TicketContainer from 'containers/TicketContainer';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
+import {
+	forMobile,
+	forTablet,
+	forDesktop,
+} from 'client/utils/styleUtils';
 import debug from 'client/utils/debug';
 
 const StyledTicketsForm = styled.form`
 	ul {
+		display: grid;
+
+		${forMobile(`
+			grid-template-columns: repeat(1, 1fr);
+		`)}
+		
+		${forTablet(`
+			grid-template-columns: repeat(2, 1fr);
+			grid-gap: 2em;
+		`)}
+
+		${forDesktop(`
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 2em;
+		`)}
+
 		padding: 0;
 	}
 
@@ -24,10 +45,6 @@ const StyledTicketsForm = styled.form`
 	.loading {
 		color: green;
 	}
-`
-
-const StyledSorter = styled.div`
-
 `
 
 const renderTicketsForm = ({

@@ -6,7 +6,7 @@ import Attribution from './Attribution';
 import { bgColor, mainTextColor } from 'constants';
 
 const Container = styled.main`
-	padding: 20px;
+	padding: 3em;
 	height: 100%;
 	background-color: ${bgColor};
 	color: ${mainTextColor};

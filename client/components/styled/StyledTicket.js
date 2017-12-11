@@ -15,22 +15,12 @@ const mobileHeight = 180;
 const StyledTicket = styled(Ticket)`
 	box-sizing: border-box;
 
-	${forMobile(`
-		width: 100%;
-		height: 0;
-		padding-bottom: 56.25%;
-		background-size: 100% auto;
-		margin: 0;
-		margin-bottom: 2em;
-	`)}
-
-	${forDesktop(`
-		width: ${width}px;
-		height: ${height}px;
-		background-size: ${width}px ${height}px;
-		margin: 20px;
-		padding: 0;
-	`)}
+	width: 100%;
+	height: 0;
+	padding-bottom: 56.25%;
+	background-size: 100% auto;
+	margin: 0;
+	margin-bottom: 2em;
 
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
