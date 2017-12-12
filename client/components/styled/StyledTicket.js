@@ -26,7 +26,6 @@ const StyledTicket = styled(Ticket)`
 	${generateVwDims(forDesktop, 27)}
 
 	margin: 0;
-	margin-bottom: 2em;
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
 	background-color: rgba(0,0,0,0);

@@ -16,6 +16,9 @@ import debug from 'client/utils/debug';
 const StyledTicketsForm = styled.form`
 	ul {
 		display: grid;
+		justify-items: center;
+		align-items: center;
+		grid-gap: 2em;
 
 		${forMobile(`
 			grid-template-columns: repeat(1, 1fr);
@@ -23,12 +26,10 @@ const StyledTicketsForm = styled.form`
 		
 		${forTablet(`
 			grid-template-columns: repeat(2, 1fr);
-			grid-gap: 2em;
 		`)}
 
 		${forDesktop(`
 			grid-template-columns: repeat(3, 1fr);
-			grid-gap: 2em;
 		`)}
 
 		padding: 0;
