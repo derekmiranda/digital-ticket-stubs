@@ -5,9 +5,17 @@ import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
-import { VenueField, TitleField, SaveButton } from 'components/styled/StyledTicketComponents';
+import { VenueField, TitleField, SaveButton, DeleteButton } from 'components/styled/StyledTicketComponents';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
+import { ticketMargin } from 'constants'
+
+const ButtonContainer = styled.div`
+	display: flex;
+	position: absolute;
+	top: ${ticketMargin};
+	right: ${ticketMargin};
+`
 
 const Ticket = ({
 	name,
@@ -31,6 +39,10 @@ const Ticket = ({
 
 	return (
 		<div className={className} onKeyUp={handleKeyUp}>
+			<ButtonContainer>
+				<SaveButton type='button' title='Save Ticket' onClick={handleTicketSubmit}>✔</SaveButton>
+				<DeleteButton type='button' title='Delete Ticket' onClick={removeTicket}>✕</DeleteButton>
+			</ButtonContainer>
 			<Field
 				name={`${name}.venue`}
 				type='text'
@@ -57,8 +69,6 @@ const Ticket = ({
 				clearValues={clearWatchtime}
 				warning={watchtimeWarning}
 			/>
-			<SaveButton type='button' onClick={handleTicketSubmit}>Save</SaveButton>
-			<button type='button' onClick={removeTicket}>Delete</button>
 			{ticketSubmitting && <p style={{ color: 'mediumaquamarine' }}>Submitting Ticket...</p>}
 		</div>
 	)

@@ -61,9 +61,9 @@ export const WatchtimeTextField = BaseTextField.extend`
 `
 
 export const SaveButton = styled.button`
-	position: absolute;
-	top: 0;
-	right: 0;
 	color: green;
+`
 
+export const DeleteButton = styled.button`
+	color: red;
 `
