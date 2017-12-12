@@ -15,6 +15,7 @@ export const BaseTextField = styled(renderTextField)`
 		text-align: center;
 		background-color: rgba(0,0,0,0);
 		border: 0;
+		outline-color: lightsteelblue;
 	}
 `
 
