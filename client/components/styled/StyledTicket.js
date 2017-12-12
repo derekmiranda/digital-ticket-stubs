@@ -20,6 +20,9 @@ const generateVwDims = (mediaQueryGen, vwWidth) => mediaQueryGen(`
 
 const StyledTicket = styled(Ticket)`
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
 	${generateVwDims(forMobile, 80)}
 	${generateVwDims(forTablet, 40)}
@@ -32,7 +35,6 @@ const StyledTicket = styled(Ticket)`
 	background-image: url("assets/ticket.png");
 	background-position: center;
 	background-repeat: no-repeat;
-	display: inline-block;	
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
 	font-size: 80%;
 `
