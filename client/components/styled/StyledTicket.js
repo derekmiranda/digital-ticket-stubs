@@ -19,6 +19,7 @@ const StyledTicket = styled(Ticket)`
 
 	/* 
 		Aspect ratio using pseudo elements
+		https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6
 	*/
 	&::before {
 		content: "";
