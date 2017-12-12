@@ -1,7 +1,7 @@
 import curry from 'lodash/curry'
 
 const mobileCutoff = 768;
-const desktopCutoff = 1024;
+const desktopCutoff = 1100;
 
 export const applyMediaQuery = curry((mediaQuery, styles) => {
 	return `

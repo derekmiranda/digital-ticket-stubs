@@ -8,6 +8,7 @@ import { normalizeMonth, createDayNormalizer, normalizeYear } from './normalizer
 import { capitalize } from 'client/utils/general';
 import { renderTextField } from './TicketComponents';
 import { WatchtimeTextField } from 'components/styled/StyledTicketComponents';
+import { ticketMargin } from 'constants'
 
 const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
 	const label = name.includes('month') ? 'Mon' : capitalize(name);
@@ -24,6 +25,10 @@ const createTimeInputField = curry((handleChange, handleBlur, name, normalize) =
 		/>
 	)
 })
+
+const InputContainer = styled.div`
+	margin: 0 auto ${ticketMargin};
+`
 
 const Watchtime = ({
 	name: watchtimeName,
@@ -42,11 +47,13 @@ const Watchtime = ({
 
 	return (
 		<FormSection name={watchtimeName} className='watchtime'>
-			<p>Watch Time</p>
-			{monthInput}
-			{dayInput}
-			{yearInput}
-			<button type='button' onClick={clearValues}>Clear</button>
+			<p style={{ margin: ticketMargin }}>Watch Time</p>
+			<InputContainer>
+				{monthInput}
+				{dayInput}
+				{yearInput}
+				<button type='button' onClick={clearValues}>Clear</button>
+			</InputContainer>
 			{allTouched && warning && <p style={{ color: 'goldenrod' }}>{warning.message}</p>}
 		</FormSection>
 	)

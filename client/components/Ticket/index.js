@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
-import { VenueField, TitleField } from 'components/styled/StyledTicketComponents';
+import { VenueField, TitleField, SaveButton } from 'components/styled/StyledTicketComponents';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -57,8 +57,8 @@ const Ticket = ({
 				clearValues={clearWatchtime}
 				warning={watchtimeWarning}
 			/>
+			<SaveButton type='button' onClick={handleTicketSubmit}>Save</SaveButton>
 			<button type='button' onClick={removeTicket}>Delete</button>
-			<button type='button' onClick={handleTicketSubmit}>Save</button>
 			{ticketSubmitting && <p style={{ color: 'mediumaquamarine' }}>Submitting Ticket...</p>}
 		</div>
 	)

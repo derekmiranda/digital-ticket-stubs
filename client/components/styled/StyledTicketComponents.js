@@ -26,27 +26,24 @@ const line = `
 		content: '';
 		margin: 0 auto;
 		display: block;
-		width: calc(100% - 2em);
+		width: 100%;
 		height: 1px;
 		background-color: black;
 	}
 `
 	
 export const VenueField = BaseTextField.extend`
-	input {
-		font-size: 1.2em;
-	}
-
 	${line}
 
 	input {
+		font-size: 1em;
 		margin: ${ticketMargin} 0;
 	}
 `
 
 export const TitleField = BaseTextField.extend`
 	input {
-		font-size: 2em;
+		font-size: 1.5em;
 		margin: ${ticketMargin} 0;
 	}
 
@@ -61,4 +58,12 @@ export const WatchtimeTextField = BaseTextField.extend`
 		margin-left: .25em; 
 		margin-right: .25em; 
 	}
+`
+
+export const SaveButton = styled.button`
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: green;
+
 `

@@ -21,17 +21,18 @@ const generateVwDims = (mediaQueryGen, vwWidth) => mediaQueryGen(`
 
 const StyledTicket = styled(Ticket)`
 	${fontFace}
+	${generateVwDims(forMobile, 80)}
+	${generateVwDims(forTablet, 40)}
+	${generateVwDims(forDesktop, 27)}
 	
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	position: relative;
 	margin: 0;
-
-	${generateVwDims(forMobile, 80)}
-	${generateVwDims(forTablet, 40)}
-	${generateVwDims(forDesktop, 27)}
-
+	padding: 1em;
+	
 	font-family: ${ticketFonts};
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
@@ -40,7 +41,6 @@ const StyledTicket = styled(Ticket)`
 	background-position: center;
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
-	font-size: 80%;
 `
 
 export default StyledTicket
