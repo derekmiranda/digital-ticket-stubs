@@ -5,10 +5,11 @@ import {
 	forDesktop,
 } from 'client/utils/styleUtils';
 import { renderTextField } from '../Ticket/TicketComponents';
-import { ticketMargin, mainTextColor } from 'client/constants'
+import { ticketMargin, mainTextColor, ticketFonts } from 'client/constants'
 
 export const BaseTextField = styled(renderTextField)`
 	input {
+		${ticketFonts};
 		color: ${mainTextColor};
 		width: 80%;
 		text-align: center;

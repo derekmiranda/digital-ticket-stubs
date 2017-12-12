@@ -6,6 +6,7 @@ import {
 	forTablet,
 	forDesktop,
 } from 'client/utils/styleUtils';
+import { ticketFonts } from 'constants'
 
 const shadowDist = 5;
 const width = 400;
@@ -23,12 +24,13 @@ const StyledTicket = styled(Ticket)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin: 0;
 
 	${generateVwDims(forMobile, 80)}
 	${generateVwDims(forTablet, 40)}
 	${generateVwDims(forDesktop, 27)}
 
-	margin: 0;
+	${ticketFonts};
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
 	background-color: rgba(0,0,0,0);
@@ -37,6 +39,10 @@ const StyledTicket = styled(Ticket)`
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
 	font-size: 80%;
+
+	button {
+		${ticketFonts};	
+	}
 `
 
 export default StyledTicket
