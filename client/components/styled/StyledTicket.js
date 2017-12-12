@@ -14,13 +14,26 @@ const mobileHeight = 180;
 
 const StyledTicket = styled(Ticket)`
 	box-sizing: border-box;
-
 	width: 100%;
-	height: 0;
-	padding-bottom: 56.25%;
-	background-size: 100% auto;
 	margin: 0;
-	margin-bottom: 2em;
+
+	/* 
+		Aspect ratio using pseudo elements
+	*/
+	&::before {
+		content: "";
+		width: 1px;
+		margin-left: -1px;
+		float: left;
+		height: 0;
+		padding-top: 56.25%;
+	}
+	
+	&::after { /* to clear float */
+		content: "";
+		display: table;
+		clear: both;
+	}
 
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
