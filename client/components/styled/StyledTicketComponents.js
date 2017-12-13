@@ -4,10 +4,19 @@ import {
 	forMobile,
 	forDesktop,
 } from 'client/utils/styleUtils';
-import { renderTextField } from '../Ticket/TicketComponents';
-import { ticketMargin, mainTextColor, ticketFonts, fontFace } from 'client/constants'
+import {
+	renderTextField
+} from '../Ticket/TicketComponents';
+import {
+	ticketMargin,
+	mainTextColor,
+	ticketFonts,
+	fontFace,
+	line,
+} from 'client/constants'
 
-export const BaseTextField = styled(renderTextField)`
+export const BaseTextField = styled(renderTextField)
+`
 	${fontFace}
 
 	input {
@@ -21,28 +30,18 @@ export const BaseTextField = styled(renderTextField)`
 	}
 `
 
-const line = `
-	&::after {
-		content: '';
-		margin: 0 auto;
-		display: block;
-		width: 100%;
-		height: 1px;
-		background-color: black;
-	}
-`
-	
-export const VenueField = BaseTextField.extend`
-	${line}
-
+export const VenueField = BaseTextField.extend `
 	input {
 		font-size: 1em;
 		margin: ${ticketMargin} 0;
 	}
+
+	${line}
 `
 
-export const TitleField = BaseTextField.extend`
+export const TitleField = BaseTextField.extend `
 	input {
+		margin: 10%;
 		font-size: 1.5em;
 		margin: ${ticketMargin} 0;
 	}
@@ -50,7 +49,7 @@ export const TitleField = BaseTextField.extend`
 	${line}
 `
 
-export const WatchtimeTextField = BaseTextField.extend`
+export const WatchtimeTextField = BaseTextField.extend `
 	display: inline-block;
 
 	input {
@@ -60,10 +59,10 @@ export const WatchtimeTextField = BaseTextField.extend`
 	}
 `
 
-export const SaveButton = styled.button`
+export const SaveButton = styled.button `
 	color: green;
 `
 
-export const DeleteButton = styled.button`
+export const DeleteButton = styled.button `
 	color: red;
 `
