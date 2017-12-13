@@ -41,6 +41,10 @@ const StyledTicket = styled(Ticket)`
 	background-position: center;
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
+
+	.title input {
+		margin: 10% 0 10% 0;
+	}
 `
 
 export default StyledTicket
