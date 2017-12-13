@@ -41,7 +41,9 @@ export const VenueField = BaseTextField.extend `
 		margin: ${ticketMargin} 0;
 	}
 
-	${line}
+	&::after {
+		${line}
+	}
 `
 
 export const TitleField = BaseTextField.extend `
@@ -50,8 +52,6 @@ export const TitleField = BaseTextField.extend `
 		font-size: 1.5em;
 		margin: ${ticketMargin} 0;
 	}
-
-	${line}
 `
 
 export const WatchtimeTextField = BaseTextField.extend `

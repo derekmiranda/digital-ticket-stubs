@@ -10,12 +10,10 @@ export const fontFace = `
 `
 export const ticketFonts = 'Kreon, "Bodoni 72", serif'
 export const line = `
-	&::after {
-		content: '';
-		margin: 0 auto;
-		display: block;
-		width: 100%;
-		height: 1px;
-		background-color: black;
-	}
+	content: '';
+	margin: 0 auto;
+	display: block;
+	width: 100%;
+	height: 1px;
+	background-color: black;
 `

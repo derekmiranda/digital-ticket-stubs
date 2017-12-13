@@ -28,10 +28,10 @@ const StyledTicket = styled(Ticket)`
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	position: relative;
 	margin: 0;
-	padding: 1em;
+	padding: .5em 1em;
 	
 	font-family: ${ticketFonts};
 	outline: .25em solid rgba(0,0,0,0.5);
@@ -42,9 +42,6 @@ const StyledTicket = styled(Ticket)`
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
 
-	.title input {
-		margin: 10% 0 10% 0;
-	}
 `
 
 export default StyledTicket
