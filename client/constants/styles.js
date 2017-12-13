@@ -15,5 +15,5 @@ export const line = `
 	display: block;
 	width: 100%;
 	height: 1px;
-	background-color: black;
+	background-color: ${mainTextColor};
 `
