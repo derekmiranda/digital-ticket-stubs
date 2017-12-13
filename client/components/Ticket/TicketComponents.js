@@ -29,7 +29,6 @@ export const renderTextField = (props) => {
 		placeholder,
 		meta: { touched, error },
 	} = props;
-	console.log('input', input)
 
 	return (
 		<TextFieldDecoration {...props}>
