@@ -20,18 +20,23 @@ export const BaseTextField = styled(renderTextField)
 	${fontFace}
 
 	input {
+		box-sizing: border-box;
 		font-family: ${ticketFonts};
 		color: ${mainTextColor};
-		width: 80%;
 		text-align: center;
 		background-color: rgba(0,0,0,0);
 		border: 0;
-		outline-color: lightsteelblue;
+		outline: 0;
+	}
+
+	input:focus {
+		color: #999;
 	}
 `
 
 export const VenueField = BaseTextField.extend `
 	input {
+		width: 80%;
 		font-size: 1em;
 		margin: ${ticketMargin} 0;
 	}
@@ -41,7 +46,7 @@ export const VenueField = BaseTextField.extend `
 
 export const TitleField = BaseTextField.extend `
 	input {
-		margin: 10%;
+		width: 90%;
 		font-size: 1.5em;
 		margin: ${ticketMargin} 0;
 	}
