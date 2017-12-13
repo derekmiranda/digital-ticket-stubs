@@ -27,6 +27,9 @@ export const BaseTextField = styled(renderTextField)
 		background-color: rgba(0,0,0,0);
 		border: 0;
 		outline: 0;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	input:focus {

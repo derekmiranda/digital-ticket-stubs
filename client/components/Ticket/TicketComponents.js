@@ -29,10 +29,15 @@ export const renderTextField = (props) => {
 		placeholder,
 		meta: { touched, error },
 	} = props;
+	console.log('input', input)
 
 	return (
 		<TextFieldDecoration {...props}>
-			<input type={type} placeholder={placeholder} {...input} />
+			<input type={type} placeholder={placeholder} {...input}
+				ref={(elem) => {
+					if (elem) elem.width = Math.max(elem.scrollWidth, elem.offsetHeight)
+				}}
+			/>
 		</TextFieldDecoration>
 	)
 }
