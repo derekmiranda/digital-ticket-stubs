@@ -15,6 +15,7 @@ import {
 	ticketsFormName as formName
 } from 'client/constants';
 import debug from 'client/utils/debug';
+import { emptyOrFilledWatchtime } from 'validators';
 
 export function ticketSubmit({
 	viewing,
@@ -40,10 +41,7 @@ export function ticketSubmit({
 export function validateWatchtime(viewing, index) {
 	return (dispatch) => {
 		const wt = viewing.watchtime;
-		if (wt &&
-			// all or no watch time properties must be filled
-			!(wt.month && wt.day && wt.year || !wt.month && !wt.day && !wt.year)
-		) {
+		if (emptyOrFilledWatchtime(wt)) {
 			dispatch({
 				type: WATCHTIME_WARN,
 				index,
