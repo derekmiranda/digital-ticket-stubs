@@ -37,7 +37,8 @@ const StyledTicket = styled(Ticket)`
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
 	background-color: rgba(0,0,0,0);
-	background-image: url("assets/ticket.png");
+	filter: contrast(150%) brightness(95%);
+	background-image: linear-gradient(rgba(0,210,230,.05), rgba(0,210,230,.3)), url("assets/ticket.png");
 	background-position: center;
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
