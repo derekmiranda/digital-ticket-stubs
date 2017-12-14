@@ -1,3 +1,5 @@
-const { TMDB_IMG_URL, TMDB_THUMB_SIZE } = process.env
+import { thumbnailSize } from 'constants'
 
-export const getThumbImg = (img) => `${TMDB_IMG_URL}/${TMDB_THUMB_SIZE}/${img}`
+const { TMDB_IMG_URL } = process.env
+
+export const getThumbImg = (img) => `${TMDB_IMG_URL}/${thumbnailSize}/${img}`
