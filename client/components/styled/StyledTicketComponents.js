@@ -52,7 +52,7 @@ export const VenueField = BaseTextField.extend `
 export const TitleField = BaseTextField.extend `
 	input {
 		width: 90%;
-		font-size: 1.5em;
+		font-size: 2em;
 		margin: ${ticketMargin} 0;
 	}
 `

@@ -19,6 +19,10 @@ const generateVwDims = (mediaQueryGen, vwWidth) => mediaQueryGen(`
 	height: calc(${vwWidth}vw * 9 / 16);
 `)
 
+const rgbColorWithAlpha = alpha => `rgba(0,210,230,${alpha})`
+const ombre = `linear-gradient(${rgbColorWithAlpha(.05)}, ${rgbColorWithAlpha(.3)})`
+const bgImg = `${ombre},url("assets/ticket.png")`
+
 const StyledTicket = styled(Ticket)`
 	${fontFace}
 	${generateVwDims(forMobile, 80)}
@@ -37,8 +41,7 @@ const StyledTicket = styled(Ticket)`
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
 	background-color: rgba(0,0,0,0);
-	filter: contrast(150%) brightness(95%);
-	background-image: linear-gradient(rgba(0,210,230,.05), rgba(0,210,230,.3)), url("assets/ticket.png");
+	background-image: ${bgImg};
 	background-position: center;
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
