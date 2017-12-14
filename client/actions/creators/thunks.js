@@ -51,6 +51,10 @@ export function validateWatchtime(viewing, index) {
 			dispatch({
 				type: WATCHTIME_VALID,
 				index,
+
+				// for storing last valid watchtime
+				watchtime: wt,
+				formId: viewing.formId,
 			})
 		}
 	}
