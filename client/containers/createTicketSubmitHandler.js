@@ -43,9 +43,11 @@ const createTicketSubmitHandler = ({
   const ticketFieldNames = getTicketFields(fieldNames, ticketName);
   const { viewings } = formState;
   const viewing = viewings && viewings[idx];
+  const lastValidWatchtime = state.lastValidWatchtimes[viewing.formId]
 
   return ticketSubmit({
     viewing,
+    lastValidWatchtime,
     errors,
     index: idx,
     ticketFieldNames,

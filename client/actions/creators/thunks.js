@@ -19,18 +19,24 @@ import { emptyOrFilledWatchtime } from 'validators';
 
 export function ticketSubmit({
 	viewing,
+	lastValidWatchtime,
 	errors,
 	index,
 	ticketFieldNames,
 	ticketName,
 }) {
+	const getViewingWithValidWatchtime = (view, lastValidWt) => {
+		return view && emptyOrFilledWatchtime(view.watchtime)
+			? view
+			: { ...view, watchtime: lastValidWt }
+	}
 	return (dispatch) => {
 		// touch all fields within ticket
 		dispatch(touch(formName, ...ticketFieldNames))
 
 		if (!errors) {
 			dispatch(startTicketSubmit({
-				viewing,
+				viewing: getViewingWithValidWatchtime(viewing, lastValidWatchtime),
 				index,
 				ticketName
 			}));
@@ -41,7 +47,7 @@ export function ticketSubmit({
 export function validateWatchtime(viewing, index) {
 	return (dispatch) => {
 		const wt = viewing.watchtime;
-		if (emptyOrFilledWatchtime(wt)) {
+		if (!emptyOrFilledWatchtime(wt)) {
 			dispatch({
 				type: WATCHTIME_WARN,
 				index,
