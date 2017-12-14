@@ -16,7 +16,7 @@ const Container = styled.main`
 	height: 100%;
 	background-color: ${bgColor};
 	color: ${mainTextColor};
-	font-family: Helvetica, sans-serif;
+	font-family: Futura, sans-serif;
 	text-align: center;
 	overflow: auto;
 `
