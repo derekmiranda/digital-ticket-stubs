@@ -5,13 +5,8 @@ import { connect } from 'react-redux';
 import TicketsForm from 'components/TicketsForm';
 import { startTicketsLoad, sortTickets } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
-import getFormId from 'client/getFormId';
-import { getUserId } from 'auth';
-
-const createBaseViewing = () => ({
-  UserId: getUserId(),
-  formId: getFormId(),
-})
+import getFormId from 'meta/getFormId';
+import createBaseViewing from '../meta/createBaseViewing'
 
 class LoadContainer extends PureComponent {
   componentDidMount() {

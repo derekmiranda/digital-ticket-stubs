@@ -28,6 +28,9 @@ const StyledTicket = styled(Ticket)`
 	${generateVwDims(forMobile, 80)}
 	${generateVwDims(forTablet, 40)}
 	${generateVwDims(forDesktop, 27)}
+
+	transform: rotate(${props => props.viewing.rotation}deg);
+	transform-origin: center;
 	
 	box-sizing: border-box;
 	display: flex;

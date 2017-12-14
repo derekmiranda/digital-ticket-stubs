@@ -7,14 +7,18 @@ import {
 import { ticketsLoadSucceeded, ticketsLoadFailed } from 'actions/creators';
 import { START_TICKETS_LOAD } from 'actions/types';
 import { fetchViewings } from 'services/viewingsApi';
-import getFormId from 'client/getFormId';
+import getFormId from 'meta/getFormId';
+import createBaseViewing from '../meta/createBaseViewing'
+import { objWithoutKey } from 'client/utils/reducerUtils'
+
+const baseData = () => objWithoutKey(createBaseViewing(), 'UserId')
 
 function* loadTickets() {
 	try {
 		const loadedTickets = yield call(fetchViewings);
 		const loadedTicketsWithFormIds = loadedTickets.map(ticket => ({
 			...ticket,
-			formId: getFormId(),
+			...baseData(),
 		}))
 		yield put(ticketsLoadSucceeded(loadedTicketsWithFormIds));
 	} catch (err) {
