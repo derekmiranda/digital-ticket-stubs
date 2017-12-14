@@ -45,7 +45,7 @@ export function validateWatchtime(viewing, index) {
 			dispatch({
 				type: WATCHTIME_WARN,
 				index,
-				message: 'Watch time must be completely filled out to be saved'
+				message: 'Watch time must be completely filled out or will be cleared on save'
 			})
 		} else {
 			dispatch({
