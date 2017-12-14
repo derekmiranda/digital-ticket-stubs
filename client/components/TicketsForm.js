@@ -14,6 +14,8 @@ import {
 import debug from 'client/utils/debug';
 
 const StyledTicketsForm = styled.form`
+	margin: 3em 0 3em;
+	
 	ul {
 		display: grid;
 		justify-items: center;
