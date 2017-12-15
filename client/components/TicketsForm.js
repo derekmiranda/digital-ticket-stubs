@@ -56,7 +56,7 @@ const renderTicketsForm = ({
 	meta: { submitting, submitFailed }
 }) => {
 	return (
-		<div id='tickets-form'>
+		<div id='tickets-form' style={{ marginTop: '2em' }}>
 			<ul>
 				{fields.map((member, idx) => {
 					return (
