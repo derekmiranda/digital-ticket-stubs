@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { bgColor, mainTextColor } from 'constants';
+import { bgColor, mainTextColor, hoverTextColor } from 'constants';
 import { getThumbImg } from '../utils/imgUtils';
 
 const StyledList = styled.ol`
@@ -11,18 +11,23 @@ const StyledList = styled.ol`
   position: fixed;
   height: 25%;
   overflow: scroll;
+  border: 1px solid black;
 
   a {
     color: ${mainTextColor}
   }
+`
 
-  li {
-    border: 1px solid black;
+const StyledLi = styled.li`
+  cursor: pointer;
+  border-bottom: 1px solid black;
+
+  &:hover {
+    color: ${hoverTextColor};
   }
 `
 
-
-const SearchResults = ({ results }) => {
+const SearchResults = ({ results, chooseMovie }) => {
   const rows = results.map((result, idx) => {
     const { title, poster_path } = result;
     const thumbnail = poster_path && (
@@ -30,10 +35,10 @@ const SearchResults = ({ results }) => {
     )
 
     return (
-      <li key={idx}>
+      <StyledLi onClick={chooseMovie} key={idx}>
         {thumbnail}        
-        <a href='javascript:;'>{title}</a>
-      </li>
+        <span>{title}</span>
+      </StyledLi>
     )
   })
 

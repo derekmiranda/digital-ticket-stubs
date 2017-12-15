@@ -10,6 +10,7 @@ import {
 import {
 	ticketMargin,
 	mainTextColor,
+	hoverTextColor,
 	ticketFonts,
 	fontFace,
 	line,
@@ -33,7 +34,7 @@ export const BaseTextField = styled(renderTextField)
 	}
 
 	input:focus {
-		color: #999;
+		color: ${hoverTextColor};
 	}
 `
 
