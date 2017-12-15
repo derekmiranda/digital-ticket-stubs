@@ -1,7 +1,7 @@
 import getFormId from './getFormId'
 import { getUserId } from '../auth'
 
-const degRange = 4
+const degRange = 2
 const randAngle = () => Math.random()*degRange - degRange / 2
 
 export default () => ({
