@@ -43,7 +43,6 @@ const Watchtime = ({
 	handleBlur,
 	warning,
 	allTouched,
-	clearValues,
 }) => {
 	const normalizeDay = createDayNormalizer(idx);
 	const createTimeInputFieldWithHandlers = createTimeInputField(handleChange, handleBlur);
@@ -58,7 +57,6 @@ const Watchtime = ({
 				{monthInput}
 				{dayInput}
 				{yearInput}
-				<button type='button' onClick={clearValues}>Clear</button>
 			</InputContainer>
 			{allTouched && warning && <p style={{ color: 'goldenrod' }}>{warning.message}</p>}
 		</StyledFormSection>
