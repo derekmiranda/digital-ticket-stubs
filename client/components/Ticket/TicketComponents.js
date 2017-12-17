@@ -7,18 +7,18 @@ import Watchtime from './Watchtime';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
-export const TextFieldDecoration = ({
-	className,
-	children,
-	meta: { touched, error },
-}) => (
-		<div className={className}>
-			{children}
-			{touched && error &&
-				<p style={{ color: 'red' }}>{error}</p>
-			}
-		</div>
-	)
+const Contents = styled.div`
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+
+const ErrorMsg = styled.span`
+	position: absolute;
+	color: red;
+	right: 0;
+`
 
 export const renderTextField = (props) => {
 	const {
@@ -31,12 +31,17 @@ export const renderTextField = (props) => {
 	} = props;
 
 	return (
-		<TextFieldDecoration {...props}>
-			<input type={type} placeholder={placeholder} {...input}
-				ref={(elem) => {
-					if (elem) elem.width = Math.max(elem.scrollWidth, elem.offsetHeight)
-				}}
-			/>
-		</TextFieldDecoration>
+		<div className={className}>
+			<Contents>
+				<input type={type} placeholder={placeholder} {...input}
+					ref={(elem) => {
+						if (elem) elem.width = Math.max(elem.scrollWidth, elem.offsetHeight)
+					}}
+				/>
+				{touched && error &&
+					<ErrorMsg title={error}>✕</ErrorMsg>
+				}
+			</Contents>
+		</div>
 	)
 }

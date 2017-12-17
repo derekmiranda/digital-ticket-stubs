@@ -19,6 +19,7 @@ import {
 export const BaseTextField = styled(renderTextField)
 `
 	${fontFace}
+	text-align: center;
 
 	input {
 		box-sizing: border-box;
@@ -54,7 +55,6 @@ export const TitleField = BaseTextField.extend `
 	input {
 		width: 90%;
 		font-size: 2em;
-		margin: ${ticketMargin} 0;
 	}
 `
 

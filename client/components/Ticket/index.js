@@ -1,11 +1,16 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
 import SearchResults from 'components/SearchResults';
-import { VenueField, TitleField, SaveButton, DeleteButton } from 'components/styled/StyledTicketComponents';
+import {
+	VenueField,
+	TitleField,
+	SaveButton,
+	DeleteButton,
+} from 'components/styled/StyledTicketComponents';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 import { ticketMargin } from 'constants'
@@ -40,8 +45,12 @@ const Ticket = ({
 	return (
 		<div className={className} onKeyUp={handleKeyUp}>
 			<ButtonContainer>
-				<SaveButton type='button' title='Save Ticket' onClick={handleTicketSubmit}>✔</SaveButton>
-				<DeleteButton type='button' title='Delete Ticket' onClick={removeTicket}>✕</DeleteButton>
+				<SaveButton type='button' title='Save Ticket' onClick={handleTicketSubmit}>
+					✔
+				</SaveButton>
+				<DeleteButton type='button' title='Delete Ticket' onClick={removeTicket}>
+					✕
+				</DeleteButton>
 			</ButtonContainer>
 			<Field
 				name={`${name}.venue`}
