@@ -34,7 +34,7 @@ export const renderTextField = (props) => {
 					}}
 				/>
 				{touched && error &&
-					<ErrorMsg title={error} />
+					<ErrorMsg msg={error} />
 				}
 			</Contents>
 		</div>

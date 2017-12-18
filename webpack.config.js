@@ -57,6 +57,10 @@ module.exports = {
         exclude: /node_modules/,
         include: [path.resolve(__dirname, './client')],
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader',
+      },
     ]
   },
   devServer: {
