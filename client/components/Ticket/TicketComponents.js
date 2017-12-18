@@ -4,6 +4,7 @@ import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
+import { ErrorMsg } from 'components/Icons';
 import { isRequired } from 'validators';
 import getReadableFieldName from 'client/utils/getReadableFieldName';
 
@@ -12,12 +13,6 @@ const Contents = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-`
-
-const ErrorMsg = styled.span`
-	position: absolute;
-	color: red;
-	right: 0;
 `
 
 export const renderTextField = (props) => {
@@ -39,7 +34,7 @@ export const renderTextField = (props) => {
 					}}
 				/>
 				{touched && error &&
-					<ErrorMsg title={error}>✕</ErrorMsg>
+					<ErrorMsg title={error} />
 				}
 			</Contents>
 		</div>
