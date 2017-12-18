@@ -9,6 +9,7 @@ import { capitalize } from 'client/utils/general';
 import { renderTextField } from './TicketComponents';
 import { WatchtimeTextField } from 'components/styled/StyledTicketComponents';
 import { ticketMargin, line } from 'constants'
+import { WarnMsg } from 'components/Icons'
 
 const createTimeInputField = curry((handleChange, handleBlur, name, normalize) => {
 	const label = name.includes('month') ? 'Mon' : capitalize(name);
@@ -57,8 +58,8 @@ const Watchtime = ({
 				{monthInput}
 				{dayInput}
 				{yearInput}
+				{allTouched && warning && <WarnMsg msg={warning.message} />}
 			</InputContainer>
-			{allTouched && warning && <p style={{ color: 'goldenrod' }}>{warning.message}</p>}
 		</StyledFormSection>
 	)
 }
