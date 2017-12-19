@@ -6,12 +6,16 @@ import { bgColor, mainTextColor, hoverTextColor } from 'constants';
 import { getThumbImg } from '../utils/imgUtils';
 
 const StyledList = styled.ol`
-  background-color: ${bgColor};
+  background-color: rgba(0,0,0,.3);
   padding: 0;
   position: fixed;
-  height: 50%;
   overflow: scroll;
+  max-height: 50%;
   border: 1px solid ${mainTextColor};
+
+  li:not(:first-child) {
+    border-top: 1px solid ${mainTextColor};  
+  }
 
   a {
     color: ${mainTextColor};
@@ -24,8 +28,10 @@ const hoverStyles = `
 `
 
 const StyledLi = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
   cursor: pointer;
-  border-bottom: 1px solid black;
 
   &:hover {
     ${hoverStyles}
@@ -36,7 +42,13 @@ const StyledLi = styled.li`
   }
 `
 
+const TitleSpan = styled.span`
+  margin: 0 auto;
+  padding: 5px;
+`
+
 const SearchResults = ({ results, chooseMovie }) => {
+  console.log('results', results)
   const rows = results.map((result, idx) => {
     const { title, poster_path } = result;
     const thumbnail = poster_path && (
@@ -46,7 +58,7 @@ const SearchResults = ({ results, chooseMovie }) => {
     return (
       <StyledLi onClick={chooseMovie} key={idx}>
         {thumbnail}        
-        <span>{title}</span>
+        <span style={{ margin: '0 auto' }}>{title}</span>
       </StyledLi>
     )
   })
