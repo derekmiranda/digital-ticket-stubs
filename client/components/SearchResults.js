@@ -9,13 +9,18 @@ const StyledList = styled.ol`
   background-color: ${bgColor};
   padding: 0;
   position: fixed;
-  height: 25%;
+  height: 50%;
   overflow: scroll;
-  border: 1px solid black;
+  border: 1px solid ${mainTextColor};
 
   a {
-    color: ${mainTextColor}
+    color: ${mainTextColor};
   }
+`
+
+const hoverStyles = `
+  color: #eee;
+  background-color: rgba(0,0,0,.3);
 `
 
 const StyledLi = styled.li`
@@ -23,7 +28,11 @@ const StyledLi = styled.li`
   border-bottom: 1px solid black;
 
   &:hover {
-    color: ${hoverTextColor};
+    ${hoverStyles}
+  }
+
+  &:active {
+    ${hoverStyles}
   }
 `
 
