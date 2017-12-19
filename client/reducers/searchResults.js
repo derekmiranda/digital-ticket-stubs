@@ -12,6 +12,7 @@ import {
 } from 'client/utils/formUtils';
 
 const {
+	CHANGE,
 	FOCUS
 } = actionTypes;
 
@@ -20,6 +21,7 @@ const searchResults = (state = {}, action = {}) => {
 		// clearing actions
 		case TICKET_DELETE_SUCCEEDED:
 		case SORT_TICKETS:
+		case CHANGE:
 			return {};
 		case LOADED_SEARCH_RESULTS:
 			return {

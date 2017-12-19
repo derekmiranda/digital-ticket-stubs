@@ -18,10 +18,6 @@ const StyledList = styled.ol`
   li:not(:first-child) {
     border-top: 1px solid black;  
   }
-
-  a {
-    color: black;
-  }
 `
 
 const hoverStyles = `
