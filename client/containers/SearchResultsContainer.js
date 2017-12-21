@@ -8,6 +8,10 @@ const mapStateToProps = ({ searchResults }, { idx }) => {
   return { results }
 }
 
-const SearchResultsContainer = connect(mapStateToProps)(SearchResults)
+const mapDispatchToProps = {
+  chooseMovie: () => console.log('choose movie')
+}
+
+const SearchResultsContainer = connect(mapStateToProps, mapDispatchToProps)(SearchResults)
 
 export default SearchResultsContainer

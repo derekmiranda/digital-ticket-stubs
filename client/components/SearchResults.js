@@ -10,10 +10,10 @@ import { forDesktop, forMobile, forTablet } from '../utils/styleUtils'
 const olWithRef = (props) => (
   <ol {...props}
     ref={elem => {
-      if (elem) {
-        const parent = elem.parentNode
-        console.log(parent)
-      }
+      // if (elem) {
+      //   const parent = elem.parentNode
+      //   console.log(parent)
+      // }
     }}
   />
 )
