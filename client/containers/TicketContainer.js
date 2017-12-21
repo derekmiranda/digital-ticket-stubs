@@ -30,13 +30,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
   const { idx, name } = ownProps;
   
-  debug('State props', stateProps)
   const formState = formSelector(stateProps);
   const formMeta = metaSelector(stateProps);
 
   const { viewings } = formState;
   const viewing = viewings[idx];
-  debug('Form meta', formMeta)
   const viewingMeta = formMeta && formMeta.viewings && formMeta.viewings[idx];
 
   // bool indicating whether each input in watchtime has been touched

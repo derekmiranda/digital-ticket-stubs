@@ -60,7 +60,12 @@ const SearchResults = ({ results, chooseMovie }) => {
   })
 
   return rows.length
-    ? <StyledList>
+    ? <StyledList ref={(elem) => {
+        if (elem) {
+          const parent = elem
+          console.log(parent)
+        }
+      }}>
         {rows}
       </StyledList>
     : <p style={{ color: 'aqua' }}>No movies found</p>
