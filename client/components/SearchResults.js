@@ -26,6 +26,7 @@ const StyledList = styled(olWithRef)`
   overflow: scroll;
   max-height: 50%;
   border: 1px solid black;
+  z-index: 1;
 
   li:not(:first-child) {
     border-top: 1px solid black;  
@@ -58,7 +59,7 @@ const TitleSpan = styled.span`
 
 const SearchResults = ({ results, chooseMovie }) => {
   if (!results) return null
-  
+
   const rows = results.map((result, idx) => {
     const { title, poster_path, overview } = result;
     const thumbnail = poster_path && (
