@@ -6,7 +6,19 @@ import { bgColor, mainTextColor, hoverTextColor } from 'constants';
 import { getThumbImg } from '../utils/imgUtils';
 import { forDesktop, forMobile, forTablet } from '../utils/styleUtils'
 
-const StyledList = styled.ol`
+// ol with ref to position to parent
+const olWithRef = (props) => (
+  <ol {...props}
+    ref={elem => {
+      if (elem) {
+        const parent = elem.parentNode
+        console.log(parent)
+      }
+    }}
+  />
+)
+
+const StyledList = styled(olWithRef)`
   color: #eee;
   background-color: rgba(100,100,100,.8);
   padding: 0;
@@ -60,12 +72,7 @@ const SearchResults = ({ results, chooseMovie }) => {
   })
 
   return rows.length
-    ? <StyledList ref={(elem) => {
-        if (elem) {
-          const parent = elem
-          console.log(parent)
-        }
-      }}>
+    ? <StyledList>
         {rows}
       </StyledList>
     : <p style={{ color: 'aqua' }}>No movies found</p>
