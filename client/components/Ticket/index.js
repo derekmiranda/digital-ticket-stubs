@@ -66,8 +66,8 @@ const Ticket = ({
 				placeholder='Movie Title'
 				className='title'
 				validate={isRequired}
+				idx={idx}
 			/>
-			<SearchResultsContainer idx={idx} />
 			<Watchtime name={`${name}.watchtime`}
 				idx={idx}
 				handleChange={validateWatchtime}

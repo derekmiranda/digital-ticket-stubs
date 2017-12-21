@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 
 import {
@@ -15,6 +16,7 @@ import {
 	fontFace,
 	line,
 } from 'client/constants'
+import SearchResultsContainer from 'containers/SearchResultsContainer'
 
 export const BaseTextField = styled(renderTextField)
 `
@@ -51,12 +53,22 @@ export const VenueField = BaseTextField.extend `
 	}
 `
 
-export const TitleField = BaseTextField.extend `
+const _TitleField = BaseTextField.extend `
 	input {
 		width: 90%;
 		font-size: 2em;
 	}
 `
+
+export const TitleField = (props) => {
+	const { idx } = props
+	return (
+		<div>
+			<_TitleField {...props} />
+			<SearchResultsContainer idx={idx} />
+		</div>
+	)
+}
 
 export const WatchtimeTextField = BaseTextField.extend `
 	display: inline-block;
