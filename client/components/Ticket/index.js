@@ -4,7 +4,7 @@ import { Field, getFormValues } from 'redux-form';
 import styled from 'styled-components';
 
 import Watchtime from './Watchtime';
-import SearchResults from 'components/SearchResults';
+import SearchResultsContainer from 'containers/SearchResultsContainer';
 import {
 	VenueField,
 	TitleField,
@@ -67,9 +67,7 @@ const Ticket = ({
 				className='title'
 				validate={isRequired}
 			/>
-			{searchMovies && (
-				<SearchResults results={searchMovies} />
-			)}
+			<SearchResultsContainer idx={idx} />
 			<Watchtime name={`${name}.watchtime`}
 				idx={idx}
 				handleChange={validateWatchtime}

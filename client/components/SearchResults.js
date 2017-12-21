@@ -57,6 +57,8 @@ const TitleSpan = styled.span`
 `
 
 const SearchResults = ({ results, chooseMovie }) => {
+  if (!results) return null
+  
   const rows = results.map((result, idx) => {
     const { title, poster_path, overview } = result;
     const thumbnail = poster_path && (
@@ -76,10 +78,6 @@ const SearchResults = ({ results, chooseMovie }) => {
         {rows}
       </StyledList>
     : <p style={{ color: 'aqua' }}>No movies found</p>
-}
-
-SearchResults.propTypes = {
-  results: PropTypes.array,
 }
 
 export default SearchResults;

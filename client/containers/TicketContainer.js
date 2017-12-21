@@ -52,7 +52,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
   const watchtimeWarning = watchtimeWarnings && watchtimeWarnings[idx];
-  const searchMovies = searchResults && searchResults[idx]; 
 
   const boundActionCreators = bindActionCreators({
     removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
@@ -69,7 +68,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     allWatchtimeTouched,
     ticketSubmitting,
     watchtimeWarning,
-    searchMovies,
   }
 }
 
