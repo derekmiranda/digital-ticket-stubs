@@ -6,6 +6,7 @@ import {
 	forTablet,
 	forDesktop,
 } from 'client/utils/styleUtils';
+import { getTicketImg } from 'client/utils/imgUtils'
 import { ticketFonts, fontFace } from 'constants'
 
 const shadowDist = 5;
@@ -21,7 +22,12 @@ const generateVwDims = (mediaQueryGen, vwWidth) => mediaQueryGen(`
 
 const rgbColorWithAlpha = alpha => `rgba(0,210,230,${alpha})`
 const ombre = `linear-gradient(${rgbColorWithAlpha(.05)}, ${rgbColorWithAlpha(.3)})`
-const bgImg = `${ombre},url("assets/ticket.png")`
+const bgImg = ({ viewing }) => {
+	const { backdrop_path } = viewing
+	const cssUrl = backdrop_path ? `url(${getTicketImg(backdrop_path)}),` : ''
+	const bg = `${ombre}, ${cssUrl} url("assets/ticket.png")`
+	return bg
+}
 
 const StyledTicket = styled(Ticket)`
 	${fontFace}
