@@ -6,6 +6,7 @@ export const FOCUS_VIEWING = 'FOCUS_VIEWING';
 
 // search results
 export const LOADED_SEARCH_RESULTS = 'LOADED_SEARCH_RESULTS'; 
+export const CHOOSE_MOVIE = 'CHOOSE_MOVIE'; 
 
 // sorting
 export const SORT_TICKETS = 'SORT_TICKETS';

@@ -19,6 +19,17 @@ export const loadedSearchResults = (index, results) => ({
   results,
 })
 
+export const chooseMovie = ({
+  poster_path,
+  backdrop_path,
+  formId,
+}) => ({
+  type: types.CHOOSE_MOVIE,
+  poster_path,
+  backdrop_path,
+  formId,
+})
+
 // ticket requests
 export const startTicketSubmit = ({ viewing, index, ticketName }) => ({
   type: types.START_TICKET_SUBMIT,
