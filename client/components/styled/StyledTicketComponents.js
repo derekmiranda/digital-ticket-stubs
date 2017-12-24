@@ -63,7 +63,7 @@ const _TitleField = BaseTextField.extend `
 export const TitleField = (props) => {
 	const { idx } = props
 	return (
-		<div>
+		<div style={{ position: 'relative' }}>
 			<_TitleField {...props} />
 			<SearchResultsContainer idx={idx} />
 		</div>

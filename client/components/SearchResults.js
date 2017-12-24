@@ -6,25 +6,14 @@ import { bgColor, mainTextColor, hoverTextColor } from 'constants';
 import { getThumbImg } from '../utils/imgUtils';
 import { forDesktop, forMobile, forTablet } from '../utils/styleUtils'
 
-// ol with ref to position to parent
-const olWithRef = (props) => (
-  <ol {...props}
-    ref={elem => {
-      // if (elem) {
-      //   const parent = elem.parentNode
-      //   console.log(parent)
-      // }
-    }}
-  />
-)
-
-const StyledList = styled(olWithRef)`
+const StyledList = styled.ol`
   color: #eee;
   background-color: rgba(100,100,100,.8);
   padding: 0;
-  position: fixed;
+  position: absolute;
   overflow: scroll;
-  max-height: 50%;
+  width: 100%;
+  max-height: calc(2 * 68px);
   border: 1px solid black;
   z-index: 1;
 
