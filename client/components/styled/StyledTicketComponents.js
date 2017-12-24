@@ -80,10 +80,14 @@ export const WatchtimeTextField = BaseTextField.extend `
 	}
 `
 
-export const SaveButton = styled.button `
+export const BaseButton = styled.button`
+	z-index: 1;
+`
+
+export const SaveButton = BaseButton.extend`
 	color: green;
 `
 
-export const DeleteButton = styled.button `
+export const DeleteButton = BaseButton.extend`
 	color: red;
 `
