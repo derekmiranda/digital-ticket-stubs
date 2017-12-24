@@ -46,17 +46,22 @@ const TitleSpan = styled.span`
   margin: 5px auto;
 `
 
-const SearchResults = ({ results, chooseMovie }) => {
+const SearchResults = ({ results, formId, chooseMovie }) => {
   if (!results) return null
 
   const rows = results.map((result, idx) => {
-    const { title, poster_path, overview } = result;
+    const { title, poster_path, backdrop_path, overview } = result;
     const thumbnail = poster_path && (
       <img src={getThumbImg(poster_path)} />
     )
+    const handleClick = () => chooseMovie({
+      poster_path,
+      backdrop_path,
+      formId,
+    })
 
     return (
-      <StyledLi onClick={chooseMovie} key={idx}>
+      <StyledLi onClick={handleClick} key={idx}>
         {thumbnail}        
         <TitleSpan title={overview}>{title}</TitleSpan>
       </StyledLi>
