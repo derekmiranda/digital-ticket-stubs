@@ -51,6 +51,7 @@ const StyledTicket = styled(Ticket)`
 	opacity: ${props => props.viewing.id ? 1 : .75};
 	background-color: rgba(0,0,0,0);
 	background-image: ${bgImg};
+	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	box-shadow: ${shadowDist}px ${shadowDist}px 20px rgba(0,0,0,0.5);
