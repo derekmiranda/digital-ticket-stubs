@@ -18,8 +18,8 @@ const viewings = (state = [], action = {}) => {
       const { poster_path, backdrop_path } = action
       return state.map(v => v.formId === action.formId ? {
         ...v,
-        poster_path,
-        backdrop_path,
+        posterPath: poster_path,
+        backdropPath: backdrop_path,
       } : v)
     }
     default:

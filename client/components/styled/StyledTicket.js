@@ -23,8 +23,8 @@ const generateVwDims = (mediaQueryGen, vwWidth) => mediaQueryGen(`
 const rgbColorWithAlpha = alpha => `rgba(0,210,230,${alpha})`
 const ombre = `linear-gradient(${rgbColorWithAlpha(.05)}, ${rgbColorWithAlpha(.3)})`
 const bgImg = ({ viewing }) => {
-	const { backdrop_path } = viewing
-	const cssUrl = backdrop_path ? `url(${getTicketImg(backdrop_path)}),` : ''
+	const { backdropPath } = viewing
+	const cssUrl = backdropPath ? `url(${getTicketImg(backdropPath)}),` : ''
 	const bg = `${ombre}, ${cssUrl} url("assets/ticket.png")`
 	return bg
 }
