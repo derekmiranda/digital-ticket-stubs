@@ -20,12 +20,15 @@ const generateVwDims = (mediaQueryGen, vwWidth) => mediaQueryGen(`
 	height: calc(${vwWidth}vw * 9 / 16);
 `)
 
-const rgbColorWithAlpha = alpha => `rgba(0,210,230,${alpha})`
-const ombre = `linear-gradient(${rgbColorWithAlpha(.05)}, ${rgbColorWithAlpha(.3)})`
+const rgbColorWithAlpha = alpha => `rgba(0,255,200,${alpha})`
+const gradient = `linear-gradient(${rgbColorWithAlpha(.05)}, ${rgbColorWithAlpha(.3)})`
 const bgImg = ({ viewing }) => {
 	const { backdropPath } = viewing
-	const cssUrl = backdropPath ? `url(${getTicketImg(backdropPath)}),` : ''
-	const bg = `${ombre}, ${cssUrl} url("assets/ticket.png")`
+	const cssUrl = backdropPath ? `, url(${getTicketImg(backdropPath)})` : ''
+	const bg = `
+		background-image: ${gradient}, url("assets/ticket.png") ${cssUrl};
+		${cssUrl ? 'background-blend-mode: normal, hard-light;' : ''}
+	`
 	return bg
 }
 
@@ -49,8 +52,8 @@ const StyledTicket = styled(Ticket)`
 	font-family: ${ticketFonts};
 	outline: .25em solid rgba(0,0,0,0.5);
 	opacity: ${props => props.viewing.id ? 1 : .75};
-	background-color: rgba(0,0,0,0);
-	background-image: ${bgImg};
+
+	${bgImg}
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
