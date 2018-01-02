@@ -1,5 +1,5 @@
 export const bgColor = '#fffffb'
-export const mainTextColor = '#555'
+export const mainTextColor = '#222'
 export const hoverTextColor = '#999'
 export const tmdbPrimaryColor = '#01d277'
 export const ticketMargin = '.25em'
