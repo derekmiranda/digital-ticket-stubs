@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, withRouter, Link } from 'react-router-d
 import styled from 'styled-components';
 
 import ViewingsFormContainer from 'containers/ViewingsFormContainer';
+import RegisterPage from './RegisterPage'
 import Attribution from './Attribution';
 import { bgColor, mainTextColor } from 'constants';
 import { forMobile } from 'client/utils/styleUtils';
@@ -29,9 +30,12 @@ const App = () => (
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
 			<Route exact path='/' render={() => (
-				<Link to='/stubs'>
-					<h2>Go to App</h2>
-				</Link>
+				<div>
+					<Link to='/stubs'>
+						<h2>Go to App</h2>
+					</Link>
+					<RegisterPage />
+				</div>
 			)} />
 			<Route path='/stubs' component={RouterViewingsFormContainer} />
 			<Attribution />
