@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, withRouter, Link } from 'react-router-dom'
 import styled from 'styled-components';
 
 import ViewingsFormContainer from 'containers/ViewingsFormContainer';
@@ -21,14 +22,21 @@ const Container = styled.main`
 	overflow: auto;
 `
 
-const App = () => {
-	return (
+const RouterViewingsFormContainer = withRouter(ViewingsFormContainer)
+
+const App = () => (
+	<Router>
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
-			<ViewingsFormContainer />
+			<Route exact path='/' render={() => (
+				<Link to='/stubs'>
+					<h2>Go to App</h2>
+				</Link>
+			)} />
+			<Route path='/stubs' component={RouterViewingsFormContainer} />
 			<Attribution />
 		</Container>
-	)
-}
+	</Router>
+)
 
 export default App;
