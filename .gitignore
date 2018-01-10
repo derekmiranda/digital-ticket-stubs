@@ -3,7 +3,9 @@ config/config.json
 .env
 
 # Builds
-public/dist
+dist/
+**/dist
+
 
 # Logs
 logs
