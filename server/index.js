@@ -32,6 +32,11 @@ app.use(express.static('dist'));
 app.use('/viewings', viewingsRouter);
 app.use('/search', searchRouter);
 
+// only serve SPA from non-REST API urls
+app.get('*', (req, res, next) => {
+	return res.sendFile(path.resolve(__dirname, '../public/index.html'))
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports = app
