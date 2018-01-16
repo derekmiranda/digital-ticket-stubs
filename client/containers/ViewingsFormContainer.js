@@ -23,8 +23,6 @@ class LoadContainer extends PureComponent {
 const ReduxFormContainer = reduxForm({
   form: formName,
   enableReinitialize: true,
-  // onSubmit: (values) => console.log(values)
-  onSubmit: () => new Promise((res, rej) => setTimeout(rej, 500, 'Reject'))
 })(LoadContainer);
 
 const ViewingsFormContainer = connect(

@@ -1,25 +1,6 @@
 import React from 'react'
+import { Form } from 'redux-form'
 
-const Input = ({ label, name }, i) => (
-	<div key={i}>
-		{label}
-		<input name={name} />
-	</div>
-)
+import RegisterFormContainer from 'containers/RegisterFormContainer'
 
-const inputFields = [
-	{ label: 'First Name', name: 'firstName' },
-	{ label: 'Last Name', name: 'lastName' },
-	{ label: 'Email', name: 'email' },
-]
-
-const Inputs = inputFields.map(Input)
-
-const RegisterPage = () => (
-	<form>
-		<h3>Register</h3>
-		{Inputs}
-	</form>
-)
-
-export default RegisterPage
+export default RegisterFormContainer
