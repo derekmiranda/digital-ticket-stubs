@@ -70,7 +70,7 @@ const SearchResults = ({ results, formId, chooseMovie }) => {
   })
 
   return rows.length
-    ? <StyledList>
+    ? <StyledList handleClickOut={() => console.log('AHHH')}>
         {rows}
       </StyledList>
     : <p style={{ color: 'aqua' }}>No movies found</p>

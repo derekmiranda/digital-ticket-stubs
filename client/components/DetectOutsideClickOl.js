@@ -29,14 +29,16 @@ export default class DetectOutsideClickOl extends Component {
 	 */
 	handleClickOutside(event) {
 			if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-					alert('You clicked outside of me!');
+				const { handleClickOut } = this.props
+				handleClickOut && handleClickOut()
 			}
 	}
 
 	render() {
+		const { handleClickOut, ...props } = this.props
 		return (
-			<ol {...this.props} ref={this.setWrapperRef}>
-					{this.props.children}
+			<ol {...props} ref={this.setWrapperRef}>
+					{props.children}
 			</ol>
 		);
 	}
