@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan')
 
 const searchRouter = require('./routers/searchRouter');
 const viewingsRouter = require('./routers/movieViewingsRouter');
@@ -8,8 +9,12 @@ const viewingsRouter = require('./routers/movieViewingsRouter');
 const port = process.env.PORT || 3000;
 const app = express();
 
+// parse POST reqs
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// log requests
+app.use(morgan('tiny'))
 
 // Response Headers
 app.use((req, res, next) => {
