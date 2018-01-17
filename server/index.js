@@ -38,8 +38,13 @@ app.use('/viewings', viewingsRouter);
 app.use('/search', searchRouter);
 
 // only serve SPA from non-REST API urls
-app.get('*', (req, res, next) => {
+app.get('/', (req, res, next) => {
 	return res.sendFile(path.resolve(__dirname, '../public/index.html'))
+})
+
+// redirect to index
+app.get('*', (req, res) => {
+	return res.redirect(302, '/')
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
