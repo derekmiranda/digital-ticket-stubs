@@ -1,4 +1,4 @@
-export const isRequired = val => val ? undefined : 'Required';
+export const isRequired = val => (val && val.trim()) ? undefined : 'Required';
 export const emptyOrFilledWatchtime = wt => {
 	const res = wt
 		&& (
