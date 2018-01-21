@@ -2,7 +2,7 @@ import React from 'react'
 import {Field} from 'redux-form'
 import styled from 'styled-components'
 
-import { isRequired } from '../../validators';
+import { isRequired, isEmail, checkPasswordLength } from '../../validators';
 import { ErrorMsg } from 'components/Icons'
 
 const renderInput = ({
@@ -60,7 +60,7 @@ const RegisterForm = ({handleSubmit}) => (
         name='email'
         component={renderInput}
         label='Email'
-        validate={isRequired}/>
+        validate={[isRequired, isEmail]}/>
     </div>
     <div>
       <Field
@@ -68,7 +68,7 @@ const RegisterForm = ({handleSubmit}) => (
         component={renderInput}
         label='Password'
         type='password'
-        validate={isRequired}/>
+        validate={[isRequired, checkPasswordLength]}/>
     </div>
     <div>
       <Field
