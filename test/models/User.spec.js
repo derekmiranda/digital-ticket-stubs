@@ -22,3 +22,5 @@ test.serial('should reject passwords longer than 16 chars', async t => {
     passHash: 'securesecuresecuresecure',
   }))
 })
+
+test.serial.todo('should set password as 1-way encrypted hash')
