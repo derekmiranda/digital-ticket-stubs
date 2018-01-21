@@ -39,9 +39,9 @@ const App = () => (
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
 			<Route exact path='/' render={
-				process.env.NODE_ENV === 'development'
-					? RouterViewingsFormContainer
-					: renderRegisterPage
+				// process.env.NODE_ENV === 'development'
+				// 	? RouterViewingsFormContainer :
+					renderRegisterPage
 			} />
 			<Route path='/stubs' component={RouterViewingsFormContainer} />
 			<Attribution />
