@@ -34,7 +34,11 @@ export const renderTextField = (props) => {
 					}}
 				/>
 				{touched && error &&
-					<ErrorMsg msg={error} />
+					<ErrorMsg msg={error} style={{
+					  right: 0,
+						height: '2rem',
+						width: '2rem',	
+					}}/>
 				}
 			</Contents>
 		</div>

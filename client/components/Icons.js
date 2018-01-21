@@ -32,10 +32,6 @@ const createAfterMsg = (color) => `
 `
 
 const ErrorContainer = BaseContainer.extend`
-	right: 0;
-	height: 2rem;
-	width: 2rem;
-
 	${createAfterMsg(errorColor)}	
 `
 
@@ -45,8 +41,8 @@ const ErrorSvg = styled(SvgInline)`
 	}
 `
 
-export const ErrorMsg = ({ msg }) => (
-	<ErrorContainer msg={msg}>
+export const ErrorMsg = ({ msg, style }) => (
+	<ErrorContainer msg={msg} style={style}>
    	<ErrorSvg src={xSvg} />
 	</ErrorContainer>
 )
@@ -64,8 +60,8 @@ const WarnSvg = styled(SvgInline)`
 	}
 `
 
-export const WarnMsg = ({ msg }) => (
-	<WarnContainer msg={msg}>
+export const WarnMsg = ({ msg, style }) => (
+	<WarnContainer msg={msg} style={style}>
    	<WarnSvg src={xSvg} />
 	</WarnContainer>
 )
