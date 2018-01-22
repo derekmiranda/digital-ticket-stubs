@@ -6,7 +6,8 @@ import {
 	LOADED_SEARCH_RESULTS,
 	SORT_TICKETS,
 	TICKET_DELETE_SUCCEEDED,
-	CLOSE_SEARCH
+	CLOSE_SEARCH,
+	CHOOSE_MOVIE,
 } from 'actions/types';
 import {
 	getViewingsIndex
@@ -24,6 +25,7 @@ const searchResults = (state = {}, action = {}) => {
 		case SORT_TICKETS:
 		case CHANGE:
 		case CLOSE_SEARCH:
+		case CHOOSE_MOVIE:
 			return {};
 		case LOADED_SEARCH_RESULTS:
 			return {
