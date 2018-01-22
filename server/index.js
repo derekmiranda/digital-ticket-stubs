@@ -34,8 +34,8 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 app.use(express.static('dist'));
-app.use('/viewings', viewingsRouter);
-app.use('/search', searchRouter);
+app.use('/api/viewings', viewingsRouter);
+app.use('/api/search', searchRouter);
 
 // only serve SPA from non-REST API urls
 app.get('/', (req, res, next) => {
