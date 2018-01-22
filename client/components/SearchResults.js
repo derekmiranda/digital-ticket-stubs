@@ -47,7 +47,7 @@ const TitleSpan = styled.span`
   margin: 5px auto;
 `
 
-const SearchResults = ({ results, formId, chooseMovie }) => {
+const SearchResults = ({ results, formId, chooseMovie, closeSearch }) => {
   if (!results) return null
 
   const rows = results.map((result, idx) => {
@@ -70,7 +70,7 @@ const SearchResults = ({ results, formId, chooseMovie }) => {
   })
 
   return rows.length
-    ? <StyledList handleClickOut={() => console.log('AHHH')}>
+    ? <StyledList handleClickOut={closeSearch}>
         {rows}
       </StyledList>
     : <p style={{ color: 'aqua' }}>No movies found</p>
