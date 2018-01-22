@@ -13,6 +13,8 @@ import App from 'components/App';
 import reducer from 'reducers';
 import rootSaga from 'sagas';
 
+console.log('h0')
+
 const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [
