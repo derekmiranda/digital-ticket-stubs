@@ -1,3 +1,5 @@
+import { checkUser } from 'services/userApi'
+
 export const isRequired = val => (val && val.trim()) ? undefined : 'Required';
 
 export const emptyOrFilledWatchtime = wt => {
@@ -27,4 +29,8 @@ export const validateRegisterForm = values => {
 	errors.password = checkPasswordsMatch(values)
 
 	return errors
+}
+
+export const asyncValidateRegisterForm = values => {
+	return checkUser(values)
 }
