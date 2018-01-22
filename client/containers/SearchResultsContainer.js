@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getFormValues } from 'redux-form'
 
 import SearchResults from 'components/SearchResults';
-import { chooseMovie } from 'actions/creators'
+import { chooseMovie, closeSearch } from 'actions/creators'
 import { ticketsFormName } from 'constants'
 
 const formValueSelector = getFormValues(ticketsFormName)
@@ -18,6 +18,7 @@ const mapStateToProps = (state, { idx }) => {
 
 const mapDispatchToProps = {
   chooseMovie,
+  closeSearch,
 }
 
 const SearchResultsContainer = connect(mapStateToProps, mapDispatchToProps)(SearchResults)
