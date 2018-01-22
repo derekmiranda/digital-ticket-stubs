@@ -30,6 +30,8 @@ export const chooseMovie = ({
   formId,
 })
 
+export const closeSearch = createSimpleActionCreator(types.CLOSE_SEARCH)
+
 // ticket requests
 export const startTicketSubmit = ({ viewing, index, ticketName }) => ({
   type: types.START_TICKET_SUBMIT,

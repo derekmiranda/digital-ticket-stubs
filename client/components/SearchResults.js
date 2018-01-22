@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import { bgColor, mainTextColor, hoverTextColor } from 'constants';
 import { getThumbImg } from '../utils/imgUtils';
 import { forDesktop, forMobile, forTablet } from '../utils/styleUtils'
+import DetectOutsideClickOl from './DetectOutsideClickOl'
 
-const StyledList = styled.ol`
+const StyledList = styled(DetectOutsideClickOl)`
   color: #eee;
   background-color: rgba(100,100,100,.8);
   padding: 0;
@@ -46,7 +47,7 @@ const TitleSpan = styled.span`
   margin: 5px auto;
 `
 
-const SearchResults = ({ results, formId, chooseMovie }) => {
+const SearchResults = ({ results, formId, chooseMovie, closeSearch }) => {
   if (!results) return null
 
   const rows = results.map((result, idx) => {
@@ -69,7 +70,7 @@ const SearchResults = ({ results, formId, chooseMovie }) => {
   })
 
   return rows.length
-    ? <StyledList>
+    ? <StyledList handleClickOut={closeSearch}>
         {rows}
       </StyledList>
     : <p style={{ color: 'aqua' }}>No movies found</p>
