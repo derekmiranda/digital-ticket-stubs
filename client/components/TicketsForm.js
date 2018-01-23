@@ -115,11 +115,6 @@ const TicketsForm = ({
 					id='add-ticket'
 					onClick={addTicket}
 				>+ Add Stub</button>
-				<button
-					type='button'
-					id='add-ticket'
-					onClick={handleSubmit}
-				>Save All Stubs</button>
 			</div>
 			{loading && loadingMsg}
 			<FieldArray 
