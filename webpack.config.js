@@ -24,6 +24,10 @@ const stringifiedProcessEnv = stringifyObjVals(processEnv);
 
 // plugins
 const plugins = [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: module => module.context.includes('node_modules')
+  }),
   new webpack.DefinePlugin({
     'process.env': stringifiedProcessEnv,
   })
@@ -44,7 +48,7 @@ module.exports = {
     './client',
   ],
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
