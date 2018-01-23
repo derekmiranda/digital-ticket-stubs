@@ -36,7 +36,7 @@ const StyledForm = styled.form `
 `
 
 const RegisterForm = ({handleSubmit}) => (
-  <StyledForm onSubmit={handleSubmit()}>
+  <StyledForm onSubmit={handleSubmit(() => {})}>
     <h2 style={{
       marginTop: 0,
       paddingTop: 0
