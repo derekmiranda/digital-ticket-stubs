@@ -8,7 +8,7 @@ import { validateRegisterForm, asyncValidateRegisterForm } from 'validators'
 const RegisterFormContainer = reduxForm({
   form: formName,
   validate: validateRegisterForm,
-  // asyncValidate: asyncValidateRegisterForm,
+  asyncValidate: asyncValidateRegisterForm,
   asyncBlurFields: ['username', 'email'],
 })(RegisterForm)
 

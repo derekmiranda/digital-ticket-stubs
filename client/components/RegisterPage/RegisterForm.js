@@ -35,7 +35,7 @@ const StyledForm = styled.form `
   padding: 2em;
 `
 
-const RegisterForm = ({handleSubmit}) => (
+const RegisterForm = ({ handleSubmit, asyncValidating, valid }) => (
   <StyledForm onSubmit={handleSubmit(() => {})}>
     <h2 style={{
       marginTop: 0,
@@ -78,7 +78,7 @@ const RegisterForm = ({handleSubmit}) => (
         type='password'
         validate={isRequired}/>
     </div>
-    <button type='submit'>Submit</button>
+    <button type='submit' disabled={!valid || asyncValidating}>Submit</button>
   </StyledForm>
 )
 
