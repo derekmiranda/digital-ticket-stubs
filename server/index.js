@@ -5,6 +5,7 @@ const morgan = require('morgan')
 
 const searchRouter = require('./routers/searchRouter');
 const viewingsRouter = require('./routers/movieViewingsRouter');
+const usersRouter = require('./routers/usersRouter');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -36,6 +37,7 @@ app.use(express.static('public'));
 app.use(express.static('dist'));
 app.use('/api/viewings', viewingsRouter);
 app.use('/api/search', searchRouter);
+app.use('/api/users', usersRouter);
 
 // only serve SPA from non-REST API urls
 app.get('/', (req, res, next) => {
