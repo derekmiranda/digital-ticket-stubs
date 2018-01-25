@@ -56,6 +56,10 @@ const usersController = {
 		} catch (err) {
 			throw err
 		}
+	},
+
+	createUser: async (user) => {
+		console.log(user)
 	}
 }
 
