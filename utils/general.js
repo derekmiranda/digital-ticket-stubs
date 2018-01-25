@@ -1,0 +1,1 @@
+exports.normalizeStr = str => str && str.trim().toLowerCase()

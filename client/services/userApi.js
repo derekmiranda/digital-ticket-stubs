@@ -8,7 +8,8 @@ export const checkUser = (user) => {
     body: JSON.stringify(user),
   })
     .then(res => res.json())
-    .then(json => {
-      if (Object.keys(json)) throw json
+    .catch(err => console.error(err))
+    .then(errors => {
+      if (Object.keys(errors || {}).length) throw errors
     })
 }
