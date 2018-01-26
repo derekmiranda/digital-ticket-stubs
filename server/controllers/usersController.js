@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const curry = require('lodash/curry')
+const pick = require('lodash/pick')
 const { or } = Sequelize.Op
 
 const { normalizeStr } = require('../../utils/general')
@@ -59,7 +60,22 @@ const usersController = {
 	},
 
 	createUser: async (user) => {
-		console.log(user)
+		try {
+			const result = await User.create(user)
+			return {
+				error: null,
+				data: pick(result, ['username', 'email', 'firstName', 'lastName'])
+			}
+		} catch (err) {
+			if (err.name && err.name.includes('Sequelize')) {
+				return {
+					error: 'database'
+				}
+			}
+			return {
+				error: 'server'
+			}
+		}
 	}
 }
 

@@ -6,13 +6,21 @@ const usersRouter = express.Router();
 usersRouter.post('/check', async (req, res, next) => {
   const user = req.body;
   const errors = await usersController.checkUser(user)
-  res.send(errors)
+  res.status(422).send(errors)
 });
 
 usersRouter.post('/create', async (req, res, next) => {
   const user = req.body;
   const result = await usersController.createUser(user)
-  res.status(201).send(result)
+
+  switch (result.error) {
+    case 'database':
+      return res.status(422).send(result) 
+    case 'server':
+      throw result
+    default:
+      res.status(201).send(result)
+  }
 });
 
 module.exports = usersRouter;
