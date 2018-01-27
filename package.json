@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "git@github.com:derekmiranda/digital-ticket-stubs.git",
   "dependencies": {
+    "argon2": "^0.17.0",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",

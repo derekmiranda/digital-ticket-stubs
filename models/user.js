@@ -1,4 +1,22 @@
 'use strict';
+
+import argon2 from 'argon2'
+import sequelize from 'sequelize'
+
+function hashPassword(pw) {
+  return argon2.hash(pw)
+    .catch(err => { throw err })
+}
+
+function convertUserPassword(user, options) {
+  return sequelize.Promise
+    .resolve(hashPassword(user.passHash))
+    .then((hash) => {
+      user.setDataValue('passHash', hash)
+      return user
+    })
+}
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: {
@@ -47,6 +65,10 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Movie);
       }
+    },
+    hooks: {
+      beforeCreate: convertUserPassword,
+      beforeUpdate: convertUserPassword,
     }
   });
   return User;

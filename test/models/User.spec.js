@@ -1,4 +1,5 @@
 import test from 'ava';
+import argon2 from 'argon2';
 
 import db from 'models';
 import { dbSetup } from 'utils/tests/db';
@@ -33,11 +34,6 @@ test.serial("Doesn't accept duplicate usernames or emails", async t => {
   await t.throws(User.create(sampleUser))
 })
 
-function toHash(str) {
-  const hash = str
-  return str
-}
-
 test.serial('should set password as 1-way encrypted hash', async t => {
   const { User } = db
 
@@ -51,9 +47,6 @@ test.serial('should set password as 1-way encrypted hash', async t => {
 
     
     t.not(sampleUser.passHash, savedUser.passHash)
-
-    // const hash = toHash(sampleUser.passHash)
-    // t.is(savedUser.passHash, hash)
   } catch (err) {
     throw err
   }
