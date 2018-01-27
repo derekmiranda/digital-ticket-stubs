@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
 import curry from 'lodash/curry';
@@ -57,6 +58,9 @@ const renderTicketsForm = ({
 }) => {
 	return (
 		<div id='tickets-form' style={{ marginTop: '2em' }}>
+			<Link to='/register'>
+				<h3>Register</h3>
+			</Link>
 			<ul>
 				{fields.map((member, idx) => {
 					return (
@@ -111,11 +115,6 @@ const TicketsForm = ({
 					id='add-ticket'
 					onClick={addTicket}
 				>+ Add Stub</button>
-				<button
-					type='button'
-					id='add-ticket'
-					onClick={handleSubmit}
-				>Save All Stubs</button>
 			</div>
 			{loading && loadingMsg}
 			<FieldArray 

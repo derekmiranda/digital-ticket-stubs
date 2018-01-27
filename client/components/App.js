@@ -25,8 +25,8 @@ const Container = styled.main`
 
 const renderRegisterPage = () => (
 	<div>
-		<Link to='/stubs'>
-			<h2>Go to App</h2>
+		<Link to='/'>
+			<h3>Back to App</h3>
 		</Link>
 		<RegisterPage />
 	</div>
@@ -38,12 +38,8 @@ const App = () => (
 	<Router>
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
-			<Route exact path='/' render={
-				// process.env.NODE_ENV === 'development'
-				// 	? RouterViewingsFormContainer :
-					renderRegisterPage
-			} />
-			<Route path='/stubs' component={RouterViewingsFormContainer} />
+			<Route exact path='/' render={RouterViewingsFormContainer} />
+			<Route path='/register' component={renderRegisterPage} />
 			<Attribution />
 		</Container>
 	</Router>
