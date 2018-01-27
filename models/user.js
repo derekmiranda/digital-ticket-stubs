@@ -1,7 +1,9 @@
 'use strict';
 
-import argon2 from 'argon2'
-import sequelize from 'sequelize'
+const argon2 = require('argon2')
+const sequelize = require('sequelize')
+
+const { normalizeStr } = require('../utils/general')
 
 function hashPassword(pw) {
   return argon2.hash(pw)
@@ -27,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true,
       },
       set(val) {
-        this.setDataValue('username', val.toLowerCase());
+        this.setDataValue('username', normalizeStr(val));
       }
     },
     passHash: {
@@ -57,7 +59,7 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true,
       },
       set(val) {
-        this.setDataValue('email', val.toLowerCase());
+        this.setDataValue('email', normalizeStr(val));
       }
     },
   }, {
