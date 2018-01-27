@@ -46,6 +46,10 @@ test.serial('should set password as 1-way encrypted hash', async t => {
     })
 
     t.not(sampleUser.passHash, savedUser.passHash)
+    
+    // verify password saved correctly
+    const verified = await argon2.verify(savedUser.passHash, sampleUser.passHash) 
+    t.true(verified)
   } catch (err) {
     throw err
   }
