@@ -56,6 +56,8 @@ const SearchResults = ({ results, formId, chooseMovie, closeSearch }) => {
       <img src={getThumbImg(poster_path)} />
     )
     const handleClick = () => chooseMovie({
+      title,
+      overview,
       poster_path,
       backdrop_path,
       formId,

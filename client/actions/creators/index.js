@@ -20,11 +20,15 @@ export const loadedSearchResults = (index, results) => ({
 })
 
 export const chooseMovie = ({
+  title,
+  overview,
   poster_path,
   backdrop_path,
   formId,
 }) => ({
   type: types.CHOOSE_MOVIE,
+  title,
+  overview,
   poster_path,
   backdrop_path,
   formId,
