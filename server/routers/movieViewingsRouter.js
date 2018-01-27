@@ -5,8 +5,6 @@ const movieViewingsController = require('../controllers/movieViewingsController'
 
 const movieViewingsRouter = express.Router();
 
-// TODO: stop making middleware dynamically on requests
-
 movieViewingsRouter.get('/', makeJSONResponseMiddleware(movieViewingsController.getMovieViewings));
 
 movieViewingsRouter.post('/', (req, res, next) => {

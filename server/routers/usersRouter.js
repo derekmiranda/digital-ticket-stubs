@@ -19,7 +19,12 @@ usersRouter.post('/create', async (req, res, next) => {
     case 'server':
       throw result
     default:
-      res.status(201).send(result)
+      res
+        .status(201)
+        .set({
+          'Location': `${req.protocol}//:${req.hostname}/api/viewings`
+        })
+        .send(result)
   }
 });
 

@@ -45,7 +45,6 @@ test.serial('should set password as 1-way encrypted hash', async t => {
       }
     })
 
-    
     t.not(sampleUser.passHash, savedUser.passHash)
   } catch (err) {
     throw err
