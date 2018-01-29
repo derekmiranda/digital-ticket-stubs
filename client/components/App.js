@@ -32,7 +32,7 @@ const App = () => (
 			<h1>Digital Ticket Stubs</h1>
 			<Route exact path='/' component={RegisterPage} />
 			<Route path='/stubs' render={RouterViewingsFormContainer} />
-			<Route path='/login' render={LoginPage} />
+			<Route path='/login' component={LoginPage} />
 			<Attribution />
 		</Container>
 	</Router>
