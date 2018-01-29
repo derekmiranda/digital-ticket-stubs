@@ -15,9 +15,10 @@ const viewings = (state = [], action = {}) => {
       return state.slice().sort(criteriaSort).sort(putSavedViewingsLast);
     }
     case CHOOSE_MOVIE: {
-      const { poster_path, backdrop_path } = action
+      const { poster_path, backdrop_path, title } = action
       return state.map(v => v.formId === action.formId ? {
         ...v,
+        title, 
         posterPath: poster_path,
         backdropPath: backdrop_path,
       } : v)

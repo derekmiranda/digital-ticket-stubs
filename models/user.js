@@ -1,4 +1,24 @@
 'use strict';
+
+const argon2 = require('argon2')
+const sequelize = require('sequelize')
+
+const { normalizeStr } = require('../utils/general')
+
+function hashPassword(pw) {
+  return argon2.hash(pw)
+    .catch(err => { throw err })
+}
+
+function convertUserPassword(user, options) {
+  return sequelize.Promise
+    .resolve(hashPassword(user.passHash))
+    .then((hash) => {
+      user.setDataValue('passHash', hash)
+      return user
+    })
+}
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: {
@@ -9,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true,
       },
       set(val) {
-        this.setDataValue('username', val.toLowerCase());
+        this.setDataValue('username', normalizeStr(val));
       }
     },
     passHash: {
@@ -20,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
         origPasswordWithinLen: origPw => {
           if (origPw.length < 8) {
             throw new Error('Password too short');
-          } else if (origPw.length > 16) {
+          } else if (origPw.length > 160) {
             throw new Error('Password too long');
           }
         },
@@ -39,7 +59,7 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true,
       },
       set(val) {
-        this.setDataValue('email', val.toLowerCase());
+        this.setDataValue('email', normalizeStr(val));
       }
     },
   }, {
@@ -47,6 +67,10 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Movie);
       }
+    },
+    hooks: {
+      beforeCreate: convertUserPassword,
+      beforeUpdate: convertUserPassword,
     }
   });
   return User;

@@ -27,7 +27,7 @@ module.exports = {
           origPasswordWithinLen: origPw => {
             if (origPw.length < 8) {
               throw new Error('Password too short');
-            } else if (origPw.length > 16) {
+            } else if (origPw.length > 160) {
               throw new Error('Password too long');
             }
           },

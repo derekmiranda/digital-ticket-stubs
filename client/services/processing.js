@@ -1,3 +1,5 @@
+import { objWithoutKey } from '../utils/reducerUtils'
+
 function watchtimeObjToISO(obj) {
   const { month, day, year } = obj;
   return month && day && year && new Date(year, month - 1, day).toISOString() || null;
@@ -35,4 +37,11 @@ export const processViewingsFromClient = (viewings) => {
 
 export const processViewingsFromDb = (viewings) => {
   return viewings.map(convertDbWatchtime);
+}
+
+export const processUserForDb = (user) => {
+  return {
+    ...objWithoutKey(user),
+    passHash: user.password
+  }
 }
