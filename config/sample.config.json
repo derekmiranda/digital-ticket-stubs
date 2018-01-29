@@ -4,7 +4,8 @@
     "password": "stubword",
     "database": "stubsies",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "secret": "secret..."
   },
   "test": {
     "dialect": "sqlite",
@@ -16,6 +17,7 @@
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "secret": "secret..."
   }
 }
