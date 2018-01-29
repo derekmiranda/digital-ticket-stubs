@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import ViewingsFormContainer from 'containers/ViewingsFormContainer';
 import RegisterPage from './RegisterPage'
+import LoginPage from './LoginPage'
 import Attribution from './Attribution';
 import { bgColor, mainTextColor } from 'constants';
 import { forMobile } from 'client/utils/styleUtils';
@@ -30,7 +31,8 @@ const App = () => (
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
 			<Route exact path='/' component={RegisterPage} />
-			<Route exact path='/stubs' render={RouterViewingsFormContainer} />
+			<Route path='/stubs' render={RouterViewingsFormContainer} />
+			<Route path='/login' render={LoginPage} />
 			<Attribution />
 		</Container>
 	</Router>

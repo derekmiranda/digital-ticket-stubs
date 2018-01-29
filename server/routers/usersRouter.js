@@ -24,6 +24,7 @@ usersRouter.post('/create', async (req, res, next) => {
         .set({
           'Location': `${req.protocol}//:${req.hostname}/api/viewings`
         })
+        // TODO: send token
         .send(result)
   }
 });
