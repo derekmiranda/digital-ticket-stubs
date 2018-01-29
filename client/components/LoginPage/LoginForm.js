@@ -30,7 +30,7 @@ const LoginForm = ({handleSubmit}) => {
         inputStyle={inputStyle}
       />
       <br display='none'/>
-      <button type='submit'>Log In</button>
+      <button type='submit'>Submit</button>
       <Link to='/'>
         <p>No account yet?</p>
       </Link>
