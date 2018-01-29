@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { JWT_SECRET, JWT_EXPIRY } = process.env
+const { JWT_SECRET, JWT_EXPIRY, JWT_REFRESH_TIME } = process.env
 
 module.exports = {
 	createToken({ user, host }) {
@@ -25,5 +25,11 @@ module.exports = {
 	checkTokenExpiry(expiry) {
 		const expiry_ms = expiry * 1000
 		return Date.now() >= expiry_ms
-	}
+	},
+
+	shouldRefreshToken(issueTime) {
+		const refreshTime = +JWT_REFRESH_TIME
+		const refreshThreshold = (issueTime + refreshTime) * 1000
+		return Date.now() >= refreshThreshold
+	},
 }
