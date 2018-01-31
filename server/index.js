@@ -7,7 +7,7 @@ const searchRouter = require('./routers/searchRouter');
 const viewingsRouter = require('./routers/movieViewingsRouter');
 const usersRouter = require('./routers/usersRouter');
 
-const port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 const app = express();
 
 // parse POST reqs
@@ -49,6 +49,20 @@ app.get('*', (req, res) => {
 	return res.redirect(302, '/')
 })
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+function startListening(app, port) {
+	const server = app.listen(port, () => {
+		console.log(`Listening on port ${port}`)
+	})
+
+	server.on('error', (err) => {
+		if (err.code !== 'EADDRINUSE') throw err
+		startListening(app, port + 1)
+	})
+
+	return server
+}
+
+startListening(app, port)
+
 
 module.exports = app
