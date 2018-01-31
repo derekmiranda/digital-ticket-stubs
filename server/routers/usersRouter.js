@@ -26,16 +26,18 @@ usersRouter.post('/create', async (req, res, next) => {
         return formattedJSONResponse(res.status(422), result) 
       case 'server':
         throw result
-      default:
+      default: {
+        const maxAge = (+JWT_EXPIRY) * 1000
         return formattedJSONResponse(
           res
             .status(201)
             .set({
               'Location': `${req.protocol}//:${req.hostname}/api/viewings`,
             })
-            .cookie('access_token', token),
+            .cookie('access_token', token, { maxAge }),
           result
         )
+      }
     }
   } catch (err) {
     throw err
