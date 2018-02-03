@@ -24,6 +24,7 @@ export const submitUser = (user) => {
     },
     method: 'POST',
     body: JSON.stringify(processedUser),
+    credentials: 'include',
   })
     .then(res => res.json())
     .catch(err => console.error(err))
