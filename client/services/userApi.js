@@ -24,7 +24,9 @@ export const submitUser = (user) => {
     },
     method: 'POST',
     body: JSON.stringify(processedUser),
-    credentials: 'include',
+    credentials: process.env.NODE_ENV === 'production'
+      ? 'same-origin'
+      : 'include',
   })
     .then(res => res.json())
     .catch(err => console.error(err))
