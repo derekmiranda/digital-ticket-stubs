@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { reduxForm } from 'redux-form';
+import { reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
@@ -10,7 +10,15 @@ import { submitUser } from '../services/userApi'
 
 class RegisterFormWithRouter extends Component {
   submitForm(user) {
-    this.props.history.push('/stubs')
+    return Promise.resolve(submitUser(user))
+      .then((result) => {
+        this.props.history.push('/stubs')
+      })
+      .catch((err) => {
+        throw new SubmissionError({
+          _error: 'Registration failed, please try again.'
+        })
+      })
   }
 
   render() {
@@ -24,7 +32,6 @@ const ReduxFormContainer = reduxForm({
   form: formName,
   validate: validateRegisterForm,
   asyncValidate: asyncValidateRegisterForm,
-  // onSubmit: submitUser,
   asyncBlurFields: ['username', 'email'],
 })(RegisterFormWithRouter)
 
