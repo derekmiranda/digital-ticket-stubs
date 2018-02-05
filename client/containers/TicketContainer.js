@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 import { getFormValues, getFormMeta } from 'redux-form';
 
 import StyledTicket from 'components/styled/StyledTicket';
-import { startTicketDelete } from 'actions/creators';
+import { startTicketDelete, removeTicket } from 'actions/creators';
 import { validateWatchtime, clearWatchtime } from 'actions/creators/thunks';
 import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
+
+/* TEMP */
+const checkLogin = () => false
 
 const formSelector = getFormValues(formName);
 const metaSelector = getFormMeta(formName);
@@ -53,8 +56,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
   const watchtimeWarning = watchtimeWarnings && watchtimeWarnings[idx];
 
+  // different actions based on login status
+  const loggedIn = checkLogin()
+
   const boundActionCreators = bindActionCreators({
-    removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
+    removeTicket: () => loggedIn
+      ? startTicketDelete(viewing.formId, viewing.id)
+      : removeTicket(viewing.formId),
     validateWatchtime: () => validateWatchtime(viewing, idx),
     clearWatchtime: () => clearWatchtime(name),
     handleTicketSubmit,
@@ -65,6 +73,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     ...dispatchProps,
     ...boundActionCreators,
     viewing,
+    loggedIn,
     allWatchtimeTouched,
     ticketSubmitting,
     watchtimeWarning,

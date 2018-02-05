@@ -26,6 +26,7 @@ const Ticket = ({
 	name,
 	className = 'ticket',
 	viewing,
+	loggedIn,
 	allWatchtimeTouched,
 	handleTicketSubmit,
 	validateWatchtime,
@@ -45,7 +46,12 @@ const Ticket = ({
 	return (
 		<div className={className} onKeyUp={handleKeyUp}>
 			<ButtonContainer>
-				<SaveButton type='button' title='Save Ticket' onClick={handleTicketSubmit}>
+				<SaveButton
+					type='button'
+					title='Save Ticket'
+					onClick={handleTicketSubmit}
+					disabled={!loggedIn}
+				>
 					✔
 				</SaveButton>
 				<DeleteButton type='button' title='Delete Ticket' onClick={removeTicket}>
