@@ -11,7 +11,13 @@ export const emptyOrFilledWatchtime = wt => {
 	return !!res
 }
 
+export const alphanumericAndUnderscores = val => !/^\w+$/.test(val)
+	? "Can only contain letters, numbers, or underscores"
+	: undefined
+
 export const isEmail = val => !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val)
+	? "Must be an email address"
+	: undefined
 
 export const checkPasswordLength = val => val.length < 8 || val.length > 16
 	? "Password must be between 8 and 16 characters"
