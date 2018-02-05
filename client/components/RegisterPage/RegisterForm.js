@@ -14,7 +14,8 @@ const baseInputWidth = 25
 
 const nameInputStyle = {
   boxSizing: 'border-box',
-  width: `${baseInputWidth / 2}em`
+  width: `${baseInputWidth / 2}em`,
+  maxWidth: '100%',
 }
 
 const inputStyle = {
