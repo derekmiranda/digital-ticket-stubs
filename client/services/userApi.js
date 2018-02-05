@@ -9,7 +9,10 @@ export const checkUser = (user) => {
     body: JSON.stringify(user),
   })
     .then(res => res.json())
-    .catch(err => console.error(err))
+    .catch(err => {
+      console.error(err)
+      throw err
+    })
     .then(errors => {
       if (Object.keys(errors || {}).length) throw errors
     })
@@ -29,5 +32,8 @@ export const submitUser = (user) => {
       : 'include',
   })
     .then(res => res.json())
-    .catch(err => console.error(err))
+    .catch(err => {
+      console.error(err)
+      throw err
+    })
 }
