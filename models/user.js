@@ -26,6 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       allowNull: false,
       validate: {
+        is: /^\w+/i,
         notEmpty: true,
       },
       set(val) {

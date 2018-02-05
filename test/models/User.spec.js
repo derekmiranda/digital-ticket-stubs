@@ -55,4 +55,18 @@ test.serial('should set password as 1-way encrypted hash', async t => {
   }
 })
 
-test.serial.todo("Doesn't accept values with invalid characters")
+test.serial("Usernames only contain alphanumeric characters or underscores", async t => {
+  const { User } = db
+
+  try {
+    await User.create({
+      ...sampleUser,
+      username: '#$@*ii^&%$'
+    })
+
+    t.fail("Should not create user w/ invalid username")
+  } catch (err) {
+    if (err.name === 'SequelizeValidationError') t.pass()
+    else throw err
+  }
+})
