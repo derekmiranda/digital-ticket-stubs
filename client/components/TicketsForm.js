@@ -116,12 +116,13 @@ const TicketsForm = ({
 					onClick={addTicket}
 				>+ Add Stub</button>
 			</div>
-			{loading && loadingMsg}
-			<FieldArray 
-				name='viewings'
-				component={renderTicketsForm}
-				props={{ handleSubmit }}
-			/>
+			{loading ? loadingMsg :
+				<FieldArray 
+					name='viewings'
+					component={renderTicketsForm}
+					props={{ handleSubmit }}
+				/>
+			}
 		</StyledTicketsForm>
 	)
 }
