@@ -30,8 +30,7 @@ const App = () => (
 	<Router>
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
-			{/* <Route exact path='/' component={RegisterPage} /> */}
-			<Route exact path='/' component={RouterViewingsFormContainer} />
+			<Route exact path='/' component={RegisterPage} />
 			<Route path='/stubs' render={RouterViewingsFormContainer} />
 			<Route path='/login' component={LoginPage} />
 			<Attribution />
