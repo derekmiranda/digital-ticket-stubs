@@ -8,7 +8,11 @@ movieViewingsController.getMovieViewings = (queryObj = {}) => {
 }
 
 movieViewingsController.addMovieViewing = (movieViewing) => {
-  return MovieViewing.create(movieViewing);
+  const viewingWithUserId = Object.assign({}, movieViewing, {
+    // TEMP: set UserId based on request access token
+    UserId: 0
+  })
+  return MovieViewing.create(viewingWithUserId);
 }
 
 movieViewingsController.updateMovieViewings = (movieViewings) => {
