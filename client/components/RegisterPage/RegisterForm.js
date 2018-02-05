@@ -22,8 +22,13 @@ const inputStyle = {
   width: `${baseInputWidth}em`
 }
 
-const RegisterForm = ({handleSubmit, asyncValidating, valid}) => (
-  <StyledForm onSubmit={handleSubmit}>
+const RegisterForm = ({
+  handleSubmit,
+  asyncValidating,
+  valid,
+  submitForm,
+}) => (
+  <StyledForm onSubmit={handleSubmit(submitForm)}>
     <h2 style={{
       marginTop: 0,
       paddingTop: 0
