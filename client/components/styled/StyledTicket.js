@@ -50,8 +50,10 @@ const StyledTicket = styled(Ticket)`
 	padding: .5em 1em;
 	
 	font-family: ${ticketFonts};
-	outline: .25em solid rgba(0,0,0,0.5);
-	opacity: ${props => props.viewing.id ? 1 : .75};
+	outline: ${props => props.viewing.id
+		? '.25em solid rgba(0,0,0,0.5)'
+		: '.25em solid rgba(0,0,0,0.2)'
+	};
 
 	${bgImg}
 	background-size: cover;
