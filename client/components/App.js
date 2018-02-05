@@ -24,14 +24,14 @@ const Container = styled.main`
 	overflow: auto;
 `
 
-const RouterViewingsFormContainer = withRouter(ViewingsFormContainer)
+const StubsPage = withRouter(ViewingsFormContainer)
 
 const App = () => (
 	<Router>
 		<Container>
 			<h1>Digital Ticket Stubs</h1>
-			<Route exact path='/' component={RegisterPage} />
-			<Route path='/stubs' render={RouterViewingsFormContainer} />
+			<Route exact path='/' render={StubsPage} />
+			<Route path='/register' component={RegisterPage} />
 			<Route path='/login' component={LoginPage} />
 			<Attribution />
 		</Container>
