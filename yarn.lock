@@ -186,8 +186,8 @@ are-we-there-yet@~1.1.2:
     readable-stream "^2.0.6"
 
 argon2@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/argon2/-/argon2-0.17.0.tgz#b8912d0ec40bd60c0468979ce4dad6f6d392c192"
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/argon2/-/argon2-0.17.1.tgz#0d8edc8ae98790544c61b3d084e12d4ef09e36ca"
   dependencies:
     any-promise "^1.3.0"
     bindings "^1.2.1"
