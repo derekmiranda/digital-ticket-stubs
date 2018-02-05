@@ -48,7 +48,7 @@ const Ticket = ({
 			<ButtonContainer>
 				<SaveButton
 					type='button'
-					title='Save Ticket'
+					title={loggedIn ? 'Save Stub' : 'Login to save Stubs'}
 					onClick={handleTicketSubmit}
 					disabled={!loggedIn}
 				>
