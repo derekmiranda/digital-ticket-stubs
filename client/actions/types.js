@@ -19,6 +19,7 @@ export const WATCHTIME_VALID = 'WATCHTIME_VALID';
 export const CLEAR_WATCHTIME = 'CLEAR_WATCHTIME';
 
 // ticket submit
+export const TICKET_SAVE = 'TICKET_SAVE';
 export const TICKET_SUBMIT = 'TICKET_SUBMIT';
 export const START_TICKET_SUBMIT = 'START_TICKET_SUBMIT';
 export const STOP_TICKET_SUBMIT = 'STOP_TICKET_SUBMIT';

@@ -37,6 +37,10 @@ export const chooseMovie = ({
 export const closeSearch = createSimpleActionCreator(types.CLOSE_SEARCH)
 
 // ticket requests
+export const ticketSave = (formId) => ({
+  type: types.TICKET_SAVE,
+  formId,
+})
 export const startTicketSubmit = ({ viewing, index, ticketName }) => ({
   type: types.START_TICKET_SUBMIT,
   viewing,
