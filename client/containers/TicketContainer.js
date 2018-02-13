@@ -55,9 +55,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const loggedIn = checkLogin()
 
   const boundActionCreators = bindActionCreators({
-    removeTicket: loggedIn
-      ? () => startTicketDelete(viewing.formId, viewing.id)
-      : () => removeTicket(viewing.formId),
+    removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
     validateWatchtime: () => validateWatchtime(viewing, idx),
     clearWatchtime: () => clearWatchtime(name),
     handleTicketSubmit: createTicketSubmitHandler({
