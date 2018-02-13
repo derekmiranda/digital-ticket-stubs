@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { getFormValues, getFormMeta } from 'redux-form';
 
 import StyledTicket from 'components/styled/StyledTicket';
-import { startTicketDelete, removeTicket } from 'actions/creators';
+import { startTicketDelete, removeTicket, ticketSave } from 'actions/creators';
 import { validateWatchtime, clearWatchtime } from 'actions/creators/thunks';
 import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
 
 /* TEMP */
-const checkLogin = () => false
+const checkLogin = () => true
 
 const formSelector = getFormValues(formName);
 const metaSelector = getFormMeta(formName);
@@ -48,11 +48,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     })
   )
 
-  const handleTicketSubmit = createTicketSubmitHandler({
-    state: stateProps,
-    idx,
-    name,
-  });
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
   const watchtimeWarning = watchtimeWarnings && watchtimeWarnings[idx];
 
@@ -60,12 +55,17 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const loggedIn = checkLogin()
 
   const boundActionCreators = bindActionCreators({
-    removeTicket: () => loggedIn
-      ? startTicketDelete(viewing.formId, viewing.id)
-      : removeTicket(viewing.formId),
+    removeTicket: loggedIn
+      ? () => startTicketDelete(viewing.formId, viewing.id)
+      : () => removeTicket(viewing.formId),
     validateWatchtime: () => validateWatchtime(viewing, idx),
     clearWatchtime: () => clearWatchtime(name),
-    handleTicketSubmit,
+    handleTicketSubmit: createTicketSubmitHandler({
+      state: stateProps,
+      idx,
+      name,
+      loggedIn,
+    }),
   }, dispatch);
 
   return {

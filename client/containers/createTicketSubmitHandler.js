@@ -31,6 +31,7 @@ const createTicketSubmitHandler = ({
   state,
   idx,
   name: ticketName,
+  loggedIn,
 }) => () => {
   const errors = getErrorsForViewing(state, idx, [
     syncErrorsSelector,
@@ -51,7 +52,8 @@ const createTicketSubmitHandler = ({
     errors,
     index: idx,
     ticketFieldNames,
-    ticketName
+    ticketName,
+    loggedIn,
   });
 }
 

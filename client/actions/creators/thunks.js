@@ -9,7 +9,8 @@ import {
 } from 'actions/types';
 import {
 	startTicketSubmit,
-	stopTicketSubmit
+	stopTicketSubmit,
+	ticketSave,
 } from 'actions/creators';
 import {
 	ticketsFormName as formName
@@ -24,6 +25,7 @@ export function ticketSubmit({
 	index,
 	ticketFieldNames,
 	ticketName,
+	loggedIn,
 }) {
 	const getViewingWithValidWatchtime = (view, lastValidWt) => {
 		return view && emptyOrFilledWatchtime(view.watchtime)
@@ -35,11 +37,16 @@ export function ticketSubmit({
 		dispatch(touch(formName, ...ticketFieldNames))
 
 		if (!errors) {
-			dispatch(startTicketSubmit({
-				viewing: getViewingWithValidWatchtime(viewing, lastValidWatchtime),
-				index,
-				ticketName
-			}));
+			if (loggedIn) {
+				dispatch(startTicketSubmit({
+					viewing: getViewingWithValidWatchtime(viewing, lastValidWatchtime),
+					index,
+					ticketName
+				}));
+			} else {
+				// save ticket
+				dispatch(ticketSave(viewing.formId))
+			}
 		} else debug(errors)
 	}
 }

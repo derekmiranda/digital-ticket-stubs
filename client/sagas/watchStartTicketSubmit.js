@@ -16,6 +16,7 @@ import {
   startTicketSubmit,
   stopTicketSubmit,
   ticketSubmitSucceeded,
+  ticketSave,
 } from '../actions/creators';
 import { ticketsFormName } from 'client/constants';
 
@@ -34,6 +35,7 @@ function* saveViewing({
       yield put(change(ticketsFormName, `${ticketName}.id`, createdViewing.id));
     }
     yield put(ticketSubmitSucceeded(index))
+    yield put(ticketSave(viewing.formId))
   } catch (err) {
     yield put(stopTicketSubmit(index))
     console.error(err);

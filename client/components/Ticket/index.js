@@ -50,7 +50,7 @@ const Ticket = ({
 					type='button'
 					title={loggedIn ? 'Save Stub' : 'Login to save Stubs'}
 					onClick={handleTicketSubmit}
-					disabled={!loggedIn}
+					// disabled={!loggedIn}
 				>
 					✔
 				</SaveButton>

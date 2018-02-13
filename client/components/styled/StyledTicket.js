@@ -50,7 +50,7 @@ const StyledTicket = styled(Ticket)`
 	padding: .5em 1em;
 	
 	font-family: ${ticketFonts};
-	outline: ${props => props.viewing.id
+	outline: ${props => props.viewing.saved
 		? '.25em solid rgba(0,0,0,0.5)'
 		: '.25em solid rgba(0,0,0,0.2)'
 	};
