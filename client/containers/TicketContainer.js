@@ -11,7 +11,7 @@ import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
 
 // TODO: check server
-const checkLogin = () => true
+const checkLogin = () => false
 
 const formSelector = getFormValues(formName);
 const metaSelector = getFormMeta(formName);
