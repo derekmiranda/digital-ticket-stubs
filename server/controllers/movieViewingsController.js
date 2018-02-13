@@ -9,7 +9,7 @@ movieViewingsController.getMovieViewings = (queryObj = {}) => {
 
 movieViewingsController.addMovieViewing = (movieViewing) => {
   const viewingWithUserId = Object.assign({}, movieViewing, {
-    // TEMP: set UserId based on request access token
+    // TODO: set UserId based on request access token
     UserId: 0
   })
   return MovieViewing.create(viewingWithUserId);

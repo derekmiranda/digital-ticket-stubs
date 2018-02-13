@@ -10,7 +10,7 @@ import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
 
-/* TEMP */
+// TODO: check server
 const checkLogin = () => true
 
 const formSelector = getFormValues(formName);
