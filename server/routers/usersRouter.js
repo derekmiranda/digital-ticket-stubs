@@ -25,9 +25,7 @@ usersRouter.post("/check", async (req, res, next) => {
   return formattedJSONResponse(res.status(422), errors);
 });
 
-usersRouter.post("/register",
-  passport.authenticate('register'),
-  (req, res) => res.send('Created')
-);
+usersRouter.post("/login", passport.authenticate('login'));
+usersRouter.post("/register", passport.authenticate('register'));
 
 module.exports = usersRouter;
