@@ -3338,10 +3338,6 @@ isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
 
-isemail@1.x.x:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/isemail/-/isemail-1.2.0.tgz#be03df8cc3e29de4d2c5df6501263f1fa4595e9a"
-
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -3366,15 +3362,6 @@ isomorphic-fetch@^2.1.1:
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
-
-joi@^6.10.1:
-  version "6.10.1"
-  resolved "https://registry.yarnpkg.com/joi/-/joi-6.10.1.tgz#4d50c318079122000fe5f16af1ff8e1917b77e06"
-  dependencies:
-    hoek "2.x.x"
-    isemail "1.x.x"
-    moment "2.x.x"
-    topo "1.x.x"
 
 js-base64@^2.1.8:
   version "2.1.9"
@@ -3467,16 +3454,6 @@ json5@^0.5.0, json5@^0.5.1:
 jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
-
-jsonwebtoken@^7.0.0:
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.4.3.tgz#77f5021de058b605a1783fa1283e99812e645638"
-  dependencies:
-    joi "^6.10.1"
-    jws "^3.1.4"
-    lodash.once "^4.0.0"
-    ms "^2.0.0"
-    xtend "^4.0.1"
 
 jsonwebtoken@^8.1.1:
   version "8.1.1"
@@ -3958,10 +3935,6 @@ moment-timezone@^0.5.4:
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.13.tgz#99ce5c7d827262eb0f1f702044177f60745d7b90"
   dependencies:
     moment ">= 2.9.0"
-
-moment@2.x.x:
-  version "2.20.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
 "moment@>= 2.9.0", moment@^2.13.0:
   version "2.18.1"
@@ -4475,20 +4448,13 @@ parseurl@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.1.tgz#c8ab8c9223ba34888aa64a297b28853bec18da56"
 
-passport-jwt@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/passport-jwt/-/passport-jwt-3.0.1.tgz#e4f7276dad8bd251d43c6fc38883130b963272f6"
-  dependencies:
-    jsonwebtoken "^7.0.0"
-    passport-strategy "^1.0.0"
-
 passport-local@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
   dependencies:
     passport-strategy "1.x.x"
 
-passport-strategy@1.x.x, passport-strategy@^1.0.0:
+passport-strategy@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-strategy/-/passport-strategy-1.0.0.tgz#b5539aa8fc225a3d1ad179476ddf236b440f52e4"
 
@@ -5917,12 +5883,6 @@ to-arraybuffer@^1.0.0:
 to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
-
-topo@1.x.x:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/topo/-/topo-1.1.0.tgz#e9d751615d1bb87dc865db182fa1ca0a5ef536d5"
-  dependencies:
-    hoek "2.x.x"
 
 toposort-class@^1.0.1:
   version "1.0.1"
