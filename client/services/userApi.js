@@ -14,7 +14,7 @@ export const checkUser = (user) => {
       throw err
     })
     .then(errors => {
-      if (Object.keys(errors || {}).length) throw errors
+      if (errors && Object.keys(errors).length) throw errors
     })
 }
 

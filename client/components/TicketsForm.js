@@ -1,18 +1,14 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { FieldArray } from 'redux-form';
-import curry from 'lodash/curry';
-import styled from 'styled-components';
+import PropTypes from 'prop-types'
+import { FieldArray } from 'redux-form'
+import curry from 'lodash/curry'
+import styled from 'styled-components'
 
-import TicketContainer from 'containers/TicketContainer';
-import getReadableFieldName from 'client/utils/getReadableFieldName';
-import {
-	forMobile,
-	forTablet,
-	forDesktop,
-} from 'client/utils/styleUtils';
-import debug from 'client/utils/debug';
+import TicketContainer from 'containers/TicketContainer'
+import getReadableFieldName from 'client/utils/getReadableFieldName'
+import { forMobile, forTablet, forDesktop } from 'client/utils/styleUtils'
+import debug from 'client/utils/debug'
 
 const StyledTicketsForm = styled.form`
 	margin: 3em 0 3em;
@@ -51,84 +47,82 @@ const StyledTicketsForm = styled.form`
 	}
 `
 
-const renderTicketsForm = ({
-	fields,
-	handleSubmit,
-	meta: { submitting, submitFailed }
-}) => {
-	return (
-		<div id='tickets-form' style={{ marginTop: '2em' }}>
-			<Link to='/register'>
-				<h3>Register</h3>
-			</Link>
-			<ul>
-				{fields.map((member, idx) => {
-					return (
-						<li key={idx}>
-							<TicketContainer name={member} idx={idx} />
-						</li>
-					)
-				})}
-			</ul>
-			{submitting && <p className='submitting'>Saving all stubs...</p>}
-		</div>
-	)
+const AccountQuestion = () => {
+  const registerLink = <Link to="/register">Register</Link>
+  const loginLink = <Link to="/login">Login</Link>
+
+  return (
+    <h3>
+      {registerLink} {' or '} {loginLink} {'?'}
+    </h3>
+  )
 }
 
-const createSortButton = curry(
-	(handleChange, value) => (
-		<button type='button'
-			value={value}
-			onClick={() => handleChange(value)}
-		>
-			{getReadableFieldName(value)}
-		</button>
-	)
-)
-
-const TicketsForm = ({
+const renderTicketsForm = ({
+  fields,
 	handleSubmit,
-	loading,
-	addTicket,
-	sortTickets,
+	loggedIn,
+  meta: { submitting, submitFailed }
 }) => {
-	const createSortButtonWithTarget = createSortButton(sortTickets); 
-	const titleSortBtn = createSortButtonWithTarget('title');
-	const venueSortBtn = createSortButtonWithTarget('venue');
-	const watchtimeSortBtn = createSortButtonWithTarget('watchtime');
+  return (
+		<div id="tickets-form" style={{ marginTop: '2em' }}>
+			{!loggedIn && <AccountQuestion />}
+      <ul>
+        {fields.map((member, idx) => {
+          return (
+            <li key={idx}>
+              <TicketContainer name={member} idx={idx} />
+            </li>
+          )
+        })}
+      </ul>
+      {submitting && <p className="submitting">Saving all stubs...</p>}
+    </div>
+  )
+}
 
-	const loadingMsg = (
-		<p className='loading'>Loading...</p>
-	)
+const createSortButton = curry((handleChange, value) => (
+  <button type="button" value={value} onClick={() => handleChange(value)}>
+    {getReadableFieldName(value)}
+  </button>
+))
 
-	return (
-		<StyledTicketsForm>
-			<div id='sort'>
-				<strong>Sort by:</strong>
-				{titleSortBtn}
-				{venueSortBtn}
-				{watchtimeSortBtn}
-			</div>
-			<div id='stub-btns'>
-				<button
-					type='button'
-					id='add-ticket'
-					onClick={addTicket}
-				>+ Add Stub</button>
-			</div>
-			{loading ? loadingMsg :
-				<FieldArray 
-					name='viewings'
-					component={renderTicketsForm}
-					props={{ handleSubmit }}
-				/>
-			}
-		</StyledTicketsForm>
-	)
+const TicketsForm = ({ handleSubmit, loading, addTicket, sortTickets }) => {
+  const createSortButtonWithTarget = createSortButton(sortTickets)
+  const titleSortBtn = createSortButtonWithTarget('title')
+  const venueSortBtn = createSortButtonWithTarget('venue')
+  const watchtimeSortBtn = createSortButtonWithTarget('watchtime')
+
+  const loadingMsg = <p className="loading">Loading...</p>
+
+  return (
+    <StyledTicketsForm>
+      <div id="sort">
+        <strong>Sort by:</strong>
+        {titleSortBtn}
+        {venueSortBtn}
+        {watchtimeSortBtn}
+      </div>
+      <div id="stub-btns">
+        <button type="button" id="add-ticket" onClick={addTicket}>
+          + Add Stub
+        </button>
+      </div>
+      {loading ? (
+        loadingMsg
+      ) : (
+        <FieldArray
+          name="viewings"
+          component={renderTicketsForm}
+          props={{ handleSubmit }}
+        />
+      )}
+    </StyledTicketsForm>
+  )
 }
 
 TicketsForm.propTypes = {
-	handleTicketSubmit: PropTypes.func,
+  handleTicketSubmit: PropTypes.func
 }
 
-export default TicketsForm;
+export default TicketsForm
