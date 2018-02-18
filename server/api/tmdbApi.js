@@ -1,6 +1,3 @@
-require('dotenv').config({
-  path: `./config/.${process.env.NODE_ENV}.env`
-});
 const fetch = require('node-fetch');
 
 const cleanUpMovies = require('./cleanUpMovies');

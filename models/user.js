@@ -19,7 +19,7 @@ function convertUserPassword(user, options) {
     })
 }
 
-module.exports = function(sequelize, DataTypes) {
+const User = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
@@ -69,6 +69,17 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Movie);
       }
     },
+    instanceMethods: {
+      verifyPassHash: async function(incomingPassHash) {
+        try {
+          const { passHash } = this
+          console.log('hash', passHash)
+          return await argon2.verify(passHash, incomingPassHash)
+        } catch (err) {
+          throw err
+        }
+      }
+    },
     hooks: {
       beforeCreate: convertUserPassword,
       beforeUpdate: convertUserPassword,
@@ -76,3 +87,5 @@ module.exports = function(sequelize, DataTypes) {
   });
   return User;
 };
+
+module.exports = User

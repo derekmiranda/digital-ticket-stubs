@@ -31,9 +31,15 @@ export const submitUser = (user) => {
       ? 'same-origin'
       : 'include',
   })
-    .then(res => res.json())
     .catch(err => {
       console.error(err)
       throw err
+    })
+    .then(res => {
+      if (res.ok) {
+        return res
+      } else {
+        throw res
+      }
     })
 }

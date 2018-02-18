@@ -12,7 +12,7 @@ class RegisterFormWithRouter extends Component {
   submitForm(user) {
     return Promise.resolve(submitUser(user))
       .then((result) => {
-        this.props.history.push('/stubs')
+        this.props.history.push('/')
       })
       .catch((err) => {
         throw new SubmissionError({
