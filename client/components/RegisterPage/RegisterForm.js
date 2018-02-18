@@ -3,6 +3,7 @@ import {Field} from 'redux-form'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
+import ErrorMsg from '../ErrorMsg'
 import {renderInput} from '../AuthComponents'
 import {isRequired, isEmail, checkPasswordLength, alphanumericAndUnderscores} from '../../validators';
 
@@ -28,12 +29,14 @@ const RegisterForm = ({
   asyncValidating,
   valid,
   submitForm,
+  error,
 }) => (
   <StyledForm onSubmit={handleSubmit(submitForm)}>
     <h2 style={{
       marginTop: 0,
       paddingTop: 0
     }}>Register</h2>
+    {error && <ErrorMsg msg={error} />}
     <fieldset style={{
       border: 0,
       padding: 0
