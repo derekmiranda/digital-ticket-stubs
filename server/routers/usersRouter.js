@@ -24,7 +24,7 @@ usersRouter.post('/check', async(req, res, next) => {
   return formattedJSONResponse(res.status(422), errors)
 });
 
-usersRouter.post('/create', async(req, res, next) => {
+usersRouter.post('/register', async(req, res, next) => {
   try {
     const user = req.body;
     const result = await usersController.createUser(user)

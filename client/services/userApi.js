@@ -20,7 +20,7 @@ export const checkUser = (user) => {
 
 export const submitUser = (user) => {
   const processedUser = processUserForDb(user)
-  return fetch(`${process.env.USER_API_URL}/create`, {
+  return fetch(`${process.env.USER_API_URL}/register`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
