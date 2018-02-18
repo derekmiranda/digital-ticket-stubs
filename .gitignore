@@ -71,3 +71,4 @@ typings/
 
 nodemon.json
 .DS_Store
+.prettierrc
