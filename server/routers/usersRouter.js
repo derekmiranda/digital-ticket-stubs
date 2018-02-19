@@ -27,7 +27,7 @@ router.post('/check', async (req, res, next) => {
 })
 
 router.post('/login', passport.authenticate('login'), (req, res) => {
-  log('Session ID:', req.sessionID)  
+  log('User:', req.user)  
   return res.send('User logged in')
 })
 
