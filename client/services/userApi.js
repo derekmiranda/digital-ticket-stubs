@@ -1,6 +1,9 @@
 import { processUserForDb } from './processing'
+import { authConfig } from './config'
+
 export const checkUser = (user) => {
   return fetch(`${process.env.USER_API_URL}/check`, {
+    ...authConfig,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -21,15 +24,13 @@ export const checkUser = (user) => {
 const createUserSubmitFunc = (route) => (user) => {
   const processedUser = processUserForDb(user)
   return fetch(route, {
+    ...authConfig,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'POST',
     body: JSON.stringify(processedUser),
-    credentials: process.env.NODE_ENV === 'production'
-      ? 'same-origin'
-      : 'include',
   })
     .catch(err => {
       console.error(err)
