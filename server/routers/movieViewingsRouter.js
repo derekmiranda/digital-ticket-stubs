@@ -8,7 +8,7 @@ const router = express.Router();
 
 // check if user authenticated
 router.use((req, res, next) => {
-  log(req.sessionID)
+  log('Session ID:', req.sessionID)  
   if (!req.session.passport) {
     return res.status(401).send('Unauthorized')
   }

@@ -3,8 +3,9 @@ const express = require('express');
 const tmdbApi = require('../api/tmdbApi');
 const { formattedJSONResponse } = require('./utils');
 
-const searchRouter = express.Router();
-searchRouter.get('/:movie', async (req, res) => {
+const router = express.Router();
+
+router.get('/:movie', async (req, res) => {
   const { movie } = req.params;
   try {
     const foundMovies = await tmdbApi.searchForMovie(movie);
@@ -14,4 +15,4 @@ searchRouter.get('/:movie', async (req, res) => {
   }
 });
 
-module.exports = searchRouter;
+module.exports = router;

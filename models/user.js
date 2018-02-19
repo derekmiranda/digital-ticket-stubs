@@ -78,7 +78,6 @@ module.exports = function(sequelize, DataTypes) {
   User.prototype.verifyPassHash = async function(incomingPassHash) {
     try {
       const { passHash } = this
-      console.log('hash', passHash)
       return await argon2.verify(passHash, incomingPassHash)
     } catch (err) {
       throw err

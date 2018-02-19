@@ -12,7 +12,12 @@ const LocalStrategy = require("passport-local").Strategy;
 const sessions = require("express-session")({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    // cookies expire in one day
+    maxAge: 86400,
+  }
+  // store: new MemoryStore
 });
 
 const { verifyLogin, verifyRegister } = require("./passport/verify");

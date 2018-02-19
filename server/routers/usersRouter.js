@@ -1,13 +1,15 @@
 const express = require('express')
 const passport = require('passport')
+const log = require('debug')('stubs:users:router')
+
 const usersController = require('../controllers/usersController')
 const { formattedJSONResponse } = require('./utils')
 
 const { APP_SERVER_ORIGIN } = process.env
-const usersRouter = express.Router()
+const router = express.Router()
 
 // Response Headers
-usersRouter.use((req, res, next) => {
+router.use((req, res, next) => {
   res.header({
     // CORS
     'Access-Control-Allow-Origin': APP_SERVER_ORIGIN,
@@ -18,18 +20,19 @@ usersRouter.use((req, res, next) => {
   next()
 })
 
-usersRouter.post('/check', async (req, res, next) => {
+router.post('/check', async (req, res, next) => {
   const user = req.body
   const errors = await usersController.checkUser(user)
   return formattedJSONResponse(res.status(422), errors)
 })
 
-usersRouter.post('/login', passport.authenticate('login'), (req, res) => {
+router.post('/login', passport.authenticate('login'), (req, res) => {
+  log('Session ID:', req.sessionID)  
   return res.send('User logged in')
 })
 
-usersRouter.post('/register', passport.authenticate('register'), (req, res) => {
+router.post('/register', passport.authenticate('register'), (req, res) => {
   return res.status(201).send('User created')
 })
 
-module.exports = usersRouter
+module.exports = router
