@@ -26,9 +26,9 @@ const inputStyle = {
 
 const RegisterForm = ({
   handleSubmit,
+  submitForm,
   asyncValidating,
   valid,
-  submitForm,
   error,
 }) => (
   <StyledForm onSubmit={handleSubmit(submitForm)}>

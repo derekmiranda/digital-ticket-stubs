@@ -14,10 +14,9 @@ class RegisterFormWithRouter extends Component {
       .then((result) => {
         this.props.history.push('/')
       })
-      .catch((err) => {
-        throw new SubmissionError({
-          _error: 'Registration failed, please try again.'
-        })
+      .catch((_error) => {
+        console.error(_error)
+        throw new SubmissionError({ _error })
       })
   }
 

@@ -37,9 +37,8 @@ export const submitUser = (user) => {
     })
     .then(res => {
       if (res.ok) {
-        return res
-      } else {
-        throw res
+        return res.statusText
       }
+      throw res.statusText
     })
 }
