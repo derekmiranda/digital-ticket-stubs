@@ -1,7 +1,6 @@
 const express = require('express')
 const passport = require('passport')
 const usersController = require('../controllers/usersController')
-const { createToken } = require('../tokens')
 const { formattedJSONResponse } = require('./utils')
 
 const { APP_SERVER_ORIGIN } = process.env
