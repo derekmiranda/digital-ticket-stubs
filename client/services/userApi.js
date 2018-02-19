@@ -18,9 +18,9 @@ export const checkUser = (user) => {
     })
 }
 
-export const submitUser = (user) => {
+const createUserSubmitFunc = (route) => (user) => {
   const processedUser = processUserForDb(user)
-  return fetch(`${process.env.USER_API_URL}/register`, {
+  return fetch(route, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -36,9 +36,13 @@ export const submitUser = (user) => {
       throw err
     })
     .then(res => {
+      console.log(res)
       if (res.ok) {
         return res.statusText
       }
       throw res.statusText
     })
-}
+} 
+
+export const submitUser = createUserSubmitFunc(`${process.env.USER_API_URL}/register`)
+export const loginUser = createUserSubmitFunc(`${process.env.USER_API_URL}/login`)
