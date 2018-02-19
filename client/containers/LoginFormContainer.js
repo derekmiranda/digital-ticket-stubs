@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
+import { reduxForm, SubmissionError } from 'redux-form'
+import { withRouter } from 'react-router-dom'
 
 import LoginForm from 'components/LoginPage/LoginForm'
 import { loginFormName as formName } from 'client/constants'
-import { submitUser } from '../services/userApi'
+import { loginUser } from '../services/userApi'
 
 class LoginFormWithRouter extends Component {
   submitForm(user) {
-    return Promise.resolve(submitUser(user))
+    return Promise.resolve(loginUser(user))
       .then(result => {
         this.props.history.push('/')
       })
@@ -23,8 +24,10 @@ class LoginFormWithRouter extends Component {
   }
 }
 
-const LoginFormContainer = reduxForm({
+const ReduxFormContainer = reduxForm({
   form: formName
 })(LoginFormWithRouter)
+
+const LoginFormContainer = withRouter(ReduxFormContainer)
 
 export default LoginFormContainer

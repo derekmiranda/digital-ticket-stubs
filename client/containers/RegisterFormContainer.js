@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { reduxForm, SubmissionError } from 'redux-form';
-import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { reduxForm, SubmissionError } from 'redux-form'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import RegisterForm from 'components/RegisterPage/RegisterForm'
 import { registerFormName as formName } from 'client/constants'
@@ -11,19 +11,20 @@ import { submitUser } from '../services/userApi'
 class RegisterFormWithRouter extends Component {
   submitForm(user) {
     return Promise.resolve(submitUser(user))
-      .then((result) => {
+      .then(result => {
         this.props.history.push('/')
       })
-      .catch((_error) => {
-        console.error(_error)
-        throw new SubmissionError({ _error })
+      .catch(err => {
+        throw new SubmissionError({
+          _error: 'Register failed, please try again.'
+        })
       })
   }
 
   render() {
-    return <RegisterForm {...this.props}
-      submitForm={this.submitForm.bind(this)}
-    />
+    return (
+      <RegisterForm {...this.props} submitForm={this.submitForm.bind(this)} />
+    )
   }
 }
 
@@ -31,7 +32,7 @@ const ReduxFormContainer = reduxForm({
   form: formName,
   validate: validateRegisterForm,
   asyncValidate: asyncValidateRegisterForm,
-  asyncBlurFields: ['username', 'email'],
+  asyncBlurFields: ['username', 'email']
 })(RegisterFormWithRouter)
 
 const RegisterFormContainer = withRouter(ReduxFormContainer)
