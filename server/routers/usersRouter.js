@@ -3,6 +3,7 @@ const passport = require('passport')
 const log = require('debug')('stubs:users:router')
 
 const usersController = require('../controllers/usersController')
+const { createToken } = require('../tokens')
 const { formattedJSONResponse, setCORS } = require('./utils')
 
 const { APP_SERVER_ORIGIN } = process.env
