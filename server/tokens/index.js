@@ -31,7 +31,7 @@ function createToken({ user, host }) {
 function hasExpiryPast(expiry) {
   const expiry_ms = expiry * 1000
   const expired = Date.now() >= expiry_ms
-  resolve(expired)
+  return expired
 }
 
 async function checkIfUserExists(username) {

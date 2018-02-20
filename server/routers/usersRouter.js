@@ -18,7 +18,10 @@ router.post('/check', async (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
-    if (err) return next(err)
+    if (err) {
+      return next(err)
+    }
+
     if (!user) {
       return formattedJSONResponse(res.status(401), {
         error: (info && info.message) || 'Login failure'
@@ -26,7 +29,7 @@ router.post('/login', (req, res, next) => {
     }
     const token = await createToken({ user, host: req.hostname })
     return formattedJSONResponse(res.status(200), { access_token: token })
-  })
+  })(req, res, next)
 })
 
 router.post('/register', async (req, res, next) => {

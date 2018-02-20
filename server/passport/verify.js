@@ -1,3 +1,4 @@
+const log = require('debug')('stubs:verify')
 const { User } = require('../../models')
 const { isPayloadValid } = require('../tokens')
 

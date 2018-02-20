@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const passport = require('passport')
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt')
+const LocalStrategy = require('passport-local')
 
 const { verifyLogin, verifyJwt } = require('./passport/verify')
 const searchRouter = require('./routers/searchRouter')
@@ -17,6 +18,7 @@ const usersRouter = require('./routers/usersRouter')
 const { User } = require('../models')
 
 let port = process.env.PORT || 3000
+const { JWT_SECRET } = process.env
 const app = express()
 
 // Passport config
@@ -24,15 +26,22 @@ passport.use(
   'login',
   new LocalStrategy(
     {
+      secret: JWT_SECRET,
       passwordField: 'passHash'
     },
     verifyLogin
   )
 )
 
-passport.use(new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-}), verifyJwt)
+passport.use(
+  new JwtStrategy(
+    {
+      secretOrKey: JWT_SECRET,
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+    },
+    verifyJwt
+  )
+)
 
 // parse POST reqs
 app.use(bodyParser.json())
