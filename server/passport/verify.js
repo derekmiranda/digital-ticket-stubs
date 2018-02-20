@@ -1,4 +1,5 @@
 const { User } = require('../../models')
+const { isPayloadValid } = require('../tokens')
 
 exports.verifyLogin = async function(username, passHash, done) {
   try {
@@ -16,7 +17,7 @@ exports.verifyLogin = async function(username, passHash, done) {
     }
     return done(null, user)
   } catch (err) {
-    return done(err)
+    return done(err, false)
   }
 }
 
@@ -32,6 +33,22 @@ exports.verifyRegister = async function(req, username, passHash, done) {
         message: 'Error saving user, please try again.'
       })
     }
-    return done(err)
+    return done(err, false)
+  }
+}
+
+exports.verifyJwt = async function(jwtPayload, done) {
+  try {
+    const valid = await isPayloadValid(jwtPayload)
+    if (valid) {
+      const username = jwtPayload.sub
+      const user = await User.find({ where: { username } })
+      return done(null, user)
+    }
+    return done(null, false, {
+      message: 'Invalid payload'
+    })
+  } catch (err) {
+    done(err, false)
   }
 }
