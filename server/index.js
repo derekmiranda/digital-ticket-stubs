@@ -34,19 +34,6 @@ passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 }), verifyJwt)
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
-})
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findOne({ where: { id } })
-    done(null, user)
-  } catch (err) {
-    done(err)
-  }
-})
-
 // parse POST reqs
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
