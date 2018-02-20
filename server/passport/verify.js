@@ -1,6 +1,5 @@
 const log = require('debug')('stubs:verify')
 const { User } = require('../../models')
-const { isPayloadValid } = require('../tokens')
 
 exports.verifyLogin = async function(username, passHash, done) {
   try {
@@ -40,14 +39,16 @@ exports.verifyRegister = async function(req, username, passHash, done) {
 
 exports.verifyJwt = async function(jwtPayload, done) {
   try {
-    const valid = await isPayloadValid(jwtPayload)
-    if (valid) {
-      const username = jwtPayload.sub
-      const user = await User.find({ where: { username } })
+    log('jwt payload', jwtPayload)
+    const username = jwtPayload.sub
+    const user = await User.find({ where: { username } })
+
+    if (user) {
       return done(null, user)
     }
+
     return done(null, false, {
-      message: 'Invalid payload'
+      message: "User doesn't exist"
     })
   } catch (err) {
     done(err, false)
