@@ -9,7 +9,9 @@ import { authConfig } from './config'
 export const fetchViewings = () => {
   return fetch(process.env.VIEWINGS_API_URL, authConfig)
     .then(res => res.json())
-    .then(processViewingsFromDb)
+    .then(
+      viewings => (Array.isArray(viewings) ? processViewingsFromDb(json) : [])
+    )
 }
 
 export const updateViewing = viewing => {
