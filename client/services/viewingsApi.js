@@ -5,12 +5,21 @@ import {
   convertClientWatchtime
 } from './processing'
 import { authConfig } from './config'
+import { getToken } from '../auth'
+
+const createAuthHeader = () => `Bearer ${getToken()}`
 
 export const fetchViewings = () => {
-  return fetch(process.env.VIEWINGS_API_URL, authConfig)
+  const authHeader = createAuthHeader()
+  return fetch(process.env.VIEWINGS_API_URL, {
+    ...authConfig,
+    headers: {
+      Authorization: authHeader
+    }
+  })
     .then(res => res.json())
     .then(
-      viewings => (Array.isArray(viewings) ? processViewingsFromDb(json) : [])
+      viewings => (Array.isArray(viewings) ? processViewingsFromDb(viewings) : [])
     )
 }
 
@@ -24,6 +33,7 @@ export const updateViewings = viewings => {
     ...authConfig,
     headers: {
       Accept: 'application/json',
+      Authorization: createAuthHeader(),
       'Content-Type': 'application/json'
     },
     method: 'PATCH',
@@ -37,6 +47,7 @@ export const saveNewViewing = viewing => {
     ...authConfig,
     headers: {
       Accept: 'application/json',
+      Authorization: createAuthHeader(),
       'Content-Type': 'application/json'
     },
     method: 'POST',
@@ -47,6 +58,9 @@ export const saveNewViewing = viewing => {
 export const removeViewing = id => {
   return fetch(`${process.env.VIEWINGS_API_URL}/${id}`, {
     ...authConfig,
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      Authorization: createAuthHeader()
+    }
   }).then(res => res.json())
 }
