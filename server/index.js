@@ -14,8 +14,8 @@ const sessions = require("express-session")({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    // cookies expire in one day
-    maxAge: 86400,
+    // cookies expire in 2 weeks
+    maxAge: 1209600,
   }
   // store: new MemoryStore
 });
