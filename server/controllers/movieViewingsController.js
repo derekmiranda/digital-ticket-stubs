@@ -3,8 +3,8 @@ const db = require('../../models')
 const movieViewingsController = {}
 const MovieViewing = db.MovieViewing
 
-movieViewingsController.getMovieViewings = (queryObj = {}) => {
-  return MovieViewing.findAll({ where: queryObj, order: ['id'] })
+movieViewingsController.getMovieViewings = UserId => {
+  return MovieViewing.findAll({ where: { UserId }, order: ['id'] })
 }
 
 movieViewingsController.addMovieViewing = (movieViewing, UserId) => {

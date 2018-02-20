@@ -20,33 +20,37 @@ router.use((req, res, next) => {
   }
 
   passport.authenticate('jwt', (err, user, info) => {
-    log('err', err)
-    log('user', user)
-    log('info', info)
     if (err) {
       return next(err)
     }
 
     if (!user) {
+      log('JWT auth error', info.message)
       return formattedJSONResponse(res.status(401), {
         error: (info && info.message) || 'Unauthorized'
       })
     }
 
+    // store user ref for viewing methods to use
+    req.user = user
     next()
   })(req, res, next)
 })
 
-router.get(
-  '/',
-  makeJSONResponseMiddleware(movieViewingsController.getMovieViewings)
-)
+router.get('/', (req, res, next) => {
+  const middleware = makeJSONResponseMiddleware(
+    movieViewingsController.getMovieViewings,
+    req.user.id
+  )
+  return middleware(req, res, next)
+})
 
 router.post('/', (req, res, next) => {
   const movieViewing = req.body
   const middleware = makeJSONResponseMiddleware(
     movieViewingsController.addMovieViewing,
-    movieViewing
+    movieViewing,
+    req.user.id
   )
   return middleware(req, res, next)
 })
