@@ -3,23 +3,12 @@ const passport = require('passport')
 const log = require('debug')('stubs:users:router')
 
 const usersController = require('../controllers/usersController')
-const { formattedJSONResponse } = require('./utils')
+const { formattedJSONResponse, setCORS } = require('./utils')
 
 const { APP_SERVER_ORIGIN } = process.env
 const router = express.Router()
 
-// Response Headers
-router.use((req, res, next) => {
-  res.header({
-    // CORS
-    'Access-Control-Allow-Origin': APP_SERVER_ORIGIN,
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE',
-    'Access-Control-Allow-Headers': 'Content-Type, Accepts'
-  })
-  next()
-})
-
+router.use(setCORS)
 router.post('/check', async (req, res, next) => {
   const user = req.body
   const errors = await usersController.checkUser(user)
@@ -27,6 +16,7 @@ router.post('/check', async (req, res, next) => {
 })
 
 router.post('/login', passport.authenticate('login'), (req, res) => {
+  log('Session ID:', req.sessionID)  
   log('User:', req.user)  
   return res.send('User logged in')
 })

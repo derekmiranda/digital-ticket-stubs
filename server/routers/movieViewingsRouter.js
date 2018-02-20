@@ -1,19 +1,22 @@
 const express = require('express');
 const log = require('debug')('stubs:viewings:router')
 
-const { makeJSONResponseMiddleware } = require('./utils');
+const { makeJSONResponseMiddleware, setCORS } = require('./utils');
 const movieViewingsController = require('../controllers/movieViewingsController');
 
 const router = express.Router();
 
 // check if user authenticated
 router.use((req, res, next) => {
+  log('Session ID:', req.sessionID)  
   log('User:', req.user)  
   if (!req.user) {
     return res.status(401).send('Unauthorized')
   }
   next()
 })
+
+router.use(setCORS)
 
 router.get('/', makeJSONResponseMiddleware(movieViewingsController.getMovieViewings));
 

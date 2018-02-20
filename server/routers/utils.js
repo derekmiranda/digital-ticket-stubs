@@ -19,7 +19,19 @@ const makeJSONResponseMiddleware = (controllerPromiseFn, ...controllerFnArgs) =>
   )
 }
 
+const setCORS = (req, res, next) => {
+  res.header({
+    // CORS
+    'Access-Control-Allow-Origin': process.env.APP_SERVER_ORIGIN,
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE',
+    'Access-Control-Allow-Headers': 'Content-Type, Accepts'
+  })
+  next()
+}
+
 module.exports = {
   formattedJSONResponse,
   makeJSONResponseMiddleware,
+  setCORS,
 }
