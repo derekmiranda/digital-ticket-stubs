@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const log = require('debug')('stubs:viewings:router')
 
 const { makeJSONResponseMiddleware, setCORS } = require('./utils');
@@ -7,14 +8,9 @@ const movieViewingsController = require('../controllers/movieViewingsController'
 const router = express.Router();
 
 // check if user authenticated
-router.use((req, res, next) => {
-  log('Session ID:', req.sessionID)  
-  log('User:', req.user)  
-  if (!req.user) {
-    return res.status(401).send('Unauthorized')
-  }
-  next()
-})
+router.use(passport.use('jwt', {
+  session: false
+}))
 
 router.use(setCORS)
 
