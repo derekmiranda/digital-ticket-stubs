@@ -60,13 +60,13 @@ const AccountQuestion = () => {
 
 const renderTicketsForm = ({
   fields,
-	handleSubmit,
-	loggedIn,
+  handleSubmit,
+  loggedIn,
   meta: { submitting, submitFailed }
 }) => {
   return (
-		<div id="tickets-form" style={{ marginTop: '2em' }}>
-			{!loggedIn && <AccountQuestion />}
+    <div id="tickets-form" style={{ marginTop: '2em' }}>
+      {!loggedIn && <AccountQuestion />}
       <ul>
         {fields.map((member, idx) => {
           return (
@@ -87,7 +87,13 @@ const createSortButton = curry((handleChange, value) => (
   </button>
 ))
 
-const TicketsForm = ({ handleSubmit, loading, addTicket, sortTickets }) => {
+const TicketsForm = ({
+  handleSubmit,
+  loading,
+  addTicket,
+  sortTickets,
+  loggedIn
+}) => {
   const createSortButtonWithTarget = createSortButton(sortTickets)
   const titleSortBtn = createSortButtonWithTarget('title')
   const venueSortBtn = createSortButtonWithTarget('venue')
@@ -115,6 +121,7 @@ const TicketsForm = ({ handleSubmit, loading, addTicket, sortTickets }) => {
           name="viewings"
           component={renderTicketsForm}
           props={{ handleSubmit }}
+          loggedIn={loggedIn}
         />
       )}
     </StyledTicketsForm>

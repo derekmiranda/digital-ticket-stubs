@@ -9,9 +9,7 @@ import { validateWatchtime, clearWatchtime } from 'actions/creators/thunks';
 import { ticketsFormName as formName } from 'client/constants';
 import createTicketSubmitHandler from './createTicketSubmitHandler';
 import debug from 'client/utils/debug';
-
-// TODO: check server
-const checkLogin = () => false
+import { isAuthenticated } from '../auth'
 
 const formSelector = getFormValues(formName);
 const metaSelector = getFormMeta(formName);
@@ -50,10 +48,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
   const watchtimeWarning = watchtimeWarnings && watchtimeWarnings[idx];
-
+  const loggedIn = isAuthenticated()
+  
   // different actions based on login status
-  const loggedIn = checkLogin()
-
   const boundActionCreators = bindActionCreators({
     removeTicket: () => startTicketDelete(viewing.formId, viewing.id),
     validateWatchtime: () => validateWatchtime(viewing, idx),

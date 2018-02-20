@@ -1,6 +1,6 @@
 import { ACCESS_TOKEN } from '../constants'
 
-export const isAuthenticated = () => getToken()
+export const isAuthenticated = () => !!getToken()
 
 export function getToken() {
   return localStorage.getItem(ACCESS_TOKEN)

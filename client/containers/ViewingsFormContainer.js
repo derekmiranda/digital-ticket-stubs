@@ -7,6 +7,7 @@ import { startTicketsLoad, sortTickets } from 'actions/creators';
 import { ticketsFormName as formName } from 'client/constants';
 import getFormId from 'meta/getFormId';
 import createBaseViewing from '../meta/createBaseViewing'
+import { isAuthenticated } from '../auth'
 
 class LoadContainer extends PureComponent {
   componentDidMount() {
@@ -29,6 +30,7 @@ const ViewingsFormContainer = connect(
   state => ({
     loading: state.loading,
     initialValues: state.initialViewings,
+    loggedIn: isAuthenticated(),
   }),
   {
     startTicketsLoad,
