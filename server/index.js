@@ -83,12 +83,6 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE",
     "Access-Control-Allow-Headers": "Content-Type, Accepts",
-
-    // Cache Settings
-    "Cache-Control":
-      process.env.NODE_ENV === "development"
-        ? "no-cache, must-revalidate"
-        : undefined
   });
   next();
 });
