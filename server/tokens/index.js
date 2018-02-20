@@ -18,7 +18,7 @@ function createToken({ user, host }) {
       payload,
       JWT_SECRET,
       {
-        expiresIn: JWT_EXPIRY
+        expiresIn: expiry
       },
       (err, token) => {
         if (err) reject(err)
@@ -75,6 +75,7 @@ function shouldRefreshToken(issueTime) {
 
 module.exports = {
   createToken,
+  checkIfUserExists,
 	isTokenValid,
 	isPayloadValid,
   shouldRefreshToken
