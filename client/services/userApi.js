@@ -1,3 +1,4 @@
+import { saveToken } from '../auth'
 import { processUserForDb } from './processing'
 import { authConfig } from './config'
 
@@ -36,12 +37,13 @@ const createUserSubmitFunc = (route) => (user) => {
       console.error(err)
       throw err
     })
-    .then(res => {
-      console.log(res)
-      if (res.ok) {
-        return res.statusText
+    .then(res => res.json())
+    .then(json => {
+      if (json.error) {
+        throw json
       }
-      throw res.statusText
+      saveToken(json.access_token) 
+      return json
     })
 } 
 

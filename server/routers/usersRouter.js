@@ -6,7 +6,7 @@ const usersController = require('../controllers/usersController')
 const { createToken } = require('../tokens')
 const { formattedJSONResponse, setCORS } = require('./utils')
 
-const { APP_SERVER_ORIGIN } = process.env
+const { JWT_SECRET, JWT_EXPIRY, APP_SERVER_ORIGIN } = process.env
 const router = express.Router()
 
 router.use(setCORS)
@@ -16,14 +16,43 @@ router.post('/check', async (req, res, next) => {
   return formattedJSONResponse(res.status(422), errors)
 })
 
-router.post('/login', passport.authenticate('login'), (req, res) => {
-  log('Session ID:', req.sessionID)  
-  log('User:', req.user)  
-  return res.send('User logged in')
+router.post('/login', (req, res, next) => {
+  passport.authenticate('login', async (err, user, info) => {
+    if (err) return next(err)
+    if (!user) {
+      return formattedJSONResponse(res.status(401), {
+        error: (info && info.message) || 'Login failure'
+      })
+    }
+    const token = await createToken({ user, host: req.hostname })
+    return formattedJSONResponse(res.status(200), { access_token: token })
+  })
 })
 
-router.post('/register', passport.authenticate('register'), (req, res) => {
-  return res.status(201).send('User created')
+router.post('/register', async (req, res, next) => {
+  try {
+    const user = req.body
+    const result = await usersController.createUser(user)
+    const token = await createToken({ user: result.data, host: req.hostname })
+
+    switch (result.error) {
+      case 'database':
+        return formattedJSONResponse(res.status(422), result)
+      case 'server':
+        throw result
+      default:
+        return formattedJSONResponse(
+          res.status(201).set({
+            Location: `${req.protocol}//:${req.hostname}/api/viewings`
+          }),
+          {
+            access_token: token
+          }
+        )
+    }
+  } catch (err) {
+    throw err
+  }
 })
 
 module.exports = router
