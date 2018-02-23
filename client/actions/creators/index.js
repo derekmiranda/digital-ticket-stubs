@@ -100,3 +100,6 @@ export const clearWatchtime = (index) => ({
   type: types.CLEAR_WATCHTIME,
   index,
 })
+
+// auth
+export const logOut = createSimpleActionCreator(types.LOG_OUT)
