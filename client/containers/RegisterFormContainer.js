@@ -10,7 +10,7 @@ import { submitUser } from '../services/userApi'
 
 class RegisterFormWithRouter extends Component {
   submitForm(user) {
-    return Promise.resolve(submitUser(user))
+    return Promise.resolve(this.props.startUserSubmit(user))
       .then(result => {
         this.props.history.push('/')
       })
@@ -28,12 +28,17 @@ class RegisterFormWithRouter extends Component {
   }
 }
 
+const mapDispatchToProps = {
+  startUserSubmit: submitUser,
+}
+const ConnectedContainer = connect(null, mapDispatchToProps)(RegisterFormWithRouter)
+
 const ReduxFormContainer = reduxForm({
   form: formName,
   validate: validateRegisterForm,
   asyncValidate: asyncValidateRegisterForm,
   asyncBlurFields: ['username', 'email']
-})(RegisterFormWithRouter)
+})(ConnectedContainer)
 
 const RegisterFormContainer = withRouter(ReduxFormContainer)
 
