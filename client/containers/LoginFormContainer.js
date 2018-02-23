@@ -8,7 +8,7 @@ import { loginUser } from '../services/userApi'
 
 class LoginFormWithRouter extends Component {
   submitForm(user) {
-    return Promise.resolve(loginUser(user))
+    return Promise.resolve(this.props.startUserLogin(user))
       .then(result => {
         this.props.history.push('/')
       })
