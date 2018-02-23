@@ -9,29 +9,25 @@ import {
 import { loginSucceeded, registerSucceeded } from '../actions/creators'
 import { saveToken } from '../auth'
 
-function createSubmitSaga({ submitFn, _error, submitSuccessCreator }) {
+function createSubmitSaga({ submitFn, submitSuccessCreator }) {
 	return function* (user) {
 		try {
 			const json = yield submitFn(user)
 			yield call(saveToken, json.access_token)
 			yield put(submitSuccessCreator())
 		} catch (err) {
-			throw new SubmissionError({
-				_error 
-			})
+			throw err
 		}
 	}
 }
 
 const startUserSubmit = createSubmitSaga({
 	submitFn: submitUser,
-	_error: 'Register failed, please try again.',
 	submitSuccessCreator: loginSucceeded,
 })
 
 const startUserLogin = createSubmitSaga({
 	submitFn: submitUser,
-	_error: 'Register failed, please try again.',
 	submitSuccessCreator: loginSucceeded,
 })
 
