@@ -21,20 +21,20 @@ function createSubmitSaga({ submitFn, submitSuccessCreator }) {
 	}
 }
 
-const startUserSubmit = createSubmitSaga({
+const handleUserSubmit = createSubmitSaga({
 	submitFn: submitUser,
 	submitSuccessCreator: loginSucceeded,
 })
 
-const startUserLogin = createSubmitSaga({
+const handleUserLogin = createSubmitSaga({
 	submitFn: submitUser,
 	submitSuccessCreator: loginSucceeded,
 })
 
 export function* watchStartRegister() {
-  yield takeLatest(START_REGISTER, startUserSubmit)
+  yield takeLatest(START_REGISTER, handleUserSubmit)
 }
 
 export function* watchStartLogin() {
-  yield takeLatest(START_LOG_IN, startUserLogin)
+  yield takeLatest(START_LOG_IN, handleUserLogin)
 }
