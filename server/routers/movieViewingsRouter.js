@@ -25,7 +25,7 @@ router.use((req, res, next) => {
     }
 
     if (!user) {
-      log('JWT auth error', info.message)
+      log('JWT auth error:', info.message)
       return formattedJSONResponse(res.status(401), {
         error: (info && info.message) || 'Unauthorized'
       })
