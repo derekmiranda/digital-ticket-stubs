@@ -20,6 +20,7 @@ import {
   FOCUS_VIEWING,
   LOADED_SEARCH_RESULTS,
   WATCHTIME_VALID,
+  CHECK_LOGIN,
 } from 'actions/types';
 import {
   ticketsFormName
@@ -51,7 +52,11 @@ const rootReducer = combineReducers({
         }, {})
       return { ...state, ...initialWatchtimes }
     }
-  }, {})
+  }, {}),
+  loggedIn: reducerFromObj({
+    [CHECK_LOGIN]: ({ loggedIn }) => loggedIn,
+
+  }, false)
 })
 
 export default rootReducer;

@@ -27,6 +27,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     submittingTickets,
     watchtimeWarnings,
     searchResults,
+    loggedIn,
   } = stateProps;
   const { dispatch } = dispatchProps;
   const { idx, name } = ownProps;
@@ -48,7 +49,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const ticketSubmitting = submittingTickets && submittingTickets[idx];
   const watchtimeWarning = watchtimeWarnings && watchtimeWarnings[idx];
-  const loggedIn = isAuthenticated()
   
   // different actions based on login status
   const boundActionCreators = bindActionCreators({
