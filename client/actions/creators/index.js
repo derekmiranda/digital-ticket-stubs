@@ -100,3 +100,7 @@ export const clearWatchtime = (index) => ({
   type: types.CLEAR_WATCHTIME,
   index,
 })
+
+// auth
+export const loginSucceeded = createSimpleActionCreator(types.LOG_IN_SUCCEEDED)
+export const registerSucceeded = createSimpleActionCreator(types.REGISTER_SUCCEEDED)
