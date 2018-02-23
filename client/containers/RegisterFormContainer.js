@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom'
 import RegisterForm from 'components/RegisterPage/RegisterForm'
 import { registerFormName as formName } from 'client/constants'
 import { validateRegisterForm, asyncValidateRegisterForm } from 'validators'
-import { submitUser } from '../services/userApi'
 
 class RegisterFormWithRouter extends Component {
   submitForm(user) {

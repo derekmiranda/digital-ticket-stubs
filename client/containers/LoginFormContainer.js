@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 
 import LoginForm from 'components/LoginPage/LoginForm'
 import { loginFormName as formName } from 'client/constants'
-import { loginUser } from '../services/userApi'
 
 class LoginFormWithRouter extends Component {
   submitForm(user) {
