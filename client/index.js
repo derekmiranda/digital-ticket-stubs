@@ -12,6 +12,7 @@ import logger from 'redux-logger';
 import App from 'components/App';
 import reducer from 'reducers';
 import rootSaga from 'sagas';
+import { isAuthenticated } from './auth'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -24,7 +25,9 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 
-export const store = createStore(reducer, applyMiddleware(...middleware));
+export const store = createStore(reducer, {
+  loggedIn: isAuthenticated(),
+}, applyMiddleware(...middleware));
 sagaMiddleware.run(rootSaga);
 
 ReactDom.render(
