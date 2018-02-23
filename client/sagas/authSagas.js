@@ -10,7 +10,7 @@ import { loginSucceeded, registerSucceeded } from '../actions/creators'
 import { saveToken } from '../auth'
 
 function createSubmitSaga({ submitFn, submitSuccessCreator }) {
-	return function* (user) {
+	return function* ({ user }) {
 		try {
 			const json = yield submitFn(user)
 			yield call(saveToken, json.access_token)
@@ -23,11 +23,11 @@ function createSubmitSaga({ submitFn, submitSuccessCreator }) {
 
 const handleUserSubmit = createSubmitSaga({
 	submitFn: submitUser,
-	submitSuccessCreator: loginSucceeded,
+	submitSuccessCreator: registerSucceeded,
 })
 
 const handleUserLogin = createSubmitSaga({
-	submitFn: submitUser,
+	submitFn: loginUser,
 	submitSuccessCreator: loginSucceeded,
 })
 

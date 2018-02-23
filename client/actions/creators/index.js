@@ -102,5 +102,15 @@ export const clearWatchtime = (index) => ({
 })
 
 // auth
+export const startLogin = (user) => ({
+  type: types.START_LOG_IN,
+  user,
+})
+
+export const startRegister = (user) => ({
+  type: types.START_REGISTER,
+  user,
+})
+
 export const loginSucceeded = createSimpleActionCreator(types.LOG_IN_SUCCEEDED)
 export const registerSucceeded = createSimpleActionCreator(types.REGISTER_SUCCEEDED)
