@@ -15,9 +15,9 @@ class RegisterFormWithRouter extends Component {
   submitForm(user) {
     return Promise.resolve(submitUser(user))
       .then(result => {
-        this.props.history.push('/')
         saveToken(result.access_token)
         store.dispatch(registerSucceeded())
+        this.props.history.push('/')
       })
       .catch(err => {
         throw new SubmissionError({

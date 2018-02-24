@@ -18,7 +18,7 @@ import {
 import debug from 'client/utils/debug';
 import { emptyOrFilledWatchtime } from 'validators';
 import { clearToken } from '../../auth'
-import { loggedOut } from './index';
+import { loggedOut, startTicketsLoad } from './index';
 
 export function ticketSubmit({
 	viewing,
@@ -82,6 +82,7 @@ export function clearWatchtime(fieldName) {
 export function logOut() {
 	return dispatch => {
 		clearToken()
+		dispatch(startTicketsLoad())
 		dispatch(loggedOut())
 	}
 }

@@ -14,9 +14,9 @@ class LoginFormWithRouter extends Component {
   submitForm(user) {
     return Promise.resolve(loginUser(user))
       .then(result => {
-        this.props.history.push('/')
         store.dispatch(loginSucceeded())
         saveToken(result.access_token)
+        this.props.history.push('/')
       })
       .catch(err => {
         throw new SubmissionError({
