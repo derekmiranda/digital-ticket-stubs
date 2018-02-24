@@ -3,15 +3,21 @@ import { reduxForm, SubmissionError } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+import { store } from '../index'
 import RegisterForm from 'components/RegisterPage/RegisterForm'
 import { registerFormName as formName } from 'client/constants'
 import { validateRegisterForm, asyncValidateRegisterForm } from 'validators'
+import { registerSucceeded } from '../actions/creators'
+import { submitUser } from '../services/userApi'
+import { saveToken } from '../auth'
 
 class RegisterFormWithRouter extends Component {
   submitForm(user) {
-    return Promise.resolve(this.props.startUserSubmit(user))
+    return Promise.resolve(submitUser(user))
       .then(result => {
         this.props.history.push('/')
+        saveToken(result.access_token)
+        store.dispatch(registerSucceeded())
       })
       .catch(err => {
         throw new SubmissionError({
@@ -27,17 +33,12 @@ class RegisterFormWithRouter extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  startUserSubmit: submitUser,
-}
-const ConnectedContainer = connect(null, mapDispatchToProps)(RegisterFormWithRouter)
-
 const ReduxFormContainer = reduxForm({
   form: formName,
   validate: validateRegisterForm,
   asyncValidate: asyncValidateRegisterForm,
   asyncBlurFields: ['username', 'email']
-})(ConnectedContainer)
+})(RegisterFormWithRouter)
 
 const RegisterFormContainer = withRouter(ReduxFormContainer)
 
