@@ -102,6 +102,6 @@ export const clearWatchtime = (index) => ({
 })
 
 // auth
-export const logOut = createSimpleActionCreator(types.LOG_OUT)
+export const loggedOut = createSimpleActionCreator(types.LOGGED_OUT)
 export const loginSucceeded = createSimpleActionCreator(types.LOG_IN_SUCCEEDED)
 export const registerSucceeded = createSimpleActionCreator(types.REGISTER_SUCCEEDED)

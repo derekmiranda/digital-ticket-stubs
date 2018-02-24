@@ -38,7 +38,7 @@ export const TICKET_DELETE_FAILED = "TICKET_DELETE_FAILED";
 export const REMOVE_TICKET = "REMOVE_TICKET";
 
 // auth
-export const LOG_OUT = "LOG_OUT";
+export const LOGGED_OUT = "LOGGED_OUT";
 
 // auth
 export const START_LOG_IN = 'START_LOG_IN'

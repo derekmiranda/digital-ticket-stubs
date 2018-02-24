@@ -16,7 +16,8 @@ import {
   LOADED_SEARCH_RESULTS,
   WATCHTIME_VALID,
   LOG_IN_SUCCEEDED,
-  REGISTER_SUCCEEDED
+  REGISTER_SUCCEEDED,
+  LOGGED_OUT
 } from '../actions/types'
 
 const rootReducer = combineReducers({
@@ -57,7 +58,8 @@ const rootReducer = combineReducers({
   loggedIn: reducerFromObj(
     {
       [LOG_IN_SUCCEEDED]: () => true,
-      [REGISTER_SUCCEEDED]: () => true
+      [REGISTER_SUCCEEDED]: () => true,
+      [LOGGED_OUT]: () => false,
     },
     false
   )

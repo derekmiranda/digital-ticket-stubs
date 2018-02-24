@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import TicketsForm from 'components/TicketsForm';
 import { startTicketsLoad, sortTickets } from 'actions/creators';
+import { logOut } from '../actions/creators/thunks'
 import { ticketsFormName as formName } from 'client/constants';
 import getFormId from 'meta/getFormId';
 import createBaseViewing from '../meta/createBaseViewing'
@@ -35,6 +36,7 @@ const ViewingsFormContainer = connect(
     startTicketsLoad,
     addTicket: () => arrayUnshift(formName, 'viewings', createBaseViewing()),
     sortTickets,
+    logOut,
   }
 )(ReduxFormContainer);
 

@@ -71,11 +71,12 @@ const renderTicketsForm = ({
   fields,
   handleSubmit,
   loggedIn,
+  logOut,
   meta: { submitting, submitFailed }
 }) => {
   return (
     <div id="tickets-form" style={{ marginTop: "2em" }}>
-      {loggedIn ? <LogOut /> : <AccountQuestion />}
+      {loggedIn ? <LogOut logOut={logOut} /> : <AccountQuestion />}
       <ul>
         {fields.map((member, idx) => {
           return (
@@ -99,9 +100,10 @@ const createSortButton = curry((handleChange, value) => (
 const TicketsForm = ({
   handleSubmit,
   loading,
+  loggedIn,
   addTicket,
   sortTickets,
-  loggedIn
+  logOut,
 }) => {
   const createSortButtonWithTarget = createSortButton(sortTickets);
   const titleSortBtn = createSortButtonWithTarget("title");
@@ -130,6 +132,7 @@ const TicketsForm = ({
           name="viewings"
           component={renderTicketsForm}
           props={{ handleSubmit }}
+          logOut={logOut}
           loggedIn={loggedIn}
         />
       )}
