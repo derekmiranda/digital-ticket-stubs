@@ -42,7 +42,6 @@ const createUserSubmitFunc = (route) => (user) => {
       if (json.error) {
         throw json
       }
-      saveToken(json.access_token) 
       return json
     })
 } 
