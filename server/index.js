@@ -70,14 +70,9 @@ app.use('/api/viewings', viewingsRouter)
 app.use('/api/search', searchRouter)
 app.use('/api/users', usersRouter)
 
-// only serve SPA from non-REST API urls
-app.get('/', (req, res, next) => {
-  return res.sendFile(path.resolve(__dirname, '../public/index.html'))
-})
-
 // redirect to index
 app.get('*', (req, res) => {
-  return res.redirect(302, '/')
+  return res.sendFile(path.resolve(__dirname, '../views/index.html'))
 })
 
 function startListening(app, port) {
