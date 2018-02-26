@@ -17,6 +17,7 @@ const viewingsRouter = require('./routers/movieViewingsRouter')
 const usersRouter = require('./routers/usersRouter')
 const { User } = require('../models')
 
+
 let port = process.env.PORT || 3000
 const { JWT_SECRET } = process.env
 const app = express()
@@ -64,6 +65,18 @@ app.use((req, res, next) => {
   next()
 })
 
+// Webpack Dev
+if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack')
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const config = require('../webpack.config')
+  const compiler = webpack(config)
+
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  }))
+}
+
 app.use(express.static('public'))
 app.use(express.static('dist'))
 app.use('/api/viewings', viewingsRouter)
@@ -71,9 +84,11 @@ app.use('/api/search', searchRouter)
 app.use('/api/users', usersRouter)
 
 // redirect to index
-app.get('*', (req, res) => {
+app.get(['/', '/register', '/login'], (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../views/index.html'))
 })
+
+app.get('*', (req, res) => res.status(302).redirect('/'))
 
 function startListening(app, port) {
   const server = app.listen(port, () => {
